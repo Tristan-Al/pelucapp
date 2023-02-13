@@ -9,9 +9,7 @@ class FrontPageScreen extends StatelessWidget {
     return Scaffold(
         body: Center(
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.end,
-
             children: [
               const FlutterLogo( size: 200,),
 
@@ -59,7 +57,7 @@ class FrontPageScreen extends StatelessWidget {
                         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png',
                         fit:BoxFit.cover
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
                     Image.network(
