@@ -11,19 +11,12 @@ class CardSlider extends StatelessWidget {
     
     final size = MediaQuery.of(context).size;
 
-    return Container(
+    return Container( 
       width: double.infinity,
-      height: 350,
+      height: 275,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: const Text('Novedades', style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),),
-          ),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
