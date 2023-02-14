@@ -21,7 +21,7 @@ class CitaScreen extends StatelessWidget {
               ),),
             ),
 
-            CardSlider(novedades: [Text('novedad1'), Text('novedad2'), Text('novedad3') ]),
+            CardSlider(novedades: [Text('novedad1'), Text('novedad2'), Text('novedad3'), Text('novedad 4') ]),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),

@@ -19,6 +19,11 @@ class MyApp extends StatelessWidget {
         'splash':(context) => SplashScreen(),
         'front_page':(context) => FrontPageScreen(),
         'home':(context) => HomeScreen(),
+        'citas':(context) => CitaScreen(),
+        'login':(context) => LogInScreen(),
+        'register':(context) => RegisterScreen(),
+        'mis_reservas':(context) => MisReservasScreen(),
+        'peluqueros':(context) => PeluquerosScreen(),
       },
       
     );

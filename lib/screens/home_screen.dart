@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/screens/cita_screen.dart';
+import 'package:pelucapp/screens/screens.dart';
 
 void main() => runApp(const HomeScreen());
 
@@ -17,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Text('Index 1: Mis Reservas'), 
     Text('Index 2: Llamanos'), 
     Text('Index 3: Perfil'),  
+    PeluquerosScreen(),
   ];
 
   void _onItemTapped(int index) {
