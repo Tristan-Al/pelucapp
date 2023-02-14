@@ -11,6 +11,7 @@ class CitaScreen extends StatelessWidget {
         child: Column(
           children: [
             CardSlider(novedades: [Text('novedad1'), Text('novedad2'), Text('novedad3') ]),
+            
           ],
         ),
       )
