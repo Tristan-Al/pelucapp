@@ -1,0 +1,1 @@
+export 'package:pelucapp/widgets/card_slider.dart';

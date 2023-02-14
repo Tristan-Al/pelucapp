@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/screens/cita_screen.dart';
 
 void main() => runApp(const HomeScreen());
 
@@ -12,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   
   int _selectedIndex = 0;
   static const List<Widget> _pages = <Widget>[
-    Text('Index 0: Pedir Cita'), 
+    CitaScreen(), 
     Text('Index 1: Mis Reservas'), 
     Text('Index 2: Llamanos'), 
     Text('Index 3: Perfil'),  
@@ -28,7 +29,29 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PelucApp'),
+        automaticallyImplyLeading: false,
+        title: const Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: Text(
+            'PELUCAPP',
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
+            child: GestureDetector(
+              onTap: () {
+                
+              },
+              child: const Icon(
+                Icons.notifications_sharp,
+                color: Color.fromARGB(255, 0, 0, 0),
+              )
+            )
+          )
+        ],
       ),
       body: IndexedStack(
         index: _selectedIndex,
