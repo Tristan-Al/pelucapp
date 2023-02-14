@@ -21,22 +21,17 @@ class CustomCard extends StatelessWidget {
           children: [
             FadeInImage(
               image: NetworkImage( imageUrl ),
-              //while the image is loading show this gif
               placeholder: const AssetImage('assets/no-image.jpg'),
-              //auto adjust to max width
               width: double.infinity,
               height: 100,
-              //adjust to max height
               fit: BoxFit.cover,
-              //duration time of the fade in 
               fadeInDuration: const Duration(milliseconds: 1000),
-              ),
-              Container(
-                alignment: AlignmentDirectional.centerEnd,
-                padding: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
-                //if name is null write unknown
-                child: Text( name ??  'Unknown'),
-              ),
+            ),
+            Container(
+              alignment: AlignmentDirectional.centerEnd,
+              padding: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
+              child: Text( name ??  'Unknown'),
+            ),
           ],
         ),
       ),
