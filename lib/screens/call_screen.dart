@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:pelucapp/screens/home_screen.dart';
+import 'package:pelucapp/theme/app_theme.dart';
+
+class call_screen extends StatelessWidget {
+    const call_screen({super.key});
+  
+   @override
+  Widget build(BuildContext context) {
+    
+     
+    return Scaffold(
+        body: Center(
+          child: Column(  
+             mainAxisAlignment: MainAxisAlignment.center, 
+            children: [
+              Padding(
+              padding: EdgeInsets.all(16.0),
+              child: const Text('Contáctanos llamandonos', style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),),
+            ),
+            
+              Container(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    primary:AppTheme.buttomColor,
+                     shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusDirectional.circular(15)),
+                  ),
+                  onPressed: () {
+                    
+                  },
+                  child: const Text('670 89 67 56', style: TextStyle( fontSize: 20)),
+                  
+                ),
+                
+              ),
+
+              const SizedBox( height: 30,),
+               Padding(
+              padding: EdgeInsets.all(16.0),
+              child: const Text('O mandanos un correo', style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),),
+            ),
+              Container(
+                
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    primary:AppTheme.buttomColor,
+                     shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusDirectional.circular(15)),
+                  ),
+                  onPressed: () {
+                    
+                  },
+                  child: const Text('Pelucapp@gmail.com', style: TextStyle( fontSize: 20)),
+            
+                ),
+              ),
+            ],
+              ),
+          ),
+        );      
+  }
+}  
