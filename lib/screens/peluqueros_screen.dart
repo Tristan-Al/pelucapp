@@ -11,6 +11,13 @@ class PeluquerosScreen extends StatelessWidget {
     
     PageController pageController = PageController(viewportFraction: 0.75);
 
+    List<_Peluquero> peluqueros = [
+      _Peluquero('Fabio','Corte, Tinte, Barba, Champu'), 
+      _Peluquero('Jorge','Corte, Tinte'), 
+      _Peluquero('Vicenzo','Champu'),
+      _Peluquero('Simone','Corte, Barba'),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -36,16 +43,17 @@ class PeluquerosScreen extends StatelessWidget {
       body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: SmallText(text: 'Elige tu pelquero favorito', color: AppTheme.secondaryTextColor,),
             ),
             Container(
               height: 400,
               child: PageView.builder(
                 controller: pageController,
-                itemCount: 5,
+                itemCount: peluqueros.length,
                 itemBuilder: (context, index){
-                  return _buildPeluquerosCard(index);
+                  _Peluquero peluquero = peluqueros[index];
+                  return _buildPeluquerosCard(peluquero, context);
                 }
               ),
             ),
@@ -55,7 +63,7 @@ class PeluquerosScreen extends StatelessWidget {
   }
 }
 
-Widget _buildPeluquerosCard(int index){
+Widget _buildPeluquerosCard(_Peluquero peluquero, context){
   return Stack(
     children: [
       Align(
@@ -79,20 +87,29 @@ Widget _buildPeluquerosCard(int index){
             width: 290,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 70,),
-                BigText(text: "Fabio", color: AppTheme.secondaryTextColor,),
+                const SizedBox(height: 90,),
+                BigText(text: peluquero.nombre, color: AppTheme.secondaryTextColor,),
                 const SizedBox(height: 10,),
                 BigText(text: 'Servicios disponibles:', color: AppTheme.secondaryTextColor, size: 20),
                 const SizedBox(height: 10,),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: IconButton(
-                        iconSize: 50,
+                SmallText(text: peluquero.servicios, color: Colors.black45),
+                const SizedBox(height: 10,),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(bottom: 5),
+                    child: IconButton(
+                        iconSize: 40,
                         icon: const Icon(Icons.check_circle),
-                        onPressed: () {},
+                        alignment: Alignment.bottomRight,
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'servicios');
+                        },
                         color: AppTheme.buttomColor,
                       ),
+                  )
                   ),
               ],
             ),
@@ -102,10 +119,16 @@ Widget _buildPeluquerosCard(int index){
       const Align(
         alignment: Alignment.topCenter,
         child: CircleAvatar(
-            maxRadius: 80,            
-            backgroundImage: NetworkImage('https://i.pinimg.com/originals/66/c6/a2/66c6a209ac4100d91e1112896a8551b5.jpg'),
+            maxRadius: 80,                     
+            backgroundImage: AssetImage('assets/salon.jpg'),
            ),
       ),
     ],
   );
+}
+
+class _Peluquero {
+  final String nombre;
+  final String servicios;
+  _Peluquero(this.nombre, this.servicios);
 }

@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBody: true,      
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        elevation: 0.5,
         title: Padding(
           padding: EdgeInsets.only(left: 20),
           child: BigText(text: 'PELUCAPP', color: AppTheme.secondaryTextColor,),

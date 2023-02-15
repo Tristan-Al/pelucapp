@@ -13,7 +13,7 @@ class AppTheme{
 
     appBarTheme: const AppBarTheme(
       color: mainColor,
-      elevation: 10,
+      elevation: 3,
     ),
 
     inputDecorationTheme: const InputDecorationTheme(

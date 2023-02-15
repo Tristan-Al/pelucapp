@@ -7,3 +7,4 @@ export 'package:pelucapp/screens/splash_screen.dart';
 export 'package:pelucapp/screens/front_page_screen.dart';
 export 'package:pelucapp/screens/peluqueros_screen.dart';
 export 'package:pelucapp/screens/call_screen.dart';
+export 'package:pelucapp/screens/servicios_screen.dart';

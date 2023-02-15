@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         'register':(context) => RegisterScreen(),
         'mis_reservas':(context) => MisReservasScreen(),
         'peluqueros':(context) => PeluquerosScreen(),
+        'servicios':(context) => ServiciosScreen(),
       },
       
     );
