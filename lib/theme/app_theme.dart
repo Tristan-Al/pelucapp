@@ -1,34 +1,23 @@
 import 'package:flutter/material.dart';
 
 class AppTheme{
-  static const Color primary = Color.fromRGBO(243, 239, 224, 1);
-  static const Color secondary = Color.fromRGBO(67, 66, 66, 1);
+  static const Color mainTextColor = Color.fromRGBO(255, 255, 255, 1);
+  static const Color secondaryTextColor = Color.fromRGBO(0, 0, 0, 1);
+  static const Color mainColor = Color(0xFFECEFF1);
+  static const Color secondary = Colors.grey;
+  static const Color buttomColor = Color(0xFFAA00FF);
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
 
-    primaryColor: primary,
+    primaryColor: mainColor,
 
     appBarTheme: const AppBarTheme(
-      color: primary,
-      elevation: 0,
-    ),
-
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: primary,
-      selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.black26,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      unselectedIconTheme: IconThemeData(
-        color: Colors.black38,
-      ),
-      
-      elevation: 0,
+      color: mainColor,
+      elevation: 10,
     ),
 
     inputDecorationTheme: const InputDecorationTheme(
-      floatingLabelStyle: TextStyle(color: primary),
+      floatingLabelStyle: TextStyle(color: mainColor),
       //Habilitado
       enabledBorder: OutlineInputBorder(
         //borderSide: BorderSide(color: primary),
@@ -36,7 +25,7 @@ class AppTheme{
       ),
       //Foco
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: primary),
+        borderSide: BorderSide(color: mainColor),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       //Generico

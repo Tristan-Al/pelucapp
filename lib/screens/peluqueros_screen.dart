@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pelucapp/theme/app_theme.dart';
+import 'package:pelucapp/widgets/widgets.dart';
 
 class PeluquerosScreen extends StatelessWidget {
   const PeluquerosScreen({super.key,});
@@ -8,26 +9,14 @@ class PeluquerosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final size = MediaQuery.of(context).size;
-
-    final List<_Peluquero> peluqueros = [ 
-      _Peluquero('https://ww1.prweb.com/prfiles/2021/06/14/18006678/Fabio_PR.fw.png', 'Fabio', 'titolare'),
-      _Peluquero('https://vivolabs.es/wp-content/uploads/2022/03/perfil-mujer-vivo.png', 'Fabiola','empleado'),
-      _Peluquero('https://img.freepik.com/fotos-premium/perfil-retrato-joven-serio-imagen-hombre-guapo-barba_116317-13982.jpg?w=2000', 'Fabio', 'jefe'),
-      _Peluquero('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVkz3sMnUJmvkNyaaxkgVpEIp0SRzaZQWITw&usqp=CAU', 'Fabio', 'gerente'),
-      _Peluquero('https://ww1.prweb.com/prfiles/2021/06/14/18006678/Fabio_PR.fw.png', 'Fabio', 'titolare'),
-    ];
+    PageController pageController = PageController(viewportFraction: 0.75);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-            'PELUCAPP',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
-              
-            ),
-          ),
+        title: Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: BigText(text: 'PELUCAPP', color: AppTheme.secondaryTextColor,),
+        ),
         actions: [
           Padding(
             padding:
@@ -38,128 +27,85 @@ class PeluquerosScreen extends StatelessWidget {
               },
               child: const Icon(
                 Icons.notifications_sharp,
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: AppTheme.secondaryTextColor,
               )
             )
           )
         ],
       ),
       body: Column(
-        children: [
-          Text(
-            'Elije tu peluquero favorito',
-            style: TextStyle(
-              fontSize: 24,
-              
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40),
+              child: SmallText(text: 'Elige tu pelquero favorito', color: AppTheme.secondaryTextColor,),
             ),
+            Container(
+              height: 400,
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: 5,
+                itemBuilder: (context, index){
+                  return _buildPeluquerosCard(index);
+                }
+              ),
+            ),
+          ],
+        )
+    );
+  }
+}
+
+Widget _buildPeluquerosCard(int index){
+  return Stack(
+    children: [
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(          
+          height: 300,
+          decoration: const BoxDecoration(
+            color: AppTheme.mainColor,
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+            boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    offset: Offset(1.0, 1.0), //(x,y)
+                    blurRadius: 8.0,
+                  ),
+                ],
           ),
-
-          SizedBox(height: 70,),
-
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
+          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          child: Container(
+            padding: EdgeInsets.only(left: 15,right: 15),
+            width: 290,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _PeluqueroPoster(
-                  imagen: 'https://ww1.prweb.com/prfiles/2021/06/14/18006678/Fabio_PR.fw.png', 
-                  nombre: 'Fabio',
-                  descripcion: 'titolare',
-                  press: () { },
-                ),
-
-                _PeluqueroPoster(
-                  imagen: 'https://vivolabs.es/wp-content/uploads/2022/03/perfil-mujer-vivo.png', 
-                  nombre: 'Fabiola',
-                  descripcion: 'gerente',
-                  press: () { },
-                ),
-
-                _PeluqueroPoster(
-                  imagen: 'https://img.freepik.com/fotos-premium/perfil-retrato-joven-serio-imagen-hombre-guapo-barba_116317-13982.jpg?w=2000', 
-                  nombre: 'Jorge',
-                  descripcion: 'vendedor',
-                  press: () { },
-                ),
+                SizedBox(height: 70,),
+                BigText(text: "Fabio", color: AppTheme.secondaryTextColor,),
+                const SizedBox(height: 10,),
+                BigText(text: 'Servicios disponibles:', color: AppTheme.secondaryTextColor, size: 20),
+                const SizedBox(height: 10,),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: IconButton(
+                        iconSize: 50,
+                        icon: const Icon(Icons.check_circle),
+                        onPressed: () {},
+                        color: AppTheme.buttomColor,
+                      ),
+                  ),
               ],
             ),
-          )
-        ]
+          ),
+        ),
       ),
-    );
-  }
-}
-class _PeluqueroPoster extends StatelessWidget {
-  const _PeluqueroPoster({
-    super.key, this.nombre, this.descripcion, this.imagen, this.press,
-  });
-
-  final nombre;
-  final descripcion;
-  final imagen;
-  final press;
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: const EdgeInsets.only(
-        left: 10,
-        top: 10 / 2,
-        bottom: 10 * 2.5,
+      const Align(
+        alignment: Alignment.topCenter,
+        child: CircleAvatar(
+            maxRadius: 80,            
+            backgroundImage: NetworkImage('https://i.pinimg.com/originals/66/c6/a2/66c6a209ac4100d91e1112896a8551b5.jpg'),
+           ),
       ),
-      width: size.width * 0.4,
-      child: Column(
-        children: <Widget>[
-          Image.network(imagen),
-          GestureDetector(
-            onTap: press,
-            child: Container(
-              padding: EdgeInsets.all(10 / 2),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 50,
-                    color: AppTheme.secondary,
-                  ),
-                ],
-              ),
-              child: Row(
-                children: <Widget>[
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "$nombre\n".toUpperCase(),
-                          style: Theme.of(context).textTheme.button
-                        ),
-                        TextSpan(
-                          text: "$descripcion".toUpperCase(),
-                          style: TextStyle(
-                            color: AppTheme.secondary.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _Peluquero {
-  final String image;
-  final String nombre;
-  final String descripcion;
-
-  _Peluquero(this.image, this.nombre, this.descripcion);
+    ],
+  );
 }

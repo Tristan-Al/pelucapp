@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/theme/app_theme.dart';
 
 class FrontPageScreen extends StatelessWidget {
   const FrontPageScreen({super.key});
@@ -20,6 +21,7 @@ class FrontPageScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppTheme.buttomColor
                   ),
                   onPressed: () {
                     final route = MaterialPageRoute(builder: (context) => const HomeScreen());
@@ -36,6 +38,7 @@ class FrontPageScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppTheme.buttomColor
                   ),
                   onPressed: () {
                     

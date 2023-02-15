@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/screens/cita_screen.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/theme/app_theme.dart';
+import 'package:pelucapp/widgets/widgets.dart';
 
 void main() => runApp(const HomeScreen());
 
@@ -30,14 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBody: true,      
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Padding(
+        title: Padding(
           padding: EdgeInsets.only(left: 20),
-          child: Text(
-            'PELUCAPP',
-            style: TextStyle(color: Colors.black),
-          ),
+          child: BigText(text: 'PELUCAPP', color: AppTheme.secondaryTextColor,),
         ),
         actions: [
           Padding(
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: const Icon(
                 Icons.notifications_sharp,
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: AppTheme.secondaryTextColor,
               )
             )
           )
@@ -59,28 +59,53 @@ class _HomeScreenState extends State<HomeScreen> {
         index: _selectedIndex,
         children: _pages,
       ),
-      bottomNavigationBar: BottomNavigationBar(        
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.cut),
-            label: 'Pedir cita',
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(12),
+        margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        decoration: const BoxDecoration(
+          color: AppTheme.mainColor,
+          borderRadius: BorderRadius.all(Radius.circular(24)),
+          boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    offset: Offset(1.0, 1.0), //(x,y)
+                    blurRadius: 6.0,
+                  ),
+                ],
+        ),
+        child: BottomNavigationBar(        
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.cut),
+              label: 'Pedir cita',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.collections_bookmark),
+              label: 'Mis reservas',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.call),
+              label: 'Llamanos',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              label: 'Perfil',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.black26,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          unselectedIconTheme: const IconThemeData(
+            color: Colors.black38,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.collections_bookmark),
-            label: 'Mis reservas',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.call),
-            label: 'Llamanos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Perfil',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
+          backgroundColor: const Color.fromRGBO(0, 0, 0, 0),          
+          elevation: 0,
+        ),
+      )
     );
   }
 }
