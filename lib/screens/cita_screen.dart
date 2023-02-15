@@ -105,20 +105,19 @@ Widget _buildNovedadPoster(int index){
           ),
         ),
       ),
-      Align(
-        alignment: Alignment.bottomCenter,
+      Container(
+        height: 320,
+        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Container(
-          height: 160,
-          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: Container(
-            padding: EdgeInsets.only(left: 15,right: 15),
-            child: Column(
-              children: [
-                BigText(text: "Regalos",),
-                SizedBox(height: 10,),
-                SmallText(text: 'Reciba descuentos exclusivos en las marcas mas populares del momento'),
-              ],
-            ),
+          padding: EdgeInsets.only(left: 15,right: 15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BigText(text: "Regalos",),
+              SizedBox(height: 10,),
+              SmallText(text: 'Reciba descuentos exclusivos en las marcas mas populares del momento'),
+            ],
           ),
         ),
       ),
