@@ -17,8 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   static const List<Widget> _pages = <Widget>[
     CitaScreen(), 
     Text('Index 1: Mis Reservas'), 
-    const call_screen(),
-    Text('Index 3: Perfil'),  
+    call_screen(),
+    MiPerfil(),  
     PeluquerosScreen(),
   ];
 
