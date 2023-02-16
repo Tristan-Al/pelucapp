@@ -41,7 +41,7 @@ class FrontPageScreen extends StatelessWidget {
                     backgroundColor: AppTheme.buttomColor
                   ),
                   onPressed: () {
-                    
+                    Navigator.pushNamed(context, 'register');
                   },
                   child: const Text('Registrarse', style: TextStyle( fontSize: 20)),
                 ),

@@ -20,6 +20,12 @@ class ServiciosScreen extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+           icon: Icon(Icons.arrow_back_ios_new, color: AppTheme.secondaryTextColor),
+        ),
         title: Padding(
           padding: EdgeInsets.only(left: 20),
           child: BigText(text: 'PELUCAPP', color: AppTheme.secondaryTextColor,),
@@ -47,7 +53,7 @@ class ServiciosScreen extends StatelessWidget {
               child: SmallText(text: 'Servicios', color: AppTheme.secondaryTextColor,),
             ),
             Container(
-              height: 400,
+              height: 450,
               child: PageView.builder(
                 controller: pageController,
                 itemCount: serviciosDisponibles.length,
@@ -111,7 +117,7 @@ Widget _buildServiciosCard(_Servicio servicio, context){
       Align(
         alignment: Alignment.bottomCenter,
         child: Container(          
-          height: 300,
+          height: 350,
           decoration: const BoxDecoration(
             color: AppTheme.mainColor,
             borderRadius: BorderRadius.all(Radius.circular(12)),

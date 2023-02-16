@@ -20,6 +20,12 @@ class PeluquerosScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+           icon: Icon(Icons.arrow_back_ios_new, color: AppTheme.secondaryTextColor),
+        ),
         title: Padding(
           padding: EdgeInsets.only(left: 20),
           child: BigText(text: 'PELUCAPP', color: AppTheme.secondaryTextColor,),
@@ -47,7 +53,7 @@ class PeluquerosScreen extends StatelessWidget {
               child: SmallText(text: 'Elige tu pelquero favorito', color: AppTheme.secondaryTextColor,),
             ),
             Container(
-              height: 400,
+              height: 450,
               child: PageView.builder(
                 controller: pageController,
                 itemCount: peluqueros.length,
@@ -69,7 +75,7 @@ Widget _buildPeluquerosCard(_Peluquero peluquero, context){
       Align(
         alignment: Alignment.bottomCenter,
         child: Container(          
-          height: 300,
+          height: 350,
           decoration: const BoxDecoration(
             color: AppTheme.mainColor,
             borderRadius: BorderRadius.all(Radius.circular(12)),
