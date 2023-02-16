@@ -47,9 +47,13 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 
               },
-              child: const Icon(
-                Icons.notifications_sharp,
-                color: AppTheme.secondaryTextColor,
+              
+              child: IconButton(
+                onPressed: () {
+               Navigator.pushNamed(context, 'notificaciones'); 
+                },
+                
+                color: AppTheme.secondaryTextColor, icon: Icon(Icons.notifications_sharp),
               )
             )
           )
