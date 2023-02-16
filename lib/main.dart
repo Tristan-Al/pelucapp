@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         'peluqueros':(context) => PeluquerosScreen(),
         'servicios':(context) => ServiciosScreen(),
         'notificaciones':(context)=>NotificacionesScreen(),
-        'resumen':(context)=>ResumenPedidoScreen(),
       },
       
     );

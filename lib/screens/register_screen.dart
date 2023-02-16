@@ -13,7 +13,7 @@ class RegisterScreen extends StatelessWidget {
     String passCon = "";
     final myFormKey = GlobalKey<FormState>();
     final Map<String, String> formValues = {
-      'nombre': 'nombre',
+      'usuario': 'usuario',
       'telefono': 'telefono',
       'email': 'email',
       'password': 'password',
@@ -60,15 +60,15 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20, height: 80),
-            FormFieldRegi(
+            FormFieldPers(
               ocultar: false,
-              hintText: 'Nombre',
+              hintText: 'Usuario',
               icon: Icons.group_outlined,
-              formProperty: 'nombre',
+              formProperty: 'usuario',
               formValues: formValues,
             ),
             const SizedBox(width: 20, height: 20),
-            FormFieldRegi(
+            FormFieldPers(
               ocultar: false,
               keyboardType: TextInputType.emailAddress,
               hintText: 'Email',
@@ -77,8 +77,9 @@ class RegisterScreen extends StatelessWidget {
               formValues: formValues,
             ),
             const SizedBox(width: 20, height: 20),
-            FormFieldRegi(
+            FormFieldPers(
               ocultar: false,
+              keyboardType: TextInputType.number,
               hintText: 'Teléfono',
               icon: Icons.phone_android_outlined,
               formProperty: 'telefono',
