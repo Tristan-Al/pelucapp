@@ -13,18 +13,21 @@ class SplashScreen extends StatelessWidget {
     Timer(const Duration(seconds: 2), () {
       Get.to(const FrontPageScreen());
     }); 
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppTheme.mainColor,
-      body: Center(
-        child: Text(
-          'Logo', 
-          style: TextStyle(
-            color: Colors.black, 
-            fontSize: 30, 
-            fontWeight: FontWeight.bold
-            ),
+       body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:[
+
+              Image.network(
+                        'https://cdn-icons-png.flaticon.com/512/40/40857.png',
+                        fit:BoxFit.cover
+                    ),
+             
+            ],         
         ),
-      ),
+        ),
     );
   }
 }
