@@ -48,9 +48,7 @@ class _CitaScreenState extends State<CitaScreen> {
               itemCount: 10,
               itemBuilder: (context, index){
                 return Container(
-
-                  margin: const EdgeInsets.only(right: 10,left: 10),
-                  
+                  margin: const EdgeInsets.only(right: 10,left: 10),                  
                   child: GestureDetector(
                     onTap: () { Navigator.pushNamed(context, 'peluqueros'); },
                     child: Card(
@@ -71,7 +69,7 @@ class _CitaScreenState extends State<CitaScreen> {
                           Container(
                             alignment: AlignmentDirectional.centerEnd,
                             padding: const EdgeInsets.only(top: 10, bottom: 10, right: 20),
-                            child: BigText(text: 'Peluqueria', color: AppTheme.secondaryTextColor, size: 20),
+                            child: BigText(text: 'Peluqueria ${index}', color: AppTheme.secondaryTextColor, size: 20),
                           ),
                         ],
                       ),
@@ -80,8 +78,6 @@ class _CitaScreenState extends State<CitaScreen> {
                 );
               }
             ),
-
-            const SizedBox(height: 120,)
           ],
         ),
       )
@@ -94,7 +90,7 @@ Widget _buildNovedadPoster(int index){
     children: [
       Container(
         height: 320,
-        margin: const EdgeInsets.only(left: 5, right: 5),
+        margin: const EdgeInsets.only(left: 10, right: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.black,

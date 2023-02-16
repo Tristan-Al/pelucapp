@@ -11,11 +11,11 @@ class PeluquerosScreen extends StatelessWidget {
     
     PageController pageController = PageController(viewportFraction: 0.75);
 
-    List<_Peluquero> peluqueros = [
-      _Peluquero('Fabio','Corte, Tinte, Barba, Champu'), 
-      _Peluquero('Jorge','Corte, Tinte'), 
-      _Peluquero('Vicenzo','Champu'),
-      _Peluquero('Simone','Corte, Barba'),
+    List<Peluquero> peluqueros = [
+      Peluquero('Fabio','Corte, Tinte, Barba, Champu'), 
+      Peluquero('Jorge','Corte, Tinte'), 
+      Peluquero('Vicenzo','Champu'),
+      Peluquero('Simone','Corte, Barba'),
     ];
 
     return Scaffold(
@@ -36,7 +36,7 @@ class PeluquerosScreen extends StatelessWidget {
                 const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
             child: GestureDetector(
               onTap: () {
-                
+                Navigator.pushNamed(context, 'notificaciones');
               },
               child: const Icon(
                 Icons.notifications_sharp,
@@ -58,7 +58,7 @@ class PeluquerosScreen extends StatelessWidget {
                 controller: pageController,
                 itemCount: peluqueros.length,
                 itemBuilder: (context, index){
-                  _Peluquero peluquero = peluqueros[index];
+                  Peluquero peluquero = peluqueros[index];
                   return _buildPeluquerosCard(peluquero, context);
                 }
               ),
@@ -69,7 +69,7 @@ class PeluquerosScreen extends StatelessWidget {
   }
 }
 
-Widget _buildPeluquerosCard(_Peluquero peluquero, context){
+Widget _buildPeluquerosCard(Peluquero peluquero, context){
   return Stack(
     children: [
       Align(
@@ -111,11 +111,11 @@ Widget _buildPeluquerosCard(_Peluquero peluquero, context){
                         icon: const Icon(Icons.check_circle),
                         alignment: Alignment.bottomRight,
                         onPressed: () {
-                          Navigator.pushNamed(context, 'servicios');
+                          Navigator.pushNamed(context, 'servicios', arguments: peluquero);
                         },
                         color: AppTheme.buttomColor,
                       ),
-                  )
+                    )
                   ),
               ],
             ),
@@ -133,8 +133,8 @@ Widget _buildPeluquerosCard(_Peluquero peluquero, context){
   );
 }
 
-class _Peluquero {
+class Peluquero {
   final String nombre;
   final String servicios;
-  _Peluquero(this.nombre, this.servicios);
+  Peluquero(this.nombre, this.servicios);
 }
