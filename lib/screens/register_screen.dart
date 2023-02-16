@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class RegisterScreen extends StatelessWidget {
     String passCon = "";
     final myFormKey = GlobalKey<FormState>();
     final Map<String, String> formValues = {
-      'nombre': 'nombre',
+      'usuario': 'usuario',
       'telefono': 'telefono',
       'email': 'email',
       'password': 'password',
@@ -20,6 +21,33 @@ class RegisterScreen extends StatelessWidget {
     };
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new,
+              color: AppTheme.secondaryTextColor),
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: BigText(
+            text: 'PELUCAPP',
+            color: AppTheme.secondaryTextColor,
+          ),
+        ),
+        actions: [
+          Padding(
+              padding:
+                  const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
+              child: GestureDetector(
+                  onTap: () {},
+                  child: const Icon(
+                    Icons.notifications_sharp,
+                    color: AppTheme.secondaryTextColor,
+                  )))
+        ],
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Form(
@@ -32,15 +60,15 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 20, height: 80),
-            FormFieldRegi(
+            FormFieldPers(
               ocultar: false,
-              hintText: 'Nombre',
+              hintText: 'Usuario',
               icon: Icons.group_outlined,
-              formProperty: 'nombre',
+              formProperty: 'usuario',
               formValues: formValues,
             ),
             const SizedBox(width: 20, height: 20),
-            FormFieldRegi(
+            FormFieldPers(
               ocultar: false,
               keyboardType: TextInputType.emailAddress,
               hintText: 'Email',
@@ -49,9 +77,10 @@ class RegisterScreen extends StatelessWidget {
               formValues: formValues,
             ),
             const SizedBox(width: 20, height: 20),
-            FormFieldRegi(
+            FormFieldPers(
               ocultar: false,
-              hintText: 'telefono',
+              keyboardType: TextInputType.number,
+              hintText: 'Teléfono',
               icon: Icons.phone_android_outlined,
               formProperty: 'telefono',
               formValues: formValues,
@@ -109,8 +138,49 @@ class RegisterScreen extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ))),
             ),
-            const SizedBox(width: 20, height: 60),
-            ElevatedButton(
+            const SizedBox(width: 20, height: 30),
+            Container(
+              alignment: Alignment.topLeft,
+              constraints: const BoxConstraints(
+                maxWidth: 150,
+                maxHeight: 50,
+              ),
+              child: const Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyStatefulWidget(),
+                  Text(
+                    'A',
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                ],
+              ),
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              constraints: const BoxConstraints(
+                maxWidth: 150,
+                maxHeight: 50,
+              ),
+              child: const Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyStatefulWidget(),
+                  Text(
+                    'B',
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppTheme.buttomColor),
                 onPressed: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                   if (!myFormKey.currentState!.validate()) {
@@ -120,29 +190,66 @@ class RegisterScreen extends StatelessWidget {
                     print('Contraseñas deben coincidir');
                     return;
                   }
-                  /*
-                  final route3 = MaterialPageRoute(
-                      builder: (context) => const ListViewScreen3());
-                  Navigator.push(context, route3);
-                  */
+                  Navigator.pushNamed(context, 'home');
                 },
-                child: const SizedBox(
-                  width: double.infinity,
-                  child: Text('Crear cuenta', textAlign: TextAlign.center),
-                )),
+                child:
+                    const Text('Crear cuenta', style: TextStyle(fontSize: 20)),
+              ),
+            ),
           ]),
         ),
       ),
-      /*
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.close),
-        onPressed: () {
-          final route3 =
-              MaterialPageRoute(builder: (context) => const HomeScreen3());
-          Navigator.push(context, route3);
-        },
-      ),
-      */
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({super.key});
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  bool isChecked = false;
+
+  // Por si queremos personalizar la reacción del checkbox cuando el usuario interactúa con él
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return AppTheme.buttomColor;
+      }
+      return AppTheme.secondary;
+    }
+
+    /*
+    return CheckboxListTile(
+        checkColor: Colors.white,
+        controlAffinity: ListTileControlAffinity.leading,
+        title: Text('I agree to the Terms and Conditions'),
+        value: isChecked,
+        onChanged: (value) => {
+              setState(() {
+                isChecked = value!;
+              })
+            });*/
+    return Checkbox(
+      // Color del tick
+      checkColor: Colors.white,
+
+      fillColor: MaterialStateProperty.resolveWith(getColor),
+      value: isChecked,
+      onChanged: (bool? value) {
+        setState(() {
+          isChecked = value!;
+        });
+      },
     );
   }
 }

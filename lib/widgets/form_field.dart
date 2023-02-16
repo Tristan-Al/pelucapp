@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FormFieldRegi extends StatelessWidget {
+class FormFieldPers extends StatelessWidget {
   final String? hintText;
   final IconData? icon;
   final bool ocultar;
@@ -10,7 +10,7 @@ class FormFieldRegi extends StatelessWidget {
   final Map<String, String> formValues;
 
   // Constructor del FormFieldRegi
-  const FormFieldRegi({
+  const FormFieldPers({
     Key? key,
     this.hintText,
     this.icon,
