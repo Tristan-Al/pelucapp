@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       initialRoute: 'splash',
       routes: {
-<<<<<<< HEAD
         'splash': (context) => SplashScreen(),
         'front_page': (context) => FrontPageScreen(),
         'home': (context) => HomeScreen(),
@@ -28,18 +27,6 @@ class MyApp extends StatelessWidget {
         'servicios': (context) => ServiciosScreen(),
         'notificaciones': (context) => NotificacionesScreen(),
         'resumen': (context) => ResumenPedidoScreen(),
-=======
-        'splash':(context) => SplashScreen(),
-        'front_page':(context) => FrontPageScreen(),
-        'home':(context) => HomeScreen(),
-        'citas':(context) => CitaScreen(),
-        'login':(context) => LogInScreen(),
-        'register':(context) => RegisterScreen(),
-        'mis_reservas':(context) => MisReservasScreen(),
-        'peluqueros':(context) => PeluquerosScreen(),
-        'servicios':(context) => ServiciosScreen(),
-        'notificaciones':(context)=>NotificacionesScreen(),
->>>>>>> 90590a94547c3a2a9a72251be20426b1e7a9eac4
       },
     );
   }

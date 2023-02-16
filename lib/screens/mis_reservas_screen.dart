@@ -22,6 +22,14 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     });
   }
 
+  static const List<Widget> _pages = <Widget>[
+    CitaScreen(),
+    MisReservasScreen(),
+    call_screen(),
+    MiPerfil(),
+    PeluquerosScreen(),
+  ];
+
   UniqueKey? keyTile;
   bool isExpanded = false;
 
@@ -32,14 +40,6 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     });
   }
 
-  static const List<Widget> _pages = <Widget>[
-    CitaScreen(),
-    MisReservasScreen(),
-    call_screen(),
-    MiPerfil(),
-    PeluquerosScreen(),
-  ];
-
   void shrinkTile() {
     setState(() {
       isExpanded = false;
@@ -49,35 +49,6 @@ class _MisReservasScreen extends State<MisReservasScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_ios_new,
-              color: AppTheme.secondaryTextColor),
-        ),
-        title: Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: BigText(
-            text: 'PELUCAPP',
-            color: AppTheme.secondaryTextColor,
-          ),
-        ),
-        actions: [
-          Padding(
-              padding:
-                  const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'notificaciones');
-                  },
-                  child: const Icon(
-                    Icons.notifications_sharp,
-                    color: AppTheme.secondaryTextColor,
-                  )))
-        ],
-      ),
       body: Padding(
         padding: EdgeInsets.all(12),
         child: Column(
