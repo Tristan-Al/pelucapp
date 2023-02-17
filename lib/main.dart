@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         'servicios': (context) => ServiciosScreen(),
         'notificaciones': (context) => NotificacionesScreen(),
         'resumen': (context) => ResumenPedidoScreen(),
+        'editar': (context) => EditarPerfilScreen(),
       },
     );
   }
