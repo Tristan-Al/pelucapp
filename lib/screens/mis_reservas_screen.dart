@@ -26,7 +26,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     CitaScreen(),
     MisReservasScreen(),
     call_screen(),
-    MiPerfil(),
+    PerfilScreen(),
     PeluquerosScreen(),
   ];
 
