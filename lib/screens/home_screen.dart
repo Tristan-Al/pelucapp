@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
     CitaScreen(),
     MisReservasScreen(),
     call_screen(),
-    PerfilScreen(),
+    MiPerfil(),
     PeluquerosScreen(),
   ];
 
