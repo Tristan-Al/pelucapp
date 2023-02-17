@@ -9,6 +9,6 @@ export 'package:pelucapp/screens/peluqueros_screen.dart';
 export 'package:pelucapp/screens/call_screen.dart';
 export 'package:pelucapp/screens/servicios_screen.dart';
 export 'package:pelucapp/screens/notificaciones_screen.dart';
-export 'package:pelucapp/screens/miPerfil.dart';
+export 'package:pelucapp/screens/perfil_screen.dart';
 export 'package:pelucapp/screens/resumen_pedido.dart';
 export 'package:pelucapp/screens/editar_perfil_screen.dart';

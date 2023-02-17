@@ -145,7 +145,7 @@ class RegisterScreen extends StatelessWidget {
                 maxWidth: 150,
                 maxHeight: 50,
               ),
-              child: const Row(
+              child:  Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyStatefulWidget(),
@@ -163,7 +163,7 @@ class RegisterScreen extends StatelessWidget {
                 maxWidth: 150,
                 maxHeight: 50,
               ),
-              child: const Row(
+              child:  Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyStatefulWidget(),
