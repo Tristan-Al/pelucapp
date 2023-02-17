@@ -59,7 +59,9 @@ class PerfilScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadiusDirectional.circular(15)),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, 'editar');
+            },
             child:
                 const Text('Editar mi perfil', style: TextStyle(fontSize: 20)),
           ),
