@@ -4,69 +4,139 @@ import '../theme/app_theme.dart';
 
 class PerfilScreen extends StatelessWidget {
   const PerfilScreen({super.key});
+  static String tProfileImage = "https://img.freepik.com/iconos-gratis/usuario_318-725053.jpg";
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.all(16.0),
-          child: ClipRRect(
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+      home: Scaffold(
+           appBar: AppBar(
+             backgroundColor: Color.fromARGB(255, 41, 41, 41),
+         leading: IconButton(
+          onPressed: (){},
+           icon: Icon(Icons.verified_user, color: Color.fromARGB(255, 255, 255, 255)),
+        ),
+         actions: <Widget>[
+         IconButton(
+          onPressed: (){
+              Navigator.pushNamed(context, 'ajustes');
+          },
+           icon: Icon(Icons.settings, color: Color.fromARGB(255, 255, 255, 255)),
+        ),
+        
+         ],
+        title: Center(
+           child: Text(
+            'My profile',
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 255, 255, 255),
+      ),
+    ),
+  ),
+        ),
+              body: ListView(
+          children: <Widget>[
+            Container(
+              height: 150,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color.fromARGB(255, 49, 49, 49), Color.fromARGB(255, 0, 0, 0)],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  stops: [0.5, 0.9],
+                ),
+              ),
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'),
-                image: NetworkImage(
-                    'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png'),
-                height: 320,
-                width: 320,
-                fit: BoxFit.cover,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Color.fromARGB(255, 249, 249, 249),
+                        minRadius: 40.0,
+                        
+                        child: CircleAvatar(
+                              child: Icon(
+                              Icons.camera_alt,
+                              size: 15.0,
+                            ),
+                          radius: 30.0,
+                          backgroundImage:
+                              NetworkImage(tProfileImage),
+                        ),
+                        
+                      ),
+                      
+                    ],
+                  ),
+                
+                ],
               ),
-              Text(
-                'Nombre: ',
-                style: TextStyle(
-                  fontSize: 16, // tamaño de fuente en puntos
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  // color de texto
-                ),
-              ),
-              Text(
-                'Apellidos: ',
-                style: TextStyle(
-                  fontSize: 16, // tamaño de fuente en puntos
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  // color de texto
-                ),
-              ),
-              Text(
-                'email: ',
-                style: TextStyle(
-                  fontSize: 16, // tamaño de fuente en puntos
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  // color de texto
-                ),
-              ),
-            ],
-          )),
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-              primary: Color.fromARGB(255, 0, 0, 0),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusDirectional.circular(15)),
             ),
-            onPressed: () {
-              Navigator.pushNamed(context, 'editar');
-            },
-            child:
-                const Text('Editar mi perfil', style: TextStyle(fontSize: 20)),
-          ),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    title: Text(
+                      'Nombre',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Apellidos',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text(
+                      'Email',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
-      ],
-    );
+      ),
+      );
   }
 }

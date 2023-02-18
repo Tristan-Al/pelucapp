@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         'resumen': (context) => ResumenPedidoScreen(),
         'editar': (context) => EditarPerfilScreen(),
         'perfil': (context) => PerfilScreen(),
+        'ajustes': (context) => Settings(),
       },
     );
   }
