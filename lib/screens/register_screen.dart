@@ -49,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             const SizedBox(width: 20, height: 20),
             FormFieldPers(
+              // CAMBIAR EMAIL PARA VALIDAR
               ocultar: false,
               keyboardType: TextInputType.emailAddress,
               hintText: 'correo@guia.com',
