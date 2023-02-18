@@ -13,15 +13,6 @@ class MisReservasScreen extends StatefulWidget {
 class _MisReservasScreen extends State<MisReservasScreen> {
   static final double radius = 20;
 
-  //variables del bottomNav
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   static const List<Widget> _pages = <Widget>[
     CitaScreen(),
     MisReservasScreen(),
@@ -49,35 +40,35 @@ class _MisReservasScreen extends State<MisReservasScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(12),
-        child: Column(
-          children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-                side: BorderSide(color: Colors.black, width: 2),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: buildImage(),
-                      ),
-                      buildText(context),
-                    ],
+        body: Padding(
+          padding: EdgeInsets.all(12),
+          child: Column(
+            children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                  side: BorderSide(color: Colors.black, width: 2),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () => isExpanded ? shrinkTile() : expandTile(),
+                          child: buildImage(),
+                        ),
+                        buildText(context),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
 
   Widget buildImage() => Image.network(
         'https://amabilia.es/wp-content/uploads/CG8_8071_MariaValls_Calanda-Teruel-17.jpg',

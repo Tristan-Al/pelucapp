@@ -180,7 +180,7 @@ class _MetodosDePago extends State<MetodosDePago> {
                                 key: keyTile,
                                 initiallyExpanded: isExpanded,
                                 childrenPadding:
-                                    EdgeInsets.all(16).copyWith(top: 0),
+                                    EdgeInsets.all(8).copyWith(top: 0),
                                 title: Text(
                                   'Bizum',
                                   style: TextStyle(
@@ -200,8 +200,8 @@ class _MetodosDePago extends State<MetodosDePago> {
                                                   actions: <Widget>[
                                                     TextButton(
                                                       onPressed: () {
-                                                        Navigator.pop(
-                                                            context, 'OK');
+                                                        Navigator.pushNamed(
+                                                            context, 'home');
                                                         seleccionado = true;
                                                       },
                                                       child: const Text('OK'),
@@ -241,7 +241,7 @@ class _MetodosDePago extends State<MetodosDePago> {
                             onTap: () =>
                                 isExpanded ? shrinkTile() : expandTile(),
                             child: Image.network(
-                              'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
+                              'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
                               fit: BoxFit.cover,
                               width: double.infinity,
                               height: 100,
@@ -266,6 +266,7 @@ class _MetodosDePago extends State<MetodosDePago> {
                                   ElevatedButton(
                                       onPressed: () {
                                         seleccionado = true;
+                                        Navigator.pushNamed(context, 'home');
                                       },
                                       child: Text('Pagar')),
                                 ],
@@ -297,7 +298,7 @@ class _MetodosDePago extends State<MetodosDePago> {
                             onTap: () =>
                                 isExpanded ? shrinkTile() : expandTile(),
                             child: Image.network(
-                              'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
+                              'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
                               fit: BoxFit.cover,
                               width: double.infinity,
                               height: 100,
@@ -311,7 +312,7 @@ class _MetodosDePago extends State<MetodosDePago> {
                                 key: keyTile,
                                 initiallyExpanded: isExpanded,
                                 childrenPadding:
-                                    EdgeInsets.all(16).copyWith(top: 0),
+                                    EdgeInsets.all(8).copyWith(top: 0),
                                 title: Text(
                                   'Efectivo',
                                   style: TextStyle(
@@ -332,8 +333,8 @@ class _MetodosDePago extends State<MetodosDePago> {
                                                   actions: <Widget>[
                                                     TextButton(
                                                       onPressed: () {
-                                                        Navigator.pop(
-                                                            context, 'OK');
+                                                        Navigator.pushNamed(
+                                                            context, 'home');
                                                         seleccionado = true;
                                                       },
                                                       child: const Text('OK'),
@@ -359,30 +360,6 @@ class _MetodosDePago extends State<MetodosDePago> {
               ],
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                if (seleccionado) {
-                  Navigator.pushNamed(context, 'home');
-                } else {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                            title: const Text('Error'),
-                            content: Text('Seleccione un método de pago'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () => Navigator.pop(context, 'OK'),
-                                child: const Text('OK'),
-                              ),
-                            ],
-                          ));
-                }
-              },
-              child: const Text(
-                  'Terminar'), // quitar este botón y meter la funcionalidad en las alert de los métodos
-            ),
-          ],
         ),
       ),
       child: const Text('Métodos de pago'),
@@ -402,7 +379,7 @@ class _MetodosDePago extends State<MetodosDePago> {
         child: ExpansionTile(
           key: keyTile,
           initiallyExpanded: isExpanded,
-          childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+          childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
           title: Text(
             '17/3/2023',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
