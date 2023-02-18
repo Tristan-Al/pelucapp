@@ -3,9 +3,16 @@ import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  bool _checkedP = false;
+  bool _checkedT = false;
   @override
   Widget build(BuildContext context) {
     String formProperty = "";
@@ -13,7 +20,7 @@ class RegisterScreen extends StatelessWidget {
     String passCon = "";
     final myFormKey = GlobalKey<FormState>();
     final Map<String, String> formValues = {
-      'usuario': 'usuario',
+      'nombreusuario': 'nombreusuario',
       'telefono': 'telefono',
       'email': 'email',
       'password': 'password',
@@ -21,57 +28,30 @@ class RegisterScreen extends StatelessWidget {
     };
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new,
-              color: AppTheme.secondaryTextColor),
-        ),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: BigText(
-            text: 'PELUCAPP',
-            color: AppTheme.secondaryTextColor,
-          ),
-        ),
-        actions: [
-          Padding(
-              padding:
-                  const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
-              child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.notifications_sharp,
-                    color: AppTheme.secondaryTextColor,
-                  )))
-        ],
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Form(
           key: myFormKey,
           child: Column(children: [
             const SizedBox(width: 20, height: 60),
-            const FittedBox(
-              child: FlutterLogo(
-                size: 100,
-              ),
+            Container(
+              child: Image.network(
+                  'https://cdn-icons-png.flaticon.com/512/40/40857.png',
+                  fit: BoxFit.cover),
             ),
             const SizedBox(width: 20, height: 80),
             FormFieldPers(
               ocultar: false,
-              hintText: 'Usuario',
+              hintText: 'Nombre de usuario',
               icon: Icons.group_outlined,
-              formProperty: 'usuario',
+              formProperty: 'nombreusuario',
               formValues: formValues,
             ),
             const SizedBox(width: 20, height: 20),
             FormFieldPers(
               ocultar: false,
               keyboardType: TextInputType.emailAddress,
-              hintText: 'Email',
+              hintText: 'correo@guia.com',
               icon: Icons.mail,
               formProperty: 'email',
               formValues: formValues,
@@ -102,13 +82,9 @@ class RegisterScreen extends StatelessWidget {
               },
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: const InputDecoration(
-                  hintText: 'Contraseña',
-                  suffixIcon: Icon(Icons.key),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ))),
+                hintText: 'Contraseña',
+                suffixIcon: Icon(Icons.key),
+              ),
             ),
             const SizedBox(width: 20, height: 20),
             TextFormField(
@@ -140,41 +116,39 @@ class RegisterScreen extends StatelessWidget {
             ),
             const SizedBox(width: 20, height: 30),
             Container(
-              alignment: Alignment.topLeft,
-              constraints: const BoxConstraints(
-                maxWidth: 150,
-                maxHeight: 50,
-              ),
-              child:  Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyStatefulWidget(),
-                  Text(
-                    'A',
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  )
-                ],
+              color: Colors.green,
+              child: Material(
+                child: CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  title: const Text(
+                      'Acepto recibir notificaciones sobre las novedades de la app'),
+                  value: _checkedP,
+                  onChanged: (value) {
+                    setState(() {
+                      _checkedP = value!;
+                    });
+                  },
+                ),
               ),
             ),
+            const SizedBox(height: 20),
             Container(
-              alignment: Alignment.topLeft,
-              constraints: const BoxConstraints(
-                maxWidth: 150,
-                maxHeight: 50,
-              ),
-              child:  Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyStatefulWidget(),
-                  Text(
-                    'B',
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  )
-                ],
+              color: Colors.green,
+              child: Material(
+                child: CheckboxListTile(
+                  controlAffinity: ListTileControlAffinity.leading,
+                  title: const Text(
+                      'He leido y acepto los términos y condiciones de uso'),
+                  value: _checkedT,
+                  onChanged: (value) {
+                    setState(() {
+                      _checkedT = value!;
+                    });
+                  },
+                ),
               ),
             ),
+            const SizedBox(height: 40),
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: ElevatedButton(
@@ -199,57 +173,6 @@ class RegisterScreen extends StatelessWidget {
           ]),
         ),
       ),
-    );
-  }
-}
-
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({super.key});
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  bool isChecked = false;
-
-  // Por si queremos personalizar la reacción del checkbox cuando el usuario interactúa con él
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return AppTheme.buttomColor;
-      }
-      return AppTheme.secondary;
-    }
-
-    /*
-    return CheckboxListTile(
-        checkColor: Colors.white,
-        controlAffinity: ListTileControlAffinity.leading,
-        title: Text('I agree to the Terms and Conditions'),
-        value: isChecked,
-        onChanged: (value) => {
-              setState(() {
-                isChecked = value!;
-              })
-            });*/
-    return Checkbox(
-      // Color del tick
-      checkColor: Colors.white,
-
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
     );
   }
 }
