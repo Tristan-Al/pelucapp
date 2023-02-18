@@ -58,16 +58,13 @@ class PerfilScreen extends StatelessWidget {
                     children: <Widget>[
                       CircleAvatar(
                         backgroundColor: Color.fromARGB(255, 249, 249, 249),
-                        minRadius: 40.0,
+                        minRadius: 60.0,
                         
                         child: CircleAvatar(
-                              child: Icon(
-                              Icons.camera_alt,
-                              size: 15.0,
-                            ),
-                          radius: 30.0,
+                          radius: 55.0,
                           backgroundImage:
                               NetworkImage(tProfileImage),
+                              
                         ),
                         
                       ),
