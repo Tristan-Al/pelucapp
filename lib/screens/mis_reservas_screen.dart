@@ -77,53 +77,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(12),
-        margin: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        decoration: const BoxDecoration(
-          color: AppTheme.mainColor,
-          borderRadius: BorderRadius.all(Radius.circular(24)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(1.0, 1.0), //(x,y)
-              blurRadius: 6.0,
-            ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.cut),
-              label: 'Pedir cita',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.collections_bookmark),
-              label: 'Mis reservas',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.call),
-              label: 'Llamanos',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: 'Perfil',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black26,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          unselectedIconTheme: const IconThemeData(
-            color: Colors.black38,
-          ),
-          backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-          elevation: 0,
-        ),
-      ));
+    );
 
   Widget buildImage() => Image.network(
         'https://amabilia.es/wp-content/uploads/CG8_8071_MariaValls_Calanda-Teruel-17.jpg',
