@@ -17,52 +17,79 @@ class LogInScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Form(
-          key: myFormKey,
-          child: Column(children: [
-            const SizedBox(width: 20, height: 60),
-            const FittedBox(
-              child: FlutterLogo(
-                size: 100,
-              ),
-            ),
-            const SizedBox(width: 20, height: 80),
-            FormFieldPers(
-              ocultar: false,
-              hintText: 'Usuario',
-              icon: Icons.group_outlined,
-              formProperty: 'usuario',
-              formValues: formValues,
-            ),
-            const SizedBox(width: 20, height: 20),
-            FormFieldPers(
-              icon: Icons.key,
-              ocultar: true,
-              hintText: 'Contraseña',
-              formProperty: 'password',
-              formValues: formValues,
-            ),
-            const SizedBox(width: 20, height: 60),
-            Container(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppTheme.buttomColor),
-                onPressed: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                  if (!myFormKey.currentState!.validate()) {
-                    print('Credenciales incorrectas');
-                    return;
-                  }
-                  Navigator.pushNamed(context, 'home');
-                },
-                child: const Text('Log in', style: TextStyle(fontSize: 20)),
-              ),
-            ),
-          ]),
-        ),
+        child: _FormLogIn(myFormKey: myFormKey, formValues: formValues),
       ),
+    );
+  }
+}
+
+class _FormLogIn extends StatelessWidget {
+  const _FormLogIn({
+    super.key,
+    required this.myFormKey,
+    required this.formValues,
+  });
+
+  final GlobalKey<FormState> myFormKey;
+  final Map<String, String> formValues;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: myFormKey,
+      child: Column(children: [
+        const SizedBox(width: 20, height: 60),
+        Container(
+          child: Image.network(
+            'https://cdn-icons-png.flaticon.com/512/40/40857.png',
+            fit: BoxFit.cover,
+            width: 200,
+            height: 200,
+          ),
+        ),
+        const SizedBox(width: 20, height: 80),
+        FormFieldPers(
+          ocultar: false,
+          hintText: 'Usuario',
+          icon: Icons.group_outlined,
+          formProperty: 'usuario',
+          formValues: formValues,
+        ),
+        const SizedBox(width: 20, height: 20),
+        FormFieldPers(
+          icon: Icons.key,
+          ocultar: true,
+          hintText: 'Contraseña',
+          formProperty: 'password',
+          formValues: formValues,
+        ),
+        const SizedBox(width: 20, height: 40),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, 'email');
+          },
+          child: const Text('¿Has olvidado tu contraseña?',
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+        ),
+        const SizedBox(width: 20, height: 40),
+        Container(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),
+                backgroundColor: AppTheme.buttomColor),
+            onPressed: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              if (!myFormKey.currentState!.validate()) {
+                print('Credenciales incorrectas');
+                return;
+              }
+              Navigator.pushNamed(context, 'home');
+            },
+            child: const Text('Log in', style: TextStyle(fontSize: 20)),
+          ),
+        ),
+      ]),
     );
   }
 }

@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         'editar': (context) => EditarPerfilScreen(),
         'perfil': (context) => PerfilScreen(),
         'ajustes': (context) => Settings(),
+        'email': (context) => EmailScreen(),
       },
     );
   }

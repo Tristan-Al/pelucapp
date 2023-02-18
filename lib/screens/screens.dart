@@ -13,3 +13,4 @@ export 'package:pelucapp/screens/perfil_screen.dart';
 export 'package:pelucapp/screens/resumen_pedido.dart';
 export 'package:pelucapp/screens/editar_perfil_screen.dart';
 export 'package:pelucapp/screens/settings_screen.dart';
+export 'package:pelucapp/screens/email_screen.dart';
