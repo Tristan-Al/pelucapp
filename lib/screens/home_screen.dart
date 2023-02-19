@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
         resizeToAvoidBottomInset: false,
         extendBody: true,
         appBar: AppBar(
-          
           automaticallyImplyLeading: false,
           title: Padding(
             padding: EdgeInsets.only(left: 20),
@@ -96,17 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
             currentIndex: _selectedIndex,
             onTap: _onItemTapped,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.black26,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            unselectedIconTheme: const IconThemeData(
-              color: Colors.black38,
-            ),
-            backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-            elevation: 0,
           ),
-        ));
+        )
+    );
   }
 }

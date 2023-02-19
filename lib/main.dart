@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         'perfil': (context) => PerfilScreen(),
         'ajustes': (context) => Settings(),
         'email': (context) => EmailScreen(),
+        'horario': (context) => HorarioScreen(),
       },
     );
   }

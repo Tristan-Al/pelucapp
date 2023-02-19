@@ -9,8 +9,6 @@ class ResumenPedidoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ResumenArgs resumen =
-        ModalRoute.of(context)!.settings.arguments as ResumenArgs;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -65,7 +63,7 @@ class ResumenPedidoScreen extends StatelessWidget {
                   width: 20,
                 ),
                 SmallText(
-                  text: resumen.peluquero.nombre,
+                  text: 'Peluquero.nombre',
                   color: AppTheme.secondaryTextColor,
                   size: 30,
                 ),
@@ -85,9 +83,8 @@ class ResumenPedidoScreen extends StatelessWidget {
               height: 50,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: resumen.servicios.length,
+                  itemCount: 4,
                   itemBuilder: (context, index) {
-                    Servicio _servicio = resumen.servicios[index];
                     return Container(
                       margin: EdgeInsets.all(10),
                       padding: EdgeInsets.all(5),
@@ -95,7 +92,7 @@ class ResumenPedidoScreen extends StatelessWidget {
                         color: Colors.black26,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      child: Text(_servicio.nombre),
+                      child: Text('Servicio ${index}'),
                     );
                   }),
             ),
@@ -110,8 +107,8 @@ class ResumenPedidoScreen extends StatelessWidget {
 class ResumenArgs {
   final Peluquero peluquero;
   final List<Servicio> servicios;
-
-  ResumenArgs(this.peluquero, this.servicios);
+  final DateTime? fechaHora;
+  ResumenArgs({required this.peluquero, required this.servicios, this.fechaHora});
 }
 
 class MetodosDePago extends StatefulWidget {

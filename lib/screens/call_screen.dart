@@ -25,12 +25,6 @@ class call_screen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    primary:AppTheme.buttomColor,
-                     shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.circular(15)),
-                  ),
                   onPressed: () {
                     
                   },
@@ -52,12 +46,6 @@ class call_screen extends StatelessWidget {
                 
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    primary:AppTheme.buttomColor,
-                     shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.circular(15)),
-                  ),
                   onPressed: () {
                     
                   },

@@ -28,7 +28,6 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
     
   @override
   Widget build(BuildContext context) {
-    Peluquero peluquero = ModalRoute.of(context)!.settings.arguments as Peluquero;
 
     PageController pageController = PageController(viewportFraction: 0.75);   
     
@@ -156,50 +155,64 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                 }
               ),
             ),
-            Expanded(
-              child: Container(
-                child: Column(
-                  children: [
-                    
-                    Container(
-                      height: 50,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: serviciosSeleccionados.length,
-                        itemBuilder: (context, index){
-                          Servicio _servicio = serviciosSeleccionados[index];
-                          return Container(
-                            margin: EdgeInsets.all(10),
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: Text(_servicio.nombre),
-                          );
-                        }
-                      ),
-                    ),
-
-                     Container(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(50),
-                          backgroundColor: AppTheme.buttomColor
-                        ),
-                        onPressed: serviciosSeleccionados.isEmpty ? null : () => {
-                          Navigator.pushNamed(context, 'horario', arguments: ResumenArgs(peluquero, serviciosSeleccionados))
-                        },
-                        child: const Text('Siguiente', style: TextStyle( fontSize: 20)),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
+            _ServiciosSeleccionados(serviciosSeleccionados: serviciosSeleccionados)
           ],
         )
+    );
+  }
+}
+
+class _ServiciosSeleccionados extends StatelessWidget {
+  const _ServiciosSeleccionados({
+    super.key,
+    required this.serviciosSeleccionados,
+  });
+
+  final List<Servicio> serviciosSeleccionados;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        child: Column(
+          children: [
+            
+            Container(
+              height: 50,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: serviciosSeleccionados.length,
+                itemBuilder: (context, index){
+                  Servicio _servicio = serviciosSeleccionados[index];
+                  return Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(_servicio.nombre),
+                  );
+                }
+              ),
+            ),
+
+             Expanded(
+               child: Container(
+                alignment: Alignment.bottomCenter,
+                margin: EdgeInsets.only(bottom: 30),
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: ElevatedButton(
+                  onPressed: serviciosSeleccionados.isEmpty ? null : () => {
+                    Navigator.pushNamed(context,'horario')
+                  },
+                  child: const Text('Siguiente', style: TextStyle( fontSize: 20)),
+                ),
+                         ),
+             ),
+          ],
+        ),
+      ),
     );
   }
 }

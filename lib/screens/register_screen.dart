@@ -184,9 +184,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  backgroundColor: AppTheme.buttomColor),
               onPressed: () {
                 FocusScope.of(context).requestFocus(FocusNode());
                 if (!myFormKey.currentState!.validate()) {

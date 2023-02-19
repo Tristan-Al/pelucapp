@@ -111,7 +111,7 @@ Widget _buildPeluquerosCard(Peluquero peluquero, context){
                         icon: const Icon(Icons.check_circle),
                         alignment: Alignment.bottomRight,
                         onPressed: () {
-                          Navigator.pushNamed(context, 'servicios', arguments: peluquero);
+                          Navigator.pushNamed(context, 'servicios');
                         },
                         color: AppTheme.buttomColor,
                       ),
