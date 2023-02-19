@@ -131,7 +131,6 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                                             serviciosSeleccionados.remove(servicio);
                                           }
                                         }
-                                        print(serviciosSeleccionados);
                                         setState(() {
                                           
                                         });
@@ -190,7 +189,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                           backgroundColor: AppTheme.buttomColor
                         ),
                         onPressed: serviciosSeleccionados.isEmpty ? null : () => {
-                          Navigator.pushNamed(context, 'resumen', arguments: ResumenArgs(peluquero, serviciosSeleccionados))
+                          Navigator.pushNamed(context, 'horario', arguments: ResumenArgs(peluquero, serviciosSeleccionados))
                         },
                         child: const Text('Siguiente', style: TextStyle( fontSize: 20)),
                       ),
