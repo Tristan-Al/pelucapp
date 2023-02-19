@@ -14,10 +14,12 @@ class ResumenPedidoScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as List<Object>?;
     Peluqueria peluqueria = data?[0] as Peluqueria;
     Peluquero peluquero = data?[1] as Peluquero;
+    DateTime diaSeleccionado = data?[3] as DateTime;
+
     List<Servicio> serviciosSeleccionados = data?[2];
 
-    ResumenArgs resumen =
-        ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
+    ResumenArgs resumen = ResumenArgs.completo(
+        peluqueria, peluquero, serviciosSeleccionados, diaSeleccionado);
 
     String generarPrecio(ResumenArgs resumen) {
       String resultadoCadena;
@@ -204,7 +206,8 @@ class ResumenArgs {
   DateTime hora = DateTime.now();
 
   ResumenArgs.sinFecha(this.peluqueria, this.peluquero, this.servicios);
-  ResumenArgs(this.peluqueria, this.peluquero, this.servicios, this.hora);
+  ResumenArgs.completo(
+      this.peluqueria, this.peluquero, this.servicios, this.hora);
 }
 
 class MetodosDePago extends StatefulWidget {

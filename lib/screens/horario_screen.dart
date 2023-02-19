@@ -12,8 +12,6 @@ class HorarioScreen extends StatefulWidget {
 }
 
 class _HorarioScreenState extends State<HorarioScreen> {
-
-  
   bool btnState = true;
 
   DateTime selected = DateTime.now();
@@ -27,8 +25,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-        List<dynamic>? data =
+    List<dynamic>? data =
         ModalRoute.of(context)!.settings.arguments as List<Object>?;
     Peluqueria peluqueria = data?[0] as Peluqueria;
     Peluquero peluquero = data?[1] as Peluquero;
@@ -36,7 +33,6 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
     ResumenArgs resumen =
         ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
-
 
     return Scaffold(
         appBar: AppBar(
@@ -94,15 +90,15 @@ class _HorarioScreenState extends State<HorarioScreen> {
                   onPressed: serviciosSeleccionados.isEmpty
                       ? null
                       : () => {
-                            Navigator.pushNamed(context, 'resumen',
-                                arguments: [
-                                  peluqueria,
-                                  peluquero,
-                                  serviciosSeleccionados
-                                ])
+                            Navigator.pushNamed(context, 'resumen', arguments: [
+                              peluqueria,
+                              peluquero,
+                              serviciosSeleccionados,
+                              selected
+                            ])
                           },
-                  child: const Text('Siguiente',
-                      style: TextStyle(fontSize: 20)),
+                  child:
+                      const Text('Siguiente', style: TextStyle(fontSize: 20)),
                 ),
               ),
             ),
