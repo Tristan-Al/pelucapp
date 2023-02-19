@@ -10,10 +10,10 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
-  bool _checkedP = false;
-  bool _checkedT = false;
+bool _checkedP = false;
+bool _checkedT = false;
 
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     String formProperty = "";
@@ -34,6 +34,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Form(
         key: myFormKey,
         child: Column(children: [
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              IconButton(
+                alignment: Alignment.topLeft,
+                onPressed: () => {Navigator.pop(context)},
+                icon: Icon(Icons.arrow_back_ios, size: 28, color: Colors.black),
+              ),
+            ],
+          ),
           const SizedBox(width: 20, height: 60),
           Container(
             child: Image.network(
@@ -56,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
                 hintText: 'john.doe@gmail.com',
-                labelText: 'Correo electrónico',
+                labelText: 'E-mail',
                 suffixIcon: Icon(Icons.key),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.only(
@@ -78,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           FormFieldPers(
             ocultar: false,
             keyboardType: TextInputType.number,
-            hintText: 'Teléfono',
+            hintText: '111 222 333',
             icon: Icons.phone_android_outlined,
             formProperty: 'telefono',
             formValues: formValues,
@@ -191,6 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: const Text('Crear cuenta', style: TextStyle(fontSize: 20)),
             ),
           ),
+          const SizedBox(height: 40),
         ]),
       ),
     ));
