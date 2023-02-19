@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pelucapp/screens/peluqueros_screen.dart';
 import 'package:pelucapp/screens/servicios_screen.dart';
 import 'package:pelucapp/theme/app_theme.dart';
@@ -9,8 +10,24 @@ class ResumenPedidoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic>? data =
+        ModalRoute.of(context)!.settings.arguments as List<Object>?;
+    Peluqueria peluqueria = data?[0] as Peluqueria;
+    Peluquero peluquero = data?[1] as Peluquero;
+    List<Servicio> serviciosSeleccionados = data?[2];
+
     ResumenArgs resumen =
-        ModalRoute.of(context)!.settings.arguments as ResumenArgs;
+        ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
+
+    String generarPrecio(ResumenArgs resumen) {
+      String resultadoCadena;
+      double sumaPrecios = 0;
+      for (var servicio in resumen.servicios) {
+        sumaPrecios += servicio.precio;
+      }
+      return sumaPrecios.toString();
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -58,6 +75,25 @@ class ResumenPedidoScreen extends StatelessWidget {
             Row(
               children: [
                 BigText(
+                  text: 'Peluquería:',
+                  color: AppTheme.secondaryTextColor,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                SmallText(
+                  text: resumen.peluqueria.nombre!,
+                  color: AppTheme.secondaryTextColor,
+                  size: 30,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                BigText(
                   text: 'Peluquero:',
                   color: AppTheme.secondaryTextColor,
                 ),
@@ -78,9 +114,6 @@ class ResumenPedidoScreen extends StatelessWidget {
               text: 'Servicios:',
               color: AppTheme.secondaryTextColor,
             ),
-            SizedBox(
-              height: 20,
-            ),
             Container(
               height: 50,
               child: ListView.builder(
@@ -99,7 +132,63 @@ class ResumenPedidoScreen extends StatelessWidget {
                     );
                   }),
             ),
-            MetodosDePago(),
+            Row(
+              children: [
+                BigText(
+                  text: 'Fecha:',
+                  color: AppTheme.secondaryTextColor,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                SmallText(
+                  text: DateFormat('dd/MM/yyyy').format(resumen.hora),
+                  color: AppTheme.secondaryTextColor,
+                  size: 30,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                BigText(
+                  text: 'Hora:',
+                  color: AppTheme.secondaryTextColor,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                SmallText(
+                  text: DateFormat('HH:mm').format(resumen.hora),
+                  color: AppTheme.secondaryTextColor,
+                  size: 30,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                BigText(
+                  text: 'Precio:',
+                  color: AppTheme.secondaryTextColor,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                SmallText(
+                  text: generarPrecio(resumen) + "€",
+                  color: AppTheme.secondaryTextColor,
+                  size: 30,
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: () => showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => MetodosDePago(
+                  resumen: resumen,
+                ),
+              ),
+              child: const Text('Métodos de pago'),
+            ),
           ],
         ),
       ),
@@ -108,21 +197,24 @@ class ResumenPedidoScreen extends StatelessWidget {
 }
 
 class ResumenArgs {
+  final Peluqueria peluqueria;
   final Peluquero peluquero;
   final List<Servicio> servicios;
+  DateTime hora = DateTime.now();
 
-  ResumenArgs(this.peluquero, this.servicios);
+  ResumenArgs.sinFecha(this.peluqueria, this.peluquero, this.servicios);
+  ResumenArgs(this.peluqueria, this.peluquero, this.servicios, this.hora);
 }
 
 class MetodosDePago extends StatefulWidget {
-  const MetodosDePago({super.key});
+  ResumenArgs resumen;
+
+  MetodosDePago({Key? key, required this.resumen}) : super(key: key);
 
   @override
-  _MetodosDePago createState() => _MetodosDePago();
+  _MetodosDePago createState() => _MetodosDePago(resumen);
 }
 
-//ahora hay que pasar por parametros al constructor el texto y el boton
-//para sustituirlo por los que hay aqui
 class _MetodosDePago extends State<MetodosDePago> {
   bool seleccionado = false;
 
@@ -130,6 +222,9 @@ class _MetodosDePago extends State<MetodosDePago> {
 
   UniqueKey? keyTile;
   bool isExpanded = false;
+
+  ResumenArgs resumen;
+  _MetodosDePago(this.resumen) : super();
 
   void expandTile() {
     setState(() {
@@ -145,257 +240,259 @@ class _MetodosDePago extends State<MetodosDePago> {
     });
   }
 
+  String generarCodigo(ResumenArgs resumen) {
+    String resultadoCadena = resumen.peluqueria.indice.toString();
+    resultadoCadena += resumen.peluquero.indice.toString();
+    resultadoCadena += DateFormat('ddMMyy').format(resumen.hora);
+    //si lo hago como int me quita los primeros digitos si estos son 0
+    return resultadoCadena;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Seleccione un método de pago'),
-          content: SingleChildScrollView(
-            child: Column(
-              children: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(radius),
-                    side: BorderSide(color: Colors.black, width: 2),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(radius),
-                    child: SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () =>
-                                isExpanded ? shrinkTile() : expandTile(),
-                            child: buildImage(),
-                          ),
-                          //todo
-                          Builder(
-                            builder: (context) => (Theme(
-                              data: Theme.of(context)
-                                  .copyWith(dividerColor: Colors.transparent),
-                              child: ExpansionTile(
-                                key: keyTile,
-                                initiallyExpanded: isExpanded,
-                                childrenPadding:
-                                    EdgeInsets.all(8).copyWith(top: 0),
-                                title: Text(
-                                  'Bizum',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                AlertDialog(
-                                                  title: const Text(
-                                                      'Código de operación'),
-                                                  content: Text('f45f1df6dg8d'),
-                                                  actions: <Widget>[
-                                                    TextButton(
-                                                      onPressed: () {
-                                                        Navigator.pushNamed(
-                                                            context, 'home');
-                                                        seleccionado = true;
-                                                      },
-                                                      child: const Text('OK'),
-                                                    ),
-                                                  ],
-                                                ));
-                                        seleccionado = true;
-                                        //ABRIR APP BANCO
-                                      },
-                                      child: Text('Mostrar código')),
-                                ],
-                                /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
-            context,
-            text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
-            color: isExpanded ? Colors.green : Colors.red,
-          ),*/
-                              ),
-                            )),
-                          ),
-                        ],
+    return AlertDialog(
+      title: const Text('Seleccione un método de pago'),
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+                side: BorderSide(color: Colors.black, width: 2),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(radius),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
+                        child: buildImage(
+                            'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg'),
                       ),
-                    ),
+                      buildText(context, 'Bizum', resumen)
+                    ],
                   ),
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(radius),
-                    side: BorderSide(color: Colors.black, width: 2),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(radius),
-                    child: SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () =>
-                                isExpanded ? shrinkTile() : expandTile(),
-                            child: Image.network(
-                              'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: 100,
-                            ),
-                          ),
-                          Builder(
-                            builder: (context) => Theme(
-                              data: Theme.of(context)
-                                  .copyWith(dividerColor: Colors.transparent),
-                              child: ExpansionTile(
-                                key: keyTile,
-                                initiallyExpanded: isExpanded,
-                                childrenPadding:
-                                    EdgeInsets.all(16).copyWith(top: 0),
-                                title: Text(
-                                  'Tarjeta',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        seleccionado = true;
-                                        Navigator.pushNamed(context, 'home');
-                                      },
-                                      child: Text('Pagar')),
-                                ],
-                                /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
-            context,
-            text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
-            color: isExpanded ? Colors.green : Colors.red,
-          ),*/
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(radius),
-                    side: BorderSide(color: Colors.black, width: 2),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(radius),
-                    child: SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () =>
-                                isExpanded ? shrinkTile() : expandTile(),
-                            child: Image.network(
-                              'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: 100,
-                            ),
-                          ),
-                          Builder(
-                            builder: (context) => Theme(
-                              data: Theme.of(context)
-                                  .copyWith(dividerColor: Colors.transparent),
-                              child: ExpansionTile(
-                                key: keyTile,
-                                initiallyExpanded: isExpanded,
-                                childrenPadding:
-                                    EdgeInsets.all(8).copyWith(top: 0),
-                                title: Text(
-                                  'Efectivo',
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                AlertDialog(
-                                                  title:
-                                                      const Text('Advertencia'),
-                                                  content: Text(
-                                                      'Debe realizar el pago previo servicio'),
-                                                  actions: <Widget>[
-                                                    TextButton(
-                                                      onPressed: () {
-                                                        Navigator.pushNamed(
-                                                            context, 'home');
-                                                        seleccionado = true;
-                                                      },
-                                                      child: const Text('OK'),
-                                                    ),
-                                                  ],
-                                                ));
-                                      },
-                                      child: Text('Pagar en caja')),
-                                ],
-                                /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
-            context,
-            text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
-            color: isExpanded ? Colors.green : Colors.red,
-          ),*/
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+                side: BorderSide(color: Colors.black, width: 2),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(radius),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
+                        child: buildImage(
+                          'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
+                        ),
+                      ),
+                      buildText(context, 'Tarjeta', resumen),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+                side: BorderSide(color: Colors.black, width: 2),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(radius),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
+                        child: buildImage(
+                          'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
+                        ),
+                      ),
+                      buildText(context, 'Efectivo', resumen)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      child: const Text('Métodos de pago'),
     );
   }
 
 //tiene que recibir por parametros algo para saber que foto crear
-  Widget buildImage() => Image.network(
-        'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg',
+  Widget buildImage(String url) => Image.network(
+        url,
         fit: BoxFit.cover,
         width: double.infinity,
         height: 100,
       );
 
-  Widget buildText(BuildContext context) => Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          key: keyTile,
-          initiallyExpanded: isExpanded,
-          childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
-          title: Text(
-            '17/3/2023',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+  Widget buildText(BuildContext context, String type, ResumenArgs resumen) {
+    switch (type) {
+      case "Tarjeta":
+        return Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            key: keyTile,
+            initiallyExpanded: isExpanded,
+            childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+            title: Text(
+              'Tarjeta',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            ),
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    seleccionado = true;
+                    Navigator.pushNamed(context, 'home');
+                  },
+                  child: Text('Pagar')),
+            ],
+            /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
+context,
+text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
+color: isExpanded ? Colors.green : Colors.red,
+),*/
           ),
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  seleccionado = true;
-                },
-                child: Text('Pagar')),
-          ],
-          /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
+        );
+        break;
+
+      case "Bizum":
+        return Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            key: keyTile,
+            initiallyExpanded: isExpanded,
+            childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
+            title: Text(
+              'Bizum',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            ),
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Código de operación'),
+                              content: Text(generarCodigo(resumen)),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'home');
+                                    seleccionado = true;
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ));
+                    seleccionado = true;
+                  },
+                  child: Text('Mostrar código')),
+            ],
+            /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
+              context,
+              text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
+              color: isExpanded ? Colors.green : Colors.red,
+            ),*/
+          ),
+        );
+        break;
+
+      case "Efectivo":
+        return Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            key: keyTile,
+            initiallyExpanded: isExpanded,
+            childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
+            title: Text(
+              'Efectivo',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            ),
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Advertencia'),
+                              content:
+                                  Text('Debe realizar el pago previo servicio'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'home');
+                                    seleccionado = true;
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ));
+                  },
+                  child: Text('Pagar en caja')),
+            ],
+            /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
             context,
             text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
             color: isExpanded ? Colors.green : Colors.red,
-          ),*/
-        ),
-      );
+            ),*/
+          ),
+        );
+        break;
+      default:
+        return Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            key: keyTile,
+            initiallyExpanded: isExpanded,
+            childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
+            title: Text(
+              'DEFAULT',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            ),
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) => AlertDialog(
+                              title: const Text('DEFAULT'),
+                              content: Text('DEFAULTMSG'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'home');
+                                    seleccionado = true;
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ));
+                  },
+                  child: Text('DEFAULTBUTTON')),
+            ],
+            /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
+            context,
+            text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
+            color: isExpanded ? Colors.green : Colors.red,
+            ),*/
+          ),
+        );
+        break;
+    }
+  }
 }
