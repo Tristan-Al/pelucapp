@@ -6,7 +6,7 @@ import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
 class ResumenPedidoScreen extends StatelessWidget {
-  const ResumenPedidoScreen({super.key});
+  const ResumenPedidoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,6 @@ class ResumenPedidoScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-
             BigText(
               text: 'Peluquería:',
               color: AppTheme.secondaryTextColor,
@@ -173,15 +172,6 @@ class ResumenPedidoScreen extends StatelessWidget {
                 ),
               ],
             ),
-            TextButton(
-              onPressed: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => MetodosDePago(
-                  resumen: resumen,
-                ),
-              ),
-              child: const Text('Métodos de pago'),
-            ),
             Expanded(
               child: Container(
                 alignment: Alignment.bottomCenter,
@@ -189,12 +179,13 @@ class ResumenPedidoScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
                       backgroundColor: AppTheme.buttomColor),
-                  onPressed: serviciosSeleccionados.isEmpty
-                      ? null
-                      : () => {
-                            Navigator.pushNamed(context, 'home')
-                          },
-                  child: const Text('Siguiente',
+                  onPressed: () => showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => MetodosDePago(
+                      resumen: resumen,
+                    ),
+                  ),
+                  child: const Text('Metodos de pago',
                       style: TextStyle(fontSize: 20)),
                 ),
               ),
@@ -233,7 +224,7 @@ class _MetodosDePago extends State<MetodosDePago> {
   UniqueKey? keyTile;
   bool isExpanded = false;
 
-  ResumenArgs resumen;
+  final ResumenArgs resumen;
   _MetodosDePago(this.resumen) : super();
 
   void expandTile() {
@@ -278,8 +269,10 @@ class _MetodosDePago extends State<MetodosDePago> {
                     children: [
                       GestureDetector(
                         onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: buildImage(
-                            'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg'),
+                        child: Expanded(
+                          child: buildImage(
+                              'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg'),
+                        ),
                       ),
                       buildText(context, 'Bizum', resumen)
                     ],
@@ -300,8 +293,10 @@ class _MetodosDePago extends State<MetodosDePago> {
                     children: [
                       GestureDetector(
                         onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: buildImage(
-                          'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
+                        child: Expanded(
+                          child: buildImage(
+                            'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
+                          ),
                         ),
                       ),
                       buildText(context, 'Tarjeta', resumen),
@@ -323,8 +318,10 @@ class _MetodosDePago extends State<MetodosDePago> {
                     children: [
                       GestureDetector(
                         onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: buildImage(
-                          'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
+                        child: Expanded(
+                          child: buildImage(
+                            'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
+                          ),
                         ),
                       ),
                       buildText(context, 'Efectivo', resumen)
@@ -355,7 +352,7 @@ class _MetodosDePago extends State<MetodosDePago> {
           child: ExpansionTile(
             key: keyTile,
             initiallyExpanded: isExpanded,
-            childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+            childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'Tarjeta',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
@@ -383,7 +380,7 @@ color: isExpanded ? Colors.green : Colors.red,
           child: ExpansionTile(
             key: keyTile,
             initiallyExpanded: isExpanded,
-            childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
+            childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'Bizum',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
@@ -426,7 +423,7 @@ color: isExpanded ? Colors.green : Colors.red,
           child: ExpansionTile(
             key: keyTile,
             initiallyExpanded: isExpanded,
-            childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
+            childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'Efectivo',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
@@ -468,7 +465,7 @@ color: isExpanded ? Colors.green : Colors.red,
           child: ExpansionTile(
             key: keyTile,
             initiallyExpanded: isExpanded,
-            childrenPadding: EdgeInsets.all(8).copyWith(top: 0),
+            childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'DEFAULT',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
