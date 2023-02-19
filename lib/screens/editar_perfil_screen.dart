@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
@@ -53,24 +52,12 @@ class EditarPerfilScreen extends StatelessWidget {
         child: Form(
           key: myFormKey,
           child: Column(children: [
-            const SizedBox(width: 20, height: 60),
-            /*
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: ClipRRect(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-              FadeInImage(
-                  placeholder: AssetImage('assets/no-image.jpg'),
-                  image: NetworkImage(
-                      'https://icones.pro/wp-content/uploads/2021/02/icone-utilisateur-gris.png'),
-                  height: 320,
-                  width: 320,
-                  fit: BoxFit.cover,
-                ),
-                */
-            const SizedBox(width: 20, height: 80),
+            const SizedBox(height: 25),
+            CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg'),
+                maxRadius: 100),
+            const SizedBox(height: 40),
             FormFieldPers(
               ocultar: false,
               hintText: 'Cambiar nombre usuario',
@@ -78,16 +65,31 @@ class EditarPerfilScreen extends StatelessWidget {
               formProperty: 'nombre',
               formValues: formValues,
             ),
-            const SizedBox(width: 20, height: 20),
-            FormFieldPers(
-              ocultar: false,
+            const SizedBox(height: 20),
+            TextFormField(
+              autocorrect: false,
               keyboardType: TextInputType.emailAddress,
-              hintText: 'Cambiar dirección email',
-              icon: Icons.mail,
-              formProperty: 'email',
-              formValues: formValues,
+              decoration: const InputDecoration(
+                  hintText: 'john.doe@gmail.com',
+                  labelText: 'Cambiar e-mail',
+                  suffixIcon: Icon(Icons.key),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ))),
+              onChanged: (value) => formValues[formProperty] = value,
+              validator: (value) {
+                String pattern =
+                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                RegExp regExp = RegExp(pattern);
+
+                return regExp.hasMatch(value ?? '')
+                    ? null
+                    : 'El valor ingresado no luce como un correo';
+              },
             ),
-            const SizedBox(width: 20, height: 20),
+            const SizedBox(height: 20),
             FormFieldPers(
               ocultar: false,
               keyboardType: TextInputType.number,
@@ -96,7 +98,7 @@ class EditarPerfilScreen extends StatelessWidget {
               formProperty: 'telefono',
               formValues: formValues,
             ),
-            const SizedBox(width: 20, height: 20),
+            const SizedBox(height: 20),
             TextFormField(
               autofocus: false,
               obscureText: true,
@@ -121,7 +123,7 @@ class EditarPerfilScreen extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ))),
             ),
-            const SizedBox(width: 20, height: 20),
+            const SizedBox(height: 20),
             TextFormField(
               autofocus: false,
               obscureText: true,
@@ -149,13 +151,10 @@ class EditarPerfilScreen extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ))),
             ),
-            const SizedBox(width: 20, height: 30),
+            const SizedBox(height: 50),
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppTheme.buttomColor),
                 onPressed: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                   if (!myFormKey.currentState!.validate()) {
@@ -171,6 +170,7 @@ class EditarPerfilScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 20)),
               ),
             ),
+            const SizedBox(height: 50)
           ]),
         ),
       ),

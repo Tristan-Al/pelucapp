@@ -12,6 +12,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       color: mainColor,
       elevation: 3,
+      
     ),
     inputDecorationTheme: const InputDecorationTheme(
       floatingLabelStyle: TextStyle(color: secondary),
@@ -30,5 +31,27 @@ class AppTheme {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
     ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size.fromHeight(50),
+        backgroundColor: AppTheme.buttomColor
+      ),
+    ),
+    
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black26,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedIconTheme: IconThemeData(
+        color: Colors.black38,
+      ),
+      backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+      elevation: 0,
+    ),
+
+  
   );
 }

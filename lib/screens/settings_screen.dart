@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/theme/app_theme.dart';
+import 'package:pelucapp/widgets/widgets.dart';
 
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: 
-          Text(
-            'Settings',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 0, 0),
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+           icon: Icon(Icons.arrow_back_ios_new, color: AppTheme.secondaryTextColor),
+        ),
+        title: Padding(
+          padding: EdgeInsets.only(left: 20),
+          child: BigText(text: 'PELUCAPP', color: AppTheme.secondaryTextColor,),
+        ),
+        actions: [
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, 'notificaciones');
+              },
+              child: const Icon(
+                Icons.notifications_sharp,
+                color: AppTheme.secondaryTextColor,
+              )
+            )
+          )
+        ],
       ),
-    ),
-  ),
     body: Column(
          children: [ Container(
           

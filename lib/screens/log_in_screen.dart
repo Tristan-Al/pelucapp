@@ -38,7 +38,17 @@ class _FormLogIn extends StatelessWidget {
     return Form(
       key: myFormKey,
       child: Column(children: [
-        const SizedBox(width: 20, height: 60),
+        const SizedBox(height: 20),
+        Row(
+          children: [
+            IconButton(
+              alignment: Alignment.topLeft,
+              onPressed: () => {Navigator.pop(context)},
+              icon: Icon(Icons.arrow_back_ios, size: 28, color: Colors.black),
+            ),
+          ],
+        ),
+        const SizedBox(height: 60),
         Container(
           child: Image.network(
             'https://cdn-icons-png.flaticon.com/512/40/40857.png',
@@ -75,9 +85,6 @@ class _FormLogIn extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),
-                backgroundColor: AppTheme.buttomColor),
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
               if (!myFormKey.currentState!.validate()) {
@@ -89,6 +96,7 @@ class _FormLogIn extends StatelessWidget {
             child: const Text('Log in', style: TextStyle(fontSize: 20)),
           ),
         ),
+        const SizedBox(height: 60)
       ]),
     );
   }
