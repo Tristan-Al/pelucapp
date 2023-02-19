@@ -53,21 +53,17 @@ class ResumenPedidoScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                BigText(
+            BigText(
                   text: 'Peluquero:',
                   color: AppTheme.secondaryTextColor,
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                SmallText(
-                  text: 'Peluquero.nombre',
-                  color: AppTheme.secondaryTextColor,
-                  size: 30,
-                ),
-              ],
+            SizedBox(
+              height: 20,
+            ),
+            SmallText(
+              text: 'Peluquero.nombre',
+              color: AppTheme.secondaryTextColor,
+              size: 30,
             ),
             SizedBox(
               height: 20,

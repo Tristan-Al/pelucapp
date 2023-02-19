@@ -79,7 +79,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ElevatedButton(
                   onPressed: () => {
-                    Navigator.pushNamed(context,'horario')
+                    Navigator.pushNamed(context,'resumen')
                   },
                   child: const Text('Siguiente', style: TextStyle( fontSize: 20)),
                 ),
