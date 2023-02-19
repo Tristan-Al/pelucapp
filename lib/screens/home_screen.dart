@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         resizeToAvoidBottomInset: false,
         extendBody: true,
         appBar: AppBar(
+          
           automaticallyImplyLeading: false,
           title: Padding(
             padding: EdgeInsets.only(left: 20),
