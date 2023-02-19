@@ -196,7 +196,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   print('Contraseñas deben coincidir');
                   return;
                 }
-                Navigator.pushNamed(context, 'home');
               },
               child: const Text('Crear cuenta', style: TextStyle(fontSize: 20)),
             ),
