@@ -17,8 +17,7 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
+      overflow: TextOverflow.clip,
       style: TextStyle(
         color: color,
         fontWeight: FontWeight.w400,

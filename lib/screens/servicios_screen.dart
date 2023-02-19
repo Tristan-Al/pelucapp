@@ -182,8 +182,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                   }),
             ),
             Expanded(
-              child: Container(
-                child: Column(
+              child: Column(
                   children: [
                     Container(
                       height: 50,
@@ -204,29 +203,31 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                             );
                           }),
                     ),
-                    Container(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50),
-                            backgroundColor: AppTheme.buttomColor),
-                        onPressed: serviciosSeleccionados.isEmpty
-                            ? null
-                            : () => {
-                                  Navigator.pushNamed(context, 'resumen',
-                                      arguments: [
-                                        peluqueria,
-                                        peluquero,
-                                        serviciosSeleccionados
-                                      ])
-                                },
-                        child: const Text('Siguiente',
-                            style: TextStyle(fontSize: 20)),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              minimumSize: const Size.fromHeight(50),
+                              backgroundColor: AppTheme.buttomColor),
+                          onPressed: serviciosSeleccionados.isEmpty
+                              ? null
+                              : () => {
+                                    Navigator.pushNamed(context, 'horario',
+                                        arguments: [
+                                          peluqueria,
+                                          peluquero,
+                                          serviciosSeleccionados
+                                        ])
+                                  },
+                          child: const Text('Siguiente',
+                              style: TextStyle(fontSize: 20)),
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
             )
           ],
         ));

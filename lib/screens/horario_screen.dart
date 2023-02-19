@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -11,6 +12,8 @@ class HorarioScreen extends StatefulWidget {
 }
 
 class _HorarioScreenState extends State<HorarioScreen> {
+
+  
   bool btnState = true;
 
   DateTime selected = DateTime.now();
@@ -24,6 +27,17 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+        List<dynamic>? data =
+        ModalRoute.of(context)!.settings.arguments as List<Object>?;
+    Peluqueria peluqueria = data?[0] as Peluqueria;
+    Peluquero peluquero = data?[1] as Peluquero;
+    List<Servicio> serviciosSeleccionados = data?[2];
+
+    ResumenArgs resumen =
+        ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
+
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -71,13 +85,24 @@ class _HorarioScreenState extends State<HorarioScreen> {
             ),
             Expanded(
               child: Container(
-                margin: EdgeInsets.only(bottom: 30),
                 alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                 child: ElevatedButton(
-                  onPressed: () => {Navigator.pushNamed(context, 'resumen')},
-                  child:
-                      const Text('Siguiente', style: TextStyle(fontSize: 20)),
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: AppTheme.buttomColor),
+                  onPressed: serviciosSeleccionados.isEmpty
+                      ? null
+                      : () => {
+                            Navigator.pushNamed(context, 'resumen',
+                                arguments: [
+                                  peluqueria,
+                                  peluquero,
+                                  serviciosSeleccionados
+                                ])
+                          },
+                  child: const Text('Siguiente',
+                      style: TextStyle(fontSize: 20)),
                 ),
               ),
             ),

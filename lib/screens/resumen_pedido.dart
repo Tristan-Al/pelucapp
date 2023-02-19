@@ -72,40 +72,33 @@ class ResumenPedidoScreen extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                BigText(
-                  text: 'Peluquería:',
-                  color: AppTheme.secondaryTextColor,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SmallText(
-                  text: resumen.peluqueria.nombre!,
-                  color: AppTheme.secondaryTextColor,
-                  size: 30,
-                ),
-              ],
+
+            BigText(
+              text: 'Peluquería:',
+              color: AppTheme.secondaryTextColor,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SmallText(
+              text: resumen.peluqueria.nombre!,
+              color: AppTheme.secondaryTextColor,
+              size: 30,
             ),
             SizedBox(
               height: 20,
             ),
-            Row(
-              children: [
-                BigText(
-                  text: 'Peluquero:',
-                  color: AppTheme.secondaryTextColor,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SmallText(
-                  text: resumen.peluquero.nombre,
-                  color: AppTheme.secondaryTextColor,
-                  size: 30,
-                ),
-              ],
+            BigText(
+              text: 'Peluquero:',
+              color: AppTheme.secondaryTextColor,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            SmallText(
+              text: resumen.peluquero.nombre,
+              color: AppTheme.secondaryTextColor,
+              size: 30,
             ),
             SizedBox(
               height: 20,
@@ -188,6 +181,23 @@ class ResumenPedidoScreen extends StatelessWidget {
                 ),
               ),
               child: const Text('Métodos de pago'),
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: AppTheme.buttomColor),
+                  onPressed: serviciosSeleccionados.isEmpty
+                      ? null
+                      : () => {
+                            Navigator.pushNamed(context, 'home')
+                          },
+                  child: const Text('Siguiente',
+                      style: TextStyle(fontSize: 20)),
+                ),
+              ),
             ),
           ],
         ),

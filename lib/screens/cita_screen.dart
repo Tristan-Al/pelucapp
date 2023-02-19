@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/screens/peluqueros_screen.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
@@ -9,6 +10,7 @@ class CitaScreen extends StatefulWidget {
 }
 
 class _CitaScreenState extends State<CitaScreen> {
+  Peluqueria peluquerias = Peluqueria.fromNothing();
   PageController pageController = PageController(viewportFraction: 0.85);
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _CitaScreenState extends State<CitaScreen> {
           ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 10,
+              itemCount: peluquerias.nombres.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.only(right: 10, left: 10),
@@ -78,7 +80,7 @@ class _CitaScreenState extends State<CitaScreen> {
                             padding: const EdgeInsets.only(
                                 top: 10, bottom: 10, right: 20),
                             child: BigText(
-                                text: 'Peluqueria ${index}',
+                                text: '${peluquerias.nombres[index]}',
                                 color: AppTheme.secondaryTextColor,
                                 size: 20),
                           ),
