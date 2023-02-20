@@ -28,7 +28,7 @@ class PerfilScreen extends StatelessWidget {
          ],
         title: Center(
            child: Text(
-            'My profile',
+            'Mi perfil',
             style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
