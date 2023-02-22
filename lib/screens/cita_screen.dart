@@ -122,36 +122,46 @@ class _PeluqueriasListView extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: peluquerias.nombres.length,
         itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.only(right: 10, left: 10),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, 'peluqueros',
-                    arguments: index);
-              },
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                elevation: 10,
-                margin: EdgeInsets.only(bottom: 20, left: 10, right: 10),
-                child: Column(
-                  children: [
-                    FadeInImage(
-                      image:
-                          NetworkImage('https://picsum.photos/500/300'),
-                      placeholder:
-                          const AssetImage('assets/no-image.jpg'),
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, 'peluqueros',
+                  arguments: index);
+            },
+            child: Container(
+              height: 300,
+              margin: EdgeInsets.only(bottom: 20, left: 10, right: 10),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: FadeInImage(
+                      image:NetworkImage('https://picsum.photos/500/300'),
+                      placeholder:const AssetImage('assets/no-image.jpg'),
                       width: double.infinity,
-                      height: 140,
+                      height: 220,
                       fit: BoxFit.cover,
                       fadeInDuration: const Duration(milliseconds: 1000),
                     ),
-                    Container(
-                      alignment: AlignmentDirectional.center,
-                      padding: const EdgeInsets.only(
-                          top: 10, bottom: 10, right: 20),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: 100,
+                      width: double.infinity,
+                      margin: EdgeInsets.only(left: 30, right: 30, bottom: 25),
+                      decoration: BoxDecoration(
+                        color: AppTheme.mainColor,
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10,
+                            offset: Offset(0, 5),
+                          )
+                        ]
+                      ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           BigText(
                             text: '${peluquerias.nombres[index]}',
@@ -161,11 +171,11 @@ class _PeluqueriasListView extends StatelessWidget {
                           SmallText(text: "Calle: Peluqueria.calle", color: Colors.black45),
                         ],
                       ),
-                          
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                  
+                ],
+              )
             ),
           );
         });
