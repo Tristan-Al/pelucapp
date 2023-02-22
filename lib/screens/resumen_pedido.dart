@@ -180,7 +180,7 @@ class ResumenPedidoScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      backgroundColor: AppTheme.buttomColor),
+                    ),
                   onPressed: () => showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => MetodosDePago(

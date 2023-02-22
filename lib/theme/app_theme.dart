@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color mainTextColor = Color.fromRGBO(255, 255, 255, 1);
   static const Color secondaryTextColor = Color.fromRGBO(0, 0, 0, 1);
-  static const Color mainColor = Color(0xFFECEFF1);
-  static const Color secondary = Colors.grey;
-  static const Color buttomColor = Color.fromRGBO(32, 38, 46, 1);
+  static const Color backgroundColor = Color(0xFFECEFF1);
+  static const Color primary = Color.fromRGBO(34, 34, 34, 1);
+  static const Color secondary = Color.fromRGBO(34, 163, 159, 1);
 
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
-    primaryColor: mainColor,
+    primaryColor: backgroundColor,
     appBarTheme: const AppBarTheme(
-      color: mainColor,
+      color: backgroundColor,
       elevation: 3,
       
     ),
@@ -36,7 +36,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(50),
-        backgroundColor: AppTheme.buttomColor,
+        backgroundColor: AppTheme.primary,
         shape: StadiumBorder(),
         elevation: 0,
       ),
@@ -44,12 +44,13 @@ class AppTheme {
     
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.black,
+      selectedItemColor: primary,
       unselectedItemColor: Colors.black26,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       unselectedIconTheme: IconThemeData(
         color: Colors.black38,
+        size: 22,
       ),
       backgroundColor: Color.fromRGBO(0, 0, 0, 0),
       elevation: 0,

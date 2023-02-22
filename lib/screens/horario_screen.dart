@@ -85,8 +85,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                      backgroundColor: AppTheme.buttomColor),
+                    minimumSize: const Size.fromHeight(50),
+                  ),
                   onPressed: serviciosSeleccionados.isEmpty
                       ? null
                       : () => {

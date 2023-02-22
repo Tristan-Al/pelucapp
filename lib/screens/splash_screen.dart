@@ -14,7 +14,7 @@ class SplashScreen extends StatelessWidget {
       Get.to(const FrontPageScreen());
     }); 
     return const Scaffold(
-      backgroundColor: AppTheme.mainColor,
+      backgroundColor: AppTheme.backgroundColor,
        body: Center(
           child: Image(image: AssetImage('assets/logo.png'),height: 150,),
         ),

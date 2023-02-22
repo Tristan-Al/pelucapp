@@ -88,7 +88,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                           child: Container(
                             height: 350,
                             decoration: const BoxDecoration(
-                              color: AppTheme.mainColor,
+                              color: AppTheme.backgroundColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(12)),
                               boxShadow: [
@@ -210,7 +210,7 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               minimumSize: const Size.fromHeight(50),
-                              backgroundColor: AppTheme.buttomColor),
+                            ),
                           onPressed: serviciosSeleccionados.isEmpty
                               ? null
                               : () => {

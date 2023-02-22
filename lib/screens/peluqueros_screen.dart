@@ -83,7 +83,7 @@ Widget _buildPeluquerosCard(
         child: Container(
           height: 350,
           decoration: const BoxDecoration(
-            color: AppTheme.mainColor,
+            color: AppTheme.backgroundColor,
             borderRadius: BorderRadius.all(Radius.circular(12)),
             boxShadow: [
               BoxShadow(
@@ -134,7 +134,7 @@ Widget _buildPeluquerosCard(
                       Navigator.pushNamed(context, 'servicios',
                           arguments: [peluqueria, peluquero]);
                     },
-                    color: AppTheme.buttomColor,
+                    color: AppTheme.primary,
                   ),
                 )),
               ],

@@ -33,7 +33,7 @@ class FrontPageScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.mainColor,
+                  backgroundColor: AppTheme.backgroundColor,
                   side: const BorderSide(width: 2, color: AppTheme.secondaryTextColor),
                   elevation: 0,
                 ),
