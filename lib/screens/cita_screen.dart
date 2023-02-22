@@ -207,7 +207,7 @@ class _PeluqueriasListView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black12,
+                            color: Colors.black26,
                             blurRadius: 10,
                             offset: Offset(0, 5),
                           )

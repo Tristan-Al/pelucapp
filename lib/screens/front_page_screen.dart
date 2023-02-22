@@ -34,13 +34,13 @@ class FrontPageScreen extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.backgroundColor,
-                  side: const BorderSide(width: 2, color: AppTheme.secondaryTextColor),
+                  side: const BorderSide(width: 2, color: AppTheme.primary),
                   elevation: 0,
                 ),
               onPressed: () {
                 Navigator.pushNamed(context, 'register');
               },
-              child: const Text('Registrarse', style: TextStyle(fontSize: 20, color: AppTheme.secondaryTextColor)),
+              child: const Text('Registrarse', style: TextStyle(fontSize: 20, color: AppTheme.mainTextColor)),
             ),
           ),
           const SizedBox(
