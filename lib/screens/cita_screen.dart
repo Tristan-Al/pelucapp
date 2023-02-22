@@ -43,7 +43,7 @@ class _CitaScreenState extends State<CitaScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: BigText(
               text: 'Novedades',
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.mainTextColor,
             ),
           ),
           Container(
@@ -56,6 +56,9 @@ class _CitaScreenState extends State<CitaScreen> {
             }
             ),
           ),
+
+          SizedBox(height: 10,),
+
           new DotsIndicator(
             dotsCount: 5,
             position: _currPageValue,
@@ -138,12 +141,14 @@ class _CitaScreenState extends State<CitaScreen> {
                 children: [
                   BigText(
                     text: "Regalos",
+                    color: AppTheme.secondaryTextColor
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   SmallText(
-                    text: 'Reciba descuentos exclusivos en las marcas mas populares del momento'
+                    text: 'Reciba descuentos exclusivos en las marcas mas populares del momento',
+                    color: AppTheme.secondaryTextColor,
                   ),
                 ],
               ),
@@ -213,7 +218,7 @@ class _PeluqueriasListView extends StatelessWidget {
                         children: [
                           BigText(
                             text: '${peluquerias.nombres[index]}',
-                            color: AppTheme.secondaryTextColor,
+                            color: AppTheme.mainTextColor,
                             size: 22
                           ),
                           SmallText(text: "Calle: Peluqueria.calle", color: Colors.black45),

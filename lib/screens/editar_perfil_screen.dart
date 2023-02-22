@@ -25,28 +25,15 @@ class EditarPerfilScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(Icons.arrow_back_ios_new,
-              color: AppTheme.secondaryTextColor),
+          icon: Icon(Icons.arrow_back_ios_new,
+              color: AppTheme.mainTextColor),
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: BigText(
-            text: 'PELUCAPP',
-            color: AppTheme.secondaryTextColor,
-          ),
+        title: BigText(
+          text: 'PELUCAPP',
+          color: AppTheme.primary,
+          size: 25,
         ),
-        actions: [
-          Padding(
-              padding:
-                  const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
-              child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.notifications_sharp,
-                    color: AppTheme.secondaryTextColor,
-                  )))
-        ],
-      ),
+      ),      
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Form(

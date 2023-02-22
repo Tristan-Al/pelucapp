@@ -37,28 +37,13 @@ class ResumenPedidoScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back_ios_new,
-              color: AppTheme.secondaryTextColor),
+              color: AppTheme.mainTextColor),
         ),
-        title: Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: BigText(
-            text: 'PELUCAPP',
-            color: AppTheme.secondaryTextColor,
-          ),
+        title: BigText(
+          text: 'PELUCAPP',
+          color: AppTheme.primary,
+          size: 25,
         ),
-        actions: [
-          Padding(
-              padding:
-                  const EdgeInsets.only(left: 8, top: 8, bottom: 8, right: 35),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'notificaciones');
-                  },
-                  child: const Icon(
-                    Icons.notifications_sharp,
-                    color: AppTheme.secondaryTextColor,
-                  )))
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(12),
@@ -68,7 +53,7 @@ class ResumenPedidoScreen extends StatelessWidget {
             Center(
               child: BigText(
                 text: 'Resumen pedido',
-                color: AppTheme.secondaryTextColor,
+                color: AppTheme.mainTextColor,
               ),
             ),
             SizedBox(
@@ -76,14 +61,14 @@ class ResumenPedidoScreen extends StatelessWidget {
             ),
             BigText(
               text: 'Peluquería:',
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.mainTextColor,
             ),
             SizedBox(
               height: 10,
             ),
             SmallText(
               text: resumen.peluqueria.nombre!,
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.mainTextColor,
               size: 30,
             ),
             SizedBox(
@@ -91,14 +76,14 @@ class ResumenPedidoScreen extends StatelessWidget {
             ),
             BigText(
               text: 'Peluquero:',
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.mainTextColor,
             ),
             SizedBox(
               height: 10,
             ),
             SmallText(
               text: resumen.peluquero.nombre,
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.mainTextColor,
               size: 30,
             ),
             SizedBox(
@@ -106,7 +91,7 @@ class ResumenPedidoScreen extends StatelessWidget {
             ),
             BigText(
               text: 'Servicios:',
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.mainTextColor,
             ),
             Container(
               height: 50,
@@ -130,14 +115,14 @@ class ResumenPedidoScreen extends StatelessWidget {
               children: [
                 BigText(
                   text: 'Fecha:',
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                 ),
                 SizedBox(
                   width: 20,
                 ),
                 SmallText(
                   text: DateFormat('dd/MM/yyyy').format(resumen.hora),
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                   size: 30,
                 ),
               ],
@@ -146,14 +131,14 @@ class ResumenPedidoScreen extends StatelessWidget {
               children: [
                 BigText(
                   text: 'Hora:',
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                 ),
                 SizedBox(
                   width: 20,
                 ),
                 SmallText(
                   text: DateFormat('HH:mm').format(resumen.hora),
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                   size: 30,
                 ),
               ],
@@ -162,14 +147,14 @@ class ResumenPedidoScreen extends StatelessWidget {
               children: [
                 BigText(
                   text: 'Precio:',
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                 ),
                 SizedBox(
                   width: 20,
                 ),
                 SmallText(
                   text: generarPrecio(resumen) + "€",
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                   size: 30,
                 ),
               ],

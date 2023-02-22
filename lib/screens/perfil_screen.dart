@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/widgets/big_text.dart';
+import 'package:pelucapp/widgets/small_text.dart';
 
 import '../theme/app_theme.dart';
 
@@ -8,131 +10,78 @@ class PerfilScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-      home: Scaffold(
-           appBar: AppBar(
-             backgroundColor: Color.fromARGB(255, 41, 41, 41),
-         leading: IconButton(
-          onPressed: (){},
-           icon: Icon(Icons.verified_user, color: Color.fromARGB(255, 255, 255, 255)),
-        ),
-         actions: <Widget>[
-         IconButton(
-          onPressed: (){
-              Navigator.pushNamed(context, 'ajustes');
-          },
-           icon: Icon(Icons.settings, color: Color.fromARGB(255, 255, 255, 255)),
-        ),
-        
-         ],
-        title: Center(
-           child: Text(
-            'Mi perfil',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 255, 255, 255),
-      ),
-    ),
-  ),
-        ),
-              body: ListView(
-          children: <Widget>[
-            Container(
-              height: 150,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color.fromARGB(255, 49, 49, 49), Color.fromARGB(255, 0, 0, 0)],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  stops: [0.5, 0.9],
+      return Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 20,),
+
+              CircleAvatar(
+                  backgroundColor: AppTheme.secondary,
+                  minRadius: 105.0,
+                  child: CircleAvatar(
+                    radius: 100.0,
+                    backgroundImage:
+                        NetworkImage(tProfileImage),
+                  ),
+                ),
+
+              SizedBox(height: 10,),
+
+              _UserDetailItem( text: 'Usuario.nombre', icon: Icon(Icons.account_circle, color: AppTheme.secondary, size: 40,)),
+
+              _UserDetailItem( text: 'usuario.email', icon: Icon(Icons.email_outlined, color: AppTheme.secondary, size: 40,)),
+
+              _UserDetailItem( text: '623829123', icon: Icon(Icons.phone, color: AppTheme.secondary, size: 40,)),
+
+              SizedBox(height: 10,),
+
+              Container(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'editar');
+                  },
+                  child: const Text('Editar perfil', style: TextStyle(fontSize: 20,)),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 249, 249, 249),
-                        minRadius: 60.0,
-                        
-                        child: CircleAvatar(
-                          radius: 55.0,
-                          backgroundImage:
-                              NetworkImage(tProfileImage),
-                              
-                        ),
-                        
-                      ),
-                      
-                    ],
-                  ),
-                
-                ],
-              ),
-            ),
-            Container(
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      'Nombre',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      '',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Apellidos',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      '',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      'Email',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(
-                      '',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+
+              SizedBox(height: 110,),
+            ],
+          ),
         ),
+      );
+  }
+}
+
+class _UserDetailItem extends StatelessWidget {
+  const _UserDetailItem({
+    super.key, required this.icon, required this.text,
+  });
+  final Icon icon;
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      decoration: BoxDecoration(
+        color: AppTheme.backgroundColor,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(1.0, 1.0), //(x,y)
+            blurRadius: 6.0,
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          icon,
+          SizedBox(width: 15,),
+          SmallText(text: text, color: Colors.black, size: 25,),
+        ],
       ),
       );
   }

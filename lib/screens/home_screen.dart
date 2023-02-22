@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.only(left: 20),
             child: BigText(
               text: 'PELUCAPP',
-              color: AppTheme.secondaryTextColor,
+              color: AppTheme.primary,
               size: 25,
             ),
           ),
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         Navigator.pushNamed(context, 'notificaciones');
                       },
-                      color: AppTheme.secondaryTextColor,
+                      color: AppTheme.primary,
                       icon: Icon(Icons.notifications_sharp),
                     )))
           ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/theme/app_theme.dart';
 
 class SmallText extends StatelessWidget {
   Color? color;
@@ -7,7 +8,7 @@ class SmallText extends StatelessWidget {
   double height;
 
   SmallText({Key? key,
-    this.color = const Color(0xFFECEFF1),
+    this.color = AppTheme.mainTextColor,
     required this.text,
     this.size = 20,
     this.height = 1.2

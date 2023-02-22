@@ -27,28 +27,13 @@ class PeluquerosScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_ios_new,
-                color: AppTheme.secondaryTextColor),
+                color: AppTheme.mainTextColor),
           ),
-          title: Padding(
-            padding: EdgeInsets.only(left: 20),
-            child: BigText(
-              text: 'PELUCAPP',
-              color: AppTheme.secondaryTextColor,
-            ),
+          title: BigText(
+            text: 'PELUCAPP',
+            color: AppTheme.primary,
+            size: 25,
           ),
-          actions: [
-            Padding(
-                padding: const EdgeInsets.only(
-                    left: 8, top: 8, bottom: 8, right: 35),
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'notificaciones');
-                    },
-                    child: const Icon(
-                      Icons.notifications_sharp,
-                      color: AppTheme.secondaryTextColor,
-                    )))
-          ],
         ),
         body: Column(
           children: [
@@ -56,7 +41,7 @@ class PeluquerosScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: SmallText(
                 text: 'Elige tu pelquero favorito',
-                color: AppTheme.secondaryTextColor,
+                color: AppTheme.mainTextColor,
               ),
             ),
             Container(
@@ -113,7 +98,7 @@ Widget _buildPeluquerosCard(
                 ),
                 BigText(
                     text: 'Servicios disponibles:',
-                    color: AppTheme.secondaryTextColor,
+                    color: AppTheme.mainTextColor,
                     size: 20),
                 const SizedBox(
                   height: 10,
