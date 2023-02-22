@@ -5,7 +5,8 @@ class AppTheme {
   static const Color secondaryTextColor = Color.fromRGBO(0, 0, 0, 1);
   static const Color mainColor = Color(0xFFECEFF1);
   static const Color secondary = Colors.grey;
-  static const Color buttomColor = Color(0xFFAA00FF);
+  static const Color buttomColor = Color.fromRGBO(32, 38, 46, 1);
+
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: mainColor,
@@ -35,7 +36,9 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(50),
-        backgroundColor: AppTheme.buttomColor
+        backgroundColor: AppTheme.buttomColor,
+        shape: StadiumBorder(),
+        elevation: 0,
       ),
     ),
     

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'PelucApp',
       theme: AppTheme.lightTheme,
-      initialRoute: 'splash',
+      initialRoute: 'home',
       routes: {
         'splash': (context) => SplashScreen(),
         'front_page': (context) => FrontPageScreen(),

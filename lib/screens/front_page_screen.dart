@@ -12,9 +12,7 @@ class FrontPageScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const FlutterLogo(
-            size: 200,
-          ),
+          const Image(image: AssetImage('assets/logo.png'),height: 200,),
           const SizedBox(
             height: 30,
           ),
@@ -34,10 +32,15 @@ class FrontPageScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: AppTheme.mainColor,
+                  side: const BorderSide(width: 2, color: AppTheme.secondaryTextColor),
+                  elevation: 0,
+                ),
               onPressed: () {
                 Navigator.pushNamed(context, 'register');
               },
-              child: const Text('Registrarse', style: TextStyle(fontSize: 20)),
+              child: const Text('Registrarse', style: TextStyle(fontSize: 20, color: AppTheme.secondaryTextColor)),
             ),
           ),
           const SizedBox(

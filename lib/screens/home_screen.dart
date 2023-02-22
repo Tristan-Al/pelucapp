@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: BigText(
               text: 'PELUCAPP',
               color: AppTheme.secondaryTextColor,
+              size: 25,
             ),
           ),
           actions: [
