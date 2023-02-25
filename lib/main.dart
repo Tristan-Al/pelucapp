@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         'notificaciones': (context) => NotificacionesScreen(),
         'resumen': (context) => ResumenPedidoScreen(),
         'editar': (context) => EditarPerfilScreen(),
-        'perfil': (context) => PerfilScreen(),
+        'perfil': (context) => ProfileHomePage(),
         'ajustes': (context) => Settings(),
         'email': (context) => EmailScreen(),
         'horario': (context) => HorarioScreen(),

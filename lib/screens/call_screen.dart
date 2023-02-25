@@ -18,7 +18,7 @@ class call_screen extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: const Text('Contáctanos llamandonos', style: TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold
               ),),
             ),
             
