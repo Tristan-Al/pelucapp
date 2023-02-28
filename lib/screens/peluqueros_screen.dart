@@ -91,7 +91,7 @@ Widget _buildPeluquerosCard(
                 ),
                 BigText(
                   text: peluquero.nombre,
-                  color: AppTheme.secondaryTextColor,
+                  color: AppTheme.mainTextColor,
                 ),
                 const SizedBox(
                   height: 10,

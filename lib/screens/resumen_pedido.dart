@@ -21,14 +21,6 @@ class ResumenPedidoScreen extends StatelessWidget {
     ResumenArgs resumen = ResumenArgs.completo(
         peluqueria, peluquero, serviciosSeleccionados, diaSeleccionado);
 
-    String generarPrecio(ResumenArgs resumen) {
-      String resultadoCadena;
-      double sumaPrecios = 0;
-      for (var servicio in resumen.servicios) {
-        sumaPrecios += servicio.precio;
-      }
-      return sumaPrecios.toString();
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -45,140 +37,245 @@ class ResumenPedidoScreen extends StatelessWidget {
           size: 25,
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(12),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: BigText(
-                text: 'Resumen pedido',
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BigText(
+                text: 'Pelqueria',
                 color: AppTheme.mainTextColor,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            BigText(
-              text: 'Peluquería:',
-              color: AppTheme.mainTextColor,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SmallText(
-              text: resumen.peluqueria.nombre!,
-              color: AppTheme.mainTextColor,
-              size: 30,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            BigText(
-              text: 'Peluquero:',
-              color: AppTheme.mainTextColor,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SmallText(
-              text: resumen.peluquero.nombre,
-              color: AppTheme.mainTextColor,
-              size: 30,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            BigText(
-              text: 'Servicios:',
-              color: AppTheme.mainTextColor,
-            ),
-            Container(
-              height: 50,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: resumen.servicios.length,
-                  itemBuilder: (context, index) {
-                    Servicio _servicio = resumen.servicios[index];
-                    return Container(
-                      margin: EdgeInsets.all(10),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.black26,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Text(_servicio.nombre),
-                    );
-                  }),
-            ),
-            Row(
-              children: [
-                BigText(
-                  text: 'Fecha:',
-                  color: AppTheme.mainTextColor,
+              _PeluqueriaContainer(resumen: resumen),
+
+              SizedBox(
+                height: 20,
+              ),
+
+              BigText(
+                text: 'Pelquero',
+                color: AppTheme.mainTextColor,
+              ),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                  border: BorderDirectional(bottom: BorderSide(width: 1, color: Colors.black12,))
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                SmallText(
-                  text: DateFormat('dd/MM/yyyy').format(resumen.hora),
-                  color: AppTheme.mainTextColor,
-                  size: 30,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                BigText(
-                  text: 'Hora:',
-                  color: AppTheme.mainTextColor,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SmallText(
-                  text: DateFormat('HH:mm').format(resumen.hora),
-                  color: AppTheme.mainTextColor,
-                  size: 30,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                BigText(
-                  text: 'Precio:',
-                  color: AppTheme.mainTextColor,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SmallText(
-                  text: generarPrecio(resumen) + "€",
-                  color: AppTheme.mainTextColor,
-                  size: 30,
-                ),
-              ],
-            ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 20,
+                      height: 20,
+                      margin: EdgeInsets.only(right: 25),
+                      child: Icon(Icons.account_circle, size: 30,),
                     ),
-                  onPressed: () => showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) => MetodosDePago(
-                      resumen: resumen,
+                    SmallText(
+                    text: resumen.peluquero.nombre,
+                    color: AppTheme.mainTextColor,
+                    size: 25,
                     ),
-                  ),
-                  child: const Text('Metodos de pago',
-                      style: TextStyle(fontSize: 20)),
+                  ],
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              BigText(
+                text: 'Tus servicios',
+                color: AppTheme.mainTextColor,
+              ),
+              _ServiciosListView(resumen: resumen),
+              
+              SizedBox(
+                height: 20,
+              ),
+              
+              BigText(
+                text: 'Subtotal',
+                color: AppTheme.mainTextColor,
+              ),
+              _SubtotalContainer(resumen: resumen),
+              _BotonMetodosPago(resumen: resumen),
+            ],
+          ),
+      ),
+    );
+  }
+}
+
+class _BotonMetodosPago extends StatelessWidget {
+  const _BotonMetodosPago({
+    super.key,
+    required this.resumen,
+  });
+
+  final ResumenArgs resumen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            minimumSize: const Size.fromHeight(50),
+          ),
+        onPressed: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => MetodosDePago(
+            resumen: resumen,
+          ),
         ),
+        child: const Text('Metodos de pago',
+            style: TextStyle(fontSize: 20)),
+      ),
+    );
+  }
+}
+
+class _SubtotalContainer extends StatelessWidget {
+  const _SubtotalContainer({
+    super.key,
+    required this.resumen,
+  });
+
+  String generarPrecio(ResumenArgs resumen) {
+    String resultadoCadena;
+    double sumaPrecios = 0;
+    for (var servicio in resumen.servicios) {
+      sumaPrecios += servicio.precio;
+    }
+    return sumaPrecios.toString();
+  }
+  final ResumenArgs resumen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SmallText(
+              text: 'Fecha',
+              color: Color.fromRGBO(97, 97, 97, 1),
+              size: 22,
+              ),
+              SmallText(
+                text: DateFormat('dd/MM/yyyy').format(resumen.hora),
+                color: Color.fromRGBO(97, 97, 97, 1),
+                size: 22,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SmallText(
+                text: 'Hora',
+                color: Color.fromRGBO(97, 97, 97, 1),
+                size: 22,
+              ),
+              SmallText(
+                text: DateFormat('HH:mm').format(resumen.hora),
+                color: Color.fromRGBO(97, 97, 97, 1),
+                size: 22,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SmallText(
+                text: 'Total',
+                color: Color.fromRGBO(97, 97, 97, 1),
+                size: 22,
+              ),
+              SmallText(
+                text: generarPrecio(resumen) + "€",
+                color: Color.fromRGBO(97, 97, 97, 1),
+                size: 22,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ServiciosListView extends StatelessWidget {
+  const _ServiciosListView({
+    super.key,
+    required this.resumen,
+  });
+
+  final ResumenArgs resumen;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: resumen.servicios.length,
+      itemBuilder: (context, index) {
+      Servicio _servicio = resumen.servicios[index];
+      return Container(
+          padding: EdgeInsets.symmetric(vertical: 10,),
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          decoration: BoxDecoration(
+            border: BorderDirectional(bottom: BorderSide(width: 1, color: Colors.black12,))
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SmallText(
+              text: _servicio.nombre,
+              color: AppTheme.mainTextColor,
+              size: 25,
+              ),
+              SmallText(
+              text: '€${_servicio.precio}',
+              color: AppTheme.mainTextColor,
+              size: 25,
+              ),
+            ],
+          ),
+        );
+      }
+    );
+  }
+}
+
+class _PeluqueriaContainer extends StatelessWidget {
+  const _PeluqueriaContainer({
+    super.key,
+    required this.resumen,
+  });
+
+  final ResumenArgs resumen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+        border: BorderDirectional(bottom: BorderSide(width: 1, color: Colors.black12,))
+      ),
+      child: SmallText(
+      text: resumen.peluqueria.nombre!,
+      color: AppTheme.mainTextColor,
+      size: 25,
       ),
     );
   }

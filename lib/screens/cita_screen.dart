@@ -171,65 +171,65 @@ class _PeluqueriasListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: peluquerias.nombres.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, 'peluqueros',
-                  arguments: index);
-            },
-            child: Container(
-              height: 300,
-              margin: EdgeInsets.only(bottom: 20, left: 10, right: 10),
-              child: Stack(
-                children: [
-                  ClipRRect(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    itemCount: peluquerias.nombres.length,
+    itemBuilder: (context, index) {
+      return GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, 'peluqueros',
+              arguments: index);
+        },
+        child: Container(
+          height: 300,
+          margin: EdgeInsets.only(bottom: 20, left: 10, right: 10),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: FadeInImage(
+                  image:NetworkImage('https://picsum.photos/500/300'),
+                  placeholder:const AssetImage('assets/no-image.jpg'),
+                  width: double.infinity,
+                  height: 220,
+                  fit: BoxFit.cover,
+                  fadeInDuration: const Duration(milliseconds: 1000),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 100,
+                  width: double.infinity,
+                  margin: EdgeInsets.only(left: 30, right: 30, bottom: 25),
+                  decoration: BoxDecoration(
+                    color: AppTheme.backgroundColor,
                     borderRadius: BorderRadius.circular(30),
-                    child: FadeInImage(
-                      image:NetworkImage('https://picsum.photos/500/300'),
-                      placeholder:const AssetImage('assets/no-image.jpg'),
-                      width: double.infinity,
-                      height: 220,
-                      fit: BoxFit.cover,
-                      fadeInDuration: const Duration(milliseconds: 1000),
-                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 10,
+                        offset: Offset(0, 5),
+                      )
+                    ]
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 100,
-                      width: double.infinity,
-                      margin: EdgeInsets.only(left: 30, right: 30, bottom: 25),
-                      decoration: BoxDecoration(
-                        color: AppTheme.backgroundColor,
-                        borderRadius: BorderRadius.circular(30),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 10,
-                            offset: Offset(0, 5),
-                          )
-                        ]
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BigText(
+                        text: '${peluquerias.nombres[index]}',
+                        color: AppTheme.mainTextColor,
+                        size: 22
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          BigText(
-                            text: '${peluquerias.nombres[index]}',
-                            color: AppTheme.mainTextColor,
-                            size: 22
-                          ),
-                          SmallText(text: "Calle: Peluqueria.calle", color: Colors.black45),
-                        ],
-                      ),
-                    ),
+                      SmallText(text: "Calle: Peluqueria.calle", color: Colors.black45),
+                    ],
                   ),
-                ],
-              )
-            ),
-          );
-        });
+                ),
+              ),
+            ],
+          )
+        ),
+      );
+    });
   }
 }
