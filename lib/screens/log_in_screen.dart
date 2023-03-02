@@ -20,7 +20,7 @@ class LogInScreen extends StatelessWidget {
         new Container(
           decoration: new BoxDecoration(
               image: new DecorationImage(
-                  image: new AssetImage("assets/e6be8b.png"),
+                  image: new AssetImage("assets/ffd7ab.png"),
                   fit: BoxFit.fill)),
         ),
         SingleChildScrollView(
