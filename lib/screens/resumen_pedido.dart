@@ -21,15 +21,13 @@ class ResumenPedidoScreen extends StatelessWidget {
     ResumenArgs resumen = ResumenArgs.completo(
         peluqueria, peluquero, serviciosSeleccionados, diaSeleccionado);
 
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios_new,
-              color: AppTheme.mainTextColor),
+          icon: Icon(Icons.arrow_back_ios_new, color: AppTheme.mainTextColor),
         ),
         title: BigText(
           text: 'PELUCAPP',
@@ -40,65 +38,67 @@ class ResumenPedidoScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(12),
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BigText(
-                text: 'Pelqueria',
-                color: AppTheme.mainTextColor,
-              ),
-              _PeluqueriaContainer(resumen: resumen),
-
-              SizedBox(
-                height: 20,
-              ),
-
-              BigText(
-                text: 'Pelquero',
-                color: AppTheme.mainTextColor,
-              ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  border: BorderDirectional(bottom: BorderSide(width: 1, color: Colors.black12,))
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 20,
-                      height: 20,
-                      margin: EdgeInsets.only(right: 25),
-                      child: Icon(Icons.account_circle, size: 30,),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BigText(
+              text: 'Pelqueria',
+              color: AppTheme.mainTextColor,
+            ),
+            _PeluqueriaContainer(resumen: resumen),
+            SizedBox(
+              height: 20,
+            ),
+            BigText(
+              text: 'Pelquero',
+              color: AppTheme.mainTextColor,
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(vertical: 20),
+              decoration: BoxDecoration(
+                  border: BorderDirectional(
+                      bottom: BorderSide(
+                width: 1,
+                color: Colors.black12,
+              ))),
+              child: Row(
+                children: [
+                  Container(
+                    width: 20,
+                    height: 20,
+                    margin: EdgeInsets.only(right: 25),
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 30,
                     ),
-                    SmallText(
+                  ),
+                  SmallText(
                     text: resumen.peluquero.nombre,
                     color: AppTheme.mainTextColor,
                     size: 25,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              BigText(
-                text: 'Tus servicios',
-                color: AppTheme.mainTextColor,
-              ),
-              _ServiciosListView(resumen: resumen),
-              
-              SizedBox(
-                height: 20,
-              ),
-              
-              BigText(
-                text: 'Subtotal',
-                color: AppTheme.mainTextColor,
-              ),
-              _SubtotalContainer(resumen: resumen),
-              _BotonMetodosPago(resumen: resumen),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            BigText(
+              text: 'Tus servicios',
+              color: AppTheme.mainTextColor,
+            ),
+            _ServiciosListView(resumen: resumen),
+            SizedBox(
+              height: 20,
+            ),
+            BigText(
+              text: 'Subtotal',
+              color: AppTheme.mainTextColor,
+            ),
+            _SubtotalContainer(resumen: resumen),
+            _BotonMetodosPago(resumen: resumen),
+          ],
+        ),
       ),
     );
   }
@@ -118,16 +118,15 @@ class _BotonMetodosPago extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
-          ),
+          minimumSize: const Size.fromHeight(50),
+        ),
         onPressed: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => MetodosDePago(
             resumen: resumen,
           ),
         ),
-        child: const Text('Metodos de pago',
-            style: TextStyle(fontSize: 20)),
+        child: const Text('Metodos de pago', style: TextStyle(fontSize: 20)),
       ),
     );
   }
@@ -147,6 +146,7 @@ class _SubtotalContainer extends StatelessWidget {
     }
     return sumaPrecios.toString();
   }
+
   final ResumenArgs resumen;
 
   @override
@@ -160,9 +160,9 @@ class _SubtotalContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SmallText(
-              text: 'Fecha',
-              color: Color.fromRGBO(97, 97, 97, 1),
-              size: 22,
+                text: 'Fecha',
+                color: Color.fromRGBO(97, 97, 97, 1),
+                size: 22,
               ),
               SmallText(
                 text: DateFormat('dd/MM/yyyy').format(resumen.hora),
@@ -224,35 +224,39 @@ class _ServiciosListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: resumen.servicios.length,
-      itemBuilder: (context, index) {
-      Servicio _servicio = resumen.servicios[index];
-      return Container(
-          padding: EdgeInsets.symmetric(vertical: 10,),
-          margin: EdgeInsets.symmetric(horizontal: 5),
-          decoration: BoxDecoration(
-            border: BorderDirectional(bottom: BorderSide(width: 1, color: Colors.black12,))
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SmallText(
-              text: _servicio.nombre,
-              color: AppTheme.mainTextColor,
-              size: 25,
-              ),
-              SmallText(
-              text: '€${_servicio.precio}',
-              color: AppTheme.mainTextColor,
-              size: 25,
-              ),
-            ],
-          ),
-        );
-      }
-    );
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: resumen.servicios.length,
+        itemBuilder: (context, index) {
+          Servicio _servicio = resumen.servicios[index];
+          return Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 10,
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(
+                border: BorderDirectional(
+                    bottom: BorderSide(
+              width: 1,
+              color: Colors.black12,
+            ))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SmallText(
+                  text: _servicio.nombre,
+                  color: AppTheme.mainTextColor,
+                  size: 25,
+                ),
+                SmallText(
+                  text: '€${_servicio.precio}',
+                  color: AppTheme.mainTextColor,
+                  size: 25,
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
 
@@ -270,12 +274,15 @@ class _PeluqueriaContainer extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
-        border: BorderDirectional(bottom: BorderSide(width: 1, color: Colors.black12,))
-      ),
+          border: BorderDirectional(
+              bottom: BorderSide(
+        width: 1,
+        color: Colors.black12,
+      ))),
       child: SmallText(
-      text: resumen.peluqueria.nombre!,
-      color: AppTheme.mainTextColor,
-      size: 25,
+        text: resumen.peluqueria.nombre!,
+        color: AppTheme.mainTextColor,
+        size: 25,
       ),
     );
   }
@@ -306,23 +313,47 @@ class _MetodosDePago extends State<MetodosDePago> {
 
   static final double radius = 20;
 
-  UniqueKey? keyTile;
-  bool isExpanded = false;
+  UniqueKey? keyTileBizum;
+  UniqueKey? keyTileTarjeta;
+  UniqueKey? keyTileEfectivo;
+  bool isExpandedBizum = false;
+  bool isExpandedTarjeta = false;
+  bool isExpandedEfectivo = false;
 
   final ResumenArgs resumen;
   _MetodosDePago(this.resumen) : super();
 
-  void expandTile() {
+  void expandTile(int key) {
     setState(() {
-      isExpanded = true;
-      keyTile = UniqueKey();
+      if (key == 1) {
+        isExpandedBizum = true;
+        keyTileBizum = UniqueKey();
+      }
+      if (key == 2) {
+        isExpandedTarjeta = true;
+        keyTileTarjeta = UniqueKey();
+      }
+      if (key == 3) {
+        isExpandedEfectivo = true;
+        keyTileEfectivo = UniqueKey();
+      }
     });
   }
 
-  void shrinkTile() {
+  void shrinkTile(int key) {
     setState(() {
-      isExpanded = false;
-      keyTile = UniqueKey();
+      if (key == 1) {
+        isExpandedBizum = false;
+        keyTileBizum = UniqueKey();
+      }
+      if (key == 2) {
+        isExpandedTarjeta = false;
+        keyTileTarjeta = UniqueKey();
+      }
+      if (key == 3) {
+        isExpandedEfectivo = false;
+        keyTileEfectivo = UniqueKey();
+      }
     });
   }
 
@@ -338,84 +369,87 @@ class _MetodosDePago extends State<MetodosDePago> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Seleccione un método de pago'),
-      content: SingleChildScrollView(
-        child: Column(
-          children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-                side: BorderSide(color: Colors.black, width: 2),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: Expanded(
+      contentPadding: EdgeInsets.fromLTRB(
+          24.0, 20.0, 24.0, 0.0), // increase the padding at the top
+      content: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                  side: BorderSide(color: Colors.black, width: 2),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () =>
+                              isExpandedBizum ? shrinkTile(1) : expandTile(1),
                           child: buildImage(
                               'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg'),
                         ),
-                      ),
-                      buildText(context, 'Bizum', resumen)
-                    ],
+                        buildText(context, 'Bizum', resumen)
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-                side: BorderSide(color: Colors.black, width: 2),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: Expanded(
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                  side: BorderSide(color: Colors.black, width: 2),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () =>
+                              isExpandedTarjeta ? shrinkTile(2) : expandTile(2),
                           child: buildImage(
                             'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
                           ),
                         ),
-                      ),
-                      buildText(context, 'Tarjeta', resumen),
-                    ],
+                        buildText(context, 'Tarjeta', resumen),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-                side: BorderSide(color: Colors.black, width: 2),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                        child: Expanded(
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                  side: BorderSide(color: Colors.black, width: 2),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () => isExpandedEfectivo
+                              ? shrinkTile(3)
+                              : expandTile(3),
                           child: buildImage(
                             'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
                           ),
                         ),
-                      ),
-                      buildText(context, 'Efectivo', resumen)
-                    ],
+                        buildText(context, 'Efectivo', resumen)
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -435,8 +469,8 @@ class _MetodosDePago extends State<MetodosDePago> {
         return Theme(
           data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
           child: ExpansionTile(
-            key: keyTile,
-            initiallyExpanded: isExpanded,
+            key: keyTileTarjeta,
+            initiallyExpanded: isExpandedTarjeta,
             childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'Tarjeta',
@@ -463,8 +497,8 @@ color: isExpanded ? Colors.green : Colors.red,
         return Theme(
           data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
           child: ExpansionTile(
-            key: keyTile,
-            initiallyExpanded: isExpanded,
+            key: keyTileBizum,
+            initiallyExpanded: isExpandedBizum,
             childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'Bizum',
@@ -506,8 +540,8 @@ color: isExpanded ? Colors.green : Colors.red,
         return Theme(
           data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
           child: ExpansionTile(
-            key: keyTile,
-            initiallyExpanded: isExpanded,
+            key: keyTileEfectivo,
+            initiallyExpanded: isExpandedEfectivo,
             childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'Efectivo',
@@ -548,8 +582,8 @@ color: isExpanded ? Colors.green : Colors.red,
         return Theme(
           data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
           child: ExpansionTile(
-            key: keyTile,
-            initiallyExpanded: isExpanded,
+            key: keyTileBizum,
+            initiallyExpanded: isExpandedBizum,
             childrenPadding: EdgeInsets.all(6).copyWith(top: 0),
             title: Text(
               'DEFAULT',
