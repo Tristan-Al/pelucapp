@@ -15,11 +15,20 @@ class LogInScreen extends StatelessWidget {
     };
 
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: _FormLogIn(myFormKey: myFormKey, formValues: formValues),
-      ),
-    );
+        body: Stack(
+      children: [
+        new Container(
+          decoration: new BoxDecoration(
+              image: new DecorationImage(
+                  image: new AssetImage("assets/e6be8b.png"),
+                  fit: BoxFit.fill)),
+        ),
+        SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: _FormLogIn(myFormKey: myFormKey, formValues: formValues),
+        )
+      ],
+    ));
   }
 }
 
@@ -79,7 +88,7 @@ class _FormLogIn extends StatelessWidget {
             Navigator.pushNamed(context, 'email');
           },
           child: const Text('¿Has olvidado tu contraseña?',
-              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontWeight: FontWeight.bold)),
         ),
         const SizedBox(width: 20, height: 40),
         Container(
