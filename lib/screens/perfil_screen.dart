@@ -4,9 +4,8 @@ import 'package:pelucapp/widgets/small_text.dart';
 
 import '../theme/app_theme.dart';
 
-
 class ProfileHomePage extends StatelessWidget {
-    const ProfileHomePage({super.key});
+  const ProfileHomePage({super.key});
 
   Widget textfield({@required hintText}) {
     return Material(
@@ -47,47 +46,50 @@ class ProfileHomePage extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height:
+                          70.0, // Establece la altura deseada entre los dos campos de texto
+                    ),
                     textfield(
                       hintText: 'Nombre',
                     ),
-                      SizedBox(
-                    height: 16.0, // Establece la altura deseada entre los dos campos de texto
-                   ),
-                     textfield(
+                    SizedBox(
+                      height:
+                          16.0, // Establece la altura deseada entre los dos campos de texto
+                    ),
+                    textfield(
                       hintText: 'Apellidos ',
                     ),
                     SizedBox(
-                    height: 16.0, // Establece la altura deseada entre los dos campos de texto
-                   ),
+                      height:
+                          16.0, // Establece la altura deseada entre los dos campos de texto
+                    ),
                     textfield(
                       hintText: 'Email',
                     ),
-                     SizedBox(
-                    height: 16.0, // Establece la altura deseada entre los dos campos de texto
-                   ),
-                     ElevatedButton(
-                  onPressed: () {
-                    
-                  },
-                  child: const Text('Editar perfil', style: TextStyle( fontSize: 15,
-                    letterSpacing: 5.5,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900),
-             ),
-                  
-                ),
-                  
+                    SizedBox(
+                      height:
+                          16.0, // Establece la altura deseada entre los dos campos de texto
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'editar');
+                        },
+                        child: Text('Editar perfil')),
                   ],
                 ),
               )
             ],
           ),
-          CustomPaint(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+          Align(
+            alignment: Alignment.topCenter,
+            child: CustomPaint(
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2,
+              ),
+              painter: HeaderCurvedContainer(),
             ),
-            painter: HeaderCurvedContainer(),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,

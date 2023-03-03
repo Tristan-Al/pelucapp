@@ -132,8 +132,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         10,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1000 = _colorSeleccionado;
                                     });*/
@@ -155,8 +155,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         10,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -178,8 +178,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         10,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -201,8 +201,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         10,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -235,8 +235,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         11,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -258,8 +258,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         11,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -281,8 +281,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         11,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -304,8 +304,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         11,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -338,8 +338,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         12,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -361,8 +361,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         12,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -384,8 +384,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         12,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -407,8 +407,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         12,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -441,8 +441,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         13,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -464,8 +464,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         13,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -487,8 +487,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         13,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -510,8 +510,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         13,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -544,8 +544,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         17,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -567,8 +567,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         17,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -590,8 +590,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         17,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -613,8 +613,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         17,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -647,8 +647,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         18,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -679,8 +679,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         18,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -702,8 +702,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         18,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -736,8 +736,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         19,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -759,8 +759,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         19,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -782,8 +782,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         19,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -805,8 +805,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         19,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -839,8 +839,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         20,
                                         00,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -862,8 +862,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         20,
                                         15,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -885,8 +885,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         20,
                                         30,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/
@@ -908,8 +908,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                         selected.day,
                                         20,
                                         45,
-                                        selected.millisecond,
-                                        selected.microsecond);
+                                        0,
+                                        0);
                                     /*setState(() {
                                       _colorboton1015 = _colorSeleccionado;
                                     });*/

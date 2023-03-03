@@ -18,7 +18,7 @@ class AppTheme {
       suffixIconColor: primary,
       //Habilitado
       enabledBorder: OutlineInputBorder(
-          //borderSide: BorderSide(color: secondary),
+          //borderSide: BorderSide(color: primary),
           //borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
       //Foco
@@ -28,6 +28,10 @@ class AppTheme {
       ),
       //Generico
       border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primary),
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
     ),
