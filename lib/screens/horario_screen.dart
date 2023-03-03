@@ -68,7 +68,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
     ResumenArgs resumen =
         ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
 
-    List<Color> colorArray = [
+    /*List<Color> colorArray = [
       _colorboton1000,
       _colorboton1030,
       _colorboton1100,
@@ -83,13 +83,13 @@ class _HorarioScreenState extends State<HorarioScreen> {
       _colorboton1830,
       _colorboton1900,
       _colorboton1930,
-    ];
+    ];*/
 
-    void resetearColores() {
+    /*void resetearColores() {
       for (var color in colorArray) {
         if (color != AppTheme.primary) color = AppTheme.primary;
       }
-    }
+    }*/
 
     void swapSeleccionada() {
       if (_horaSeleccionada) {
@@ -159,24 +159,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1000,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      10,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1000 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 10, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("10:00"),
                             ),
@@ -191,24 +213,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1030,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      10,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1030 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 10, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("10:30"),
                             ),
@@ -223,24 +267,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1100,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      11,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1100 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 11, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("11:00"),
                             ),
@@ -255,24 +321,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1130,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      11,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1130 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 11, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("11:30"),
                             ),
@@ -294,26 +382,48 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1200,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      12,
-                                      00,
-                                      0,
-                                      0);
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 12, 00, 0, 0);
 
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1200 = AppTheme.secondary;
-                                  });
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
 
-                                  /*setState(() {
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.secondary;
+                                });
+
+                                /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("12:00"),
                             ),
@@ -328,24 +438,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1230,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      12,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1230 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 12, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("12:30"),
                             ),
@@ -360,24 +492,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1300,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      13,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1300 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 13, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("13:00"),
                             ),
@@ -392,24 +546,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1330,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      13,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1330 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 13, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("13:30"),
                             ),
@@ -431,24 +607,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1700,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      17,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1700 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 17, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("17:00"),
                             ),
@@ -463,24 +661,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1730,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      17,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1730 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 17, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("17:30"),
                             ),
@@ -495,24 +715,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1800,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      18,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1800 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 18, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("18:00"),
                             ),
@@ -527,24 +769,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1830,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      18,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1830 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 18, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("18:30"),
                             ),
@@ -566,24 +830,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1900,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      19,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1900 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 19, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("19:00"),
                             ),
@@ -598,24 +884,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton1930,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      19,
-                                      30,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton1930 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 19, 30, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("19:30"),
                             ),
@@ -630,24 +938,46 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                 primary: _colorboton2000,
                               ),
                               onPressed: () {
-                                if (!_horaSeleccionada) {
-                                  selected = DateTime(
-                                      selected.year,
-                                      selected.month,
-                                      selected.day,
-                                      20,
-                                      00,
-                                      0,
-                                      0);
-                                  setState(() {
-                                    _horaSeleccionada = true;
-                                    resetearColores();
-                                    _colorboton2000 = AppTheme.secondary;
-                                  });
-                                  /*setState(() {
+                                selected = DateTime(selected.year,
+                                    selected.month, selected.day, 20, 00, 0, 0);
+                                setState(() {
+                                  _horaSeleccionada = true;
+                                  _colorboton1000 = AppTheme.primary;
+
+                                  _colorboton1030 = AppTheme.primary;
+
+                                  _colorboton1100 = AppTheme.primary;
+
+                                  _colorboton1130 = AppTheme.primary;
+
+                                  _colorboton1200 = AppTheme.primary;
+
+                                  _colorboton1230 = AppTheme.primary;
+
+                                  _colorboton1300 = AppTheme.primary;
+
+                                  _colorboton1330 = AppTheme.primary;
+
+                                  _colorboton1700 = AppTheme.primary;
+
+                                  _colorboton1730 = AppTheme.primary;
+
+                                  _colorboton1800 = AppTheme.primary;
+
+                                  _colorboton1830 = AppTheme.primary;
+
+                                  _colorboton1900 = AppTheme.primary;
+
+                                  _colorboton1930 = AppTheme.primary;
+
+                                  _colorboton2000 = AppTheme.primary;
+
+                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.secondary;
+                                });
+                                /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
-                                }
                               },
                               child: Text("20:00"),
                             ),
@@ -673,7 +1003,37 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                       0);
                                   setState(() {
                                     _horaSeleccionada = true;
-                                    resetearColores();
+                                    _colorboton1000 = AppTheme.primary;
+
+                                    _colorboton1030 = AppTheme.primary;
+
+                                    _colorboton1100 = AppTheme.primary;
+
+                                    _colorboton1130 = AppTheme.primary;
+
+                                    _colorboton1200 = AppTheme.primary;
+
+                                    _colorboton1230 = AppTheme.primary;
+
+                                    _colorboton1300 = AppTheme.primary;
+
+                                    _colorboton1330 = AppTheme.primary;
+
+                                    _colorboton1700 = AppTheme.primary;
+
+                                    _colorboton1730 = AppTheme.primary;
+
+                                    _colorboton1800 = AppTheme.primary;
+
+                                    _colorboton1830 = AppTheme.primary;
+
+                                    _colorboton1900 = AppTheme.primary;
+
+                                    _colorboton1930 = AppTheme.primary;
+
+                                    _colorboton2000 = AppTheme.primary;
+
+                                    _colorboton2030 = AppTheme.primary;
                                     _colorboton2030 = AppTheme.secondary;
                                   });
                                   /*setState(() {
