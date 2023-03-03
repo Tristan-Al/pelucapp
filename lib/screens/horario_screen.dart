@@ -17,6 +17,40 @@ class _HorarioScreenState extends State<HorarioScreen> {
   DateTime selected = DateTime.now();
   DateTime now = DateTime.now();
 
+  bool _horaSeleccionada = false;
+
+  Color _colorboton1000 = AppTheme.primary;
+
+  Color _colorboton1030 = AppTheme.primary;
+
+  Color _colorboton1100 = AppTheme.primary;
+
+  Color _colorboton1130 = AppTheme.primary;
+
+  Color _colorboton1200 = AppTheme.primary;
+
+  Color _colorboton1230 = AppTheme.primary;
+
+  Color _colorboton1300 = AppTheme.primary;
+
+  Color _colorboton1330 = AppTheme.primary;
+
+  Color _colorboton1700 = AppTheme.primary;
+
+  Color _colorboton1730 = AppTheme.primary;
+
+  Color _colorboton1800 = AppTheme.primary;
+
+  Color _colorboton1830 = AppTheme.primary;
+
+  Color _colorboton1900 = AppTheme.primary;
+
+  Color _colorboton1930 = AppTheme.primary;
+
+  Color _colorboton2000 = AppTheme.primary;
+
+  Color _colorboton2030 = AppTheme.primary;
+
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
       selected = day;
@@ -34,44 +68,36 @@ class _HorarioScreenState extends State<HorarioScreen> {
     ResumenArgs resumen =
         ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
 
-    Color _colorBase = Colors.indigo;
-    Color _colorSeleccionado = Colors.indigoAccent;
-    bool _horaSeleccionada = false;
+    List<Color> colorArray = [
+      _colorboton1000,
+      _colorboton1030,
+      _colorboton1100,
+      _colorboton1130,
+      _colorboton1200,
+      _colorboton1230,
+      _colorboton1300,
+      _colorboton1330,
+      _colorboton1700,
+      _colorboton1730,
+      _colorboton1800,
+      _colorboton1830,
+      _colorboton1900,
+      _colorboton1930,
+    ];
 
-    Color _colorboton1000 = _colorBase;
-    Color _colorboton1015 = _colorBase;
-    Color _colorboton1030 = _colorBase;
-    Color _colorboton1045 = _colorBase;
-    Color _colorboton1100 = _colorBase;
-    Color _colorboton1115 = _colorBase;
-    Color _colorboton1130 = _colorBase;
-    Color _colorboton1145 = _colorBase;
-    Color _colorboton1200 = _colorBase;
-    Color _colorboton1215 = _colorBase;
-    Color _colorboton1230 = _colorBase;
-    Color _colorboton1245 = _colorBase;
-    Color _colorboton1300 = _colorBase;
-    Color _colorboton1315 = _colorBase;
-    Color _colorboton1330 = _colorBase;
-    Color _colorboton1345 = _colorBase;
-    Color _colorboton1700 = _colorBase;
-    Color _colorboton1715 = _colorBase;
-    Color _colorboton1730 = _colorBase;
-    Color _colorboton1745 = _colorBase;
-    Color _colorboton1800 = _colorBase;
-    Color _colorboton1815 = _colorBase;
-    Color _colorboton1830 = _colorBase;
-    Color _colorboton1845 = _colorBase;
-    Color _colorboton1900 = _colorBase;
-    Color _colorboton1915 = _colorBase;
-    Color _colorboton1930 = _colorBase;
-    Color _colorboton1945 = _colorBase;
+    void resetearColores() {
+      for (var color in colorArray) {
+        if (color != AppTheme.primary) color = AppTheme.primary;
+      }
+    }
 
     void swapSeleccionada() {
       if (_horaSeleccionada) {
         _horaSeleccionada = false;
       } else {
-        _horaSeleccionada = true;
+        setState(() {
+          _horaSeleccionada = true;
+        });
       }
     }
 
@@ -92,6 +118,18 @@ class _HorarioScreenState extends State<HorarioScreen> {
         body: Column(
           children: [
             TableCalendar(
+              //ESTO DEBERIA FUNCIONAR PERO NO LO HACE TRISTAN HELP
+              /*calendarStyle: CalendarStyle(
+                todayStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                  color: Colors.blue,
+                ),
+                selectedStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                  color: Colors.green,
+              ),*/
               locale: 'en_US',
               rowHeight: 50,
               calendarFormat: CalendarFormat.twoWeeks,
@@ -104,849 +142,574 @@ class _HorarioScreenState extends State<HorarioScreen> {
               lastDay: DateTime.utc(2030, 3, 14),
               onDaySelected: _onDaySelected,
             ),
-            Container(
-              height: 350,
-              width: double.infinity,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1000,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        10,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1000 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("10:00"),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1000,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      10,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1000 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1000 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("10:00"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        10,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("10:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        10,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("10:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        10,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("10:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        11,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("11:00"),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1030,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      10,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1030 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("10:30"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        11,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("11:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        11,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("11:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        11,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("11:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        12,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("12:00"),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1100,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      11,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1100 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("11:00"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        12,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("12:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        12,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("12:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        12,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("12:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        13,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("13:00"),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1130,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      11,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1130 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("11:30"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        13,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("13:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        13,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("13:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        13,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("13:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        17,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("17:00"),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1200,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      12,
+                                      00,
+                                      0,
+                                      0);
+
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1200 = AppTheme.secondary;
+                                  });
+
+                                  /*setState(() {
+                                    _colorboton1000 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("12:00"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        17,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("17:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        17,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("17:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        17,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("17:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        18,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("18:00"),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1230,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      12,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1230 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("12:30"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.indigo,
-                                ),
-                                onPressed: () {},
-                                child: Text("18:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        18,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("18:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        18,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("18:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        19,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("19:00"),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1300,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      13,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1300 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("13:00"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        19,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("19:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        19,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("19:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        19,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("19:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    Container(
-                      width: 80,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 5.0, left: 5.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        20,
-                                        00,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("20:00"),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1330,
                               ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      13,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1330 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("13:30"),
                             ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        20,
-                                        15,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("20:15"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        20,
-                                        30,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("20:30"),
-                              ),
-                            ),
-                            Container(
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: _colorboton1015,
-                                ),
-                                onPressed: () {
-                                  if (!_horaSeleccionada) {
-                                    selected = DateTime(
-                                        selected.year,
-                                        selected.month,
-                                        selected.day,
-                                        20,
-                                        45,
-                                        0,
-                                        0);
-                                    /*setState(() {
-                                      _colorboton1015 = _colorSeleccionado;
-                                    });*/
-                                  }
-                                },
-                                child: Text("20:45"),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1700,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      17,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1700 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1000 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("17:00"),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1730,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      17,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1730 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("17:30"),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1800,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      18,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1800 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("18:00"),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1830,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      18,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1830 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("18:30"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1900,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      19,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1900 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1000 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("19:00"),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton1930,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      19,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton1930 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("19:30"),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton2000,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      20,
+                                      00,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton2000 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("20:00"),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+                          child: SizedBox(
+                            width: 70,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: _colorboton2030,
+                              ),
+                              onPressed: () {
+                                if (!_horaSeleccionada) {
+                                  selected = DateTime(
+                                      selected.year,
+                                      selected.month,
+                                      selected.day,
+                                      20,
+                                      30,
+                                      0,
+                                      0);
+                                  setState(() {
+                                    _horaSeleccionada = true;
+                                    resetearColores();
+                                    _colorboton2030 = AppTheme.secondary;
+                                  });
+                                  /*setState(() {
+                                    _colorboton1015 = AppTheme.secondary;
+                                  });*/
+                                }
+                              },
+                              child: Text("20:30"),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: serviciosSeleccionados.isEmpty
-                      ? null
-                      : () => {
-                            Navigator.pushNamed(context, 'resumen', arguments: [
-                              peluqueria,
-                              peluquero,
-                              serviciosSeleccionados,
-                              selected
-                            ])
-                          },
-                  child:
-                      const Text('Siguiente', style: TextStyle(fontSize: 20)),
+            Container(
+              height: 70,
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
                 ),
+                onPressed: !_horaSeleccionada
+                    ? null
+                    : () => {
+                          Navigator.pushNamed(context, 'resumen', arguments: [
+                            peluqueria,
+                            peluquero,
+                            serviciosSeleccionados,
+                            selected
+                          ])
+                        },
+                child: const Text('Siguiente', style: TextStyle(fontSize: 20)),
               ),
             ),
           ],
