@@ -295,8 +295,8 @@ class ResumenArgs {
   DateTime hora = DateTime.now();
 
   ResumenArgs.sinFecha(this.peluqueria, this.peluquero, this.servicios);
-  ResumenArgs.completo(
-      this.peluqueria, this.peluquero, this.servicios, this.hora);
+  ResumenArgs.completo(this.peluqueria, this.peluquero, this.servicios,
+      this.fechaSeleccionada, this.hora);
 }
 
 class MetodosDePago extends StatefulWidget {
@@ -309,20 +309,20 @@ class MetodosDePago extends StatefulWidget {
 }
 
 class _MetodosDePago extends State<MetodosDePago> {
-  bool seleccionado = false;
+  //bool seleccionado = false;
 
   static final double radius = 20;
-
+/*
   UniqueKey? keyTileBizum;
   UniqueKey? keyTileTarjeta;
   UniqueKey? keyTileEfectivo;
   bool isExpandedBizum = false;
   bool isExpandedTarjeta = false;
   bool isExpandedEfectivo = false;
-
+*/
   final ResumenArgs resumen;
   _MetodosDePago(this.resumen) : super();
-
+/*
   void expandTile(int key) {
     setState(() {
       if (key == 1) {
@@ -338,8 +338,8 @@ class _MetodosDePago extends State<MetodosDePago> {
         keyTileEfectivo = UniqueKey();
       }
     });
-  }
-
+  }*/
+  /*
   void shrinkTile(int key) {
     setState(() {
       if (key == 1) {
@@ -355,7 +355,7 @@ class _MetodosDePago extends State<MetodosDePago> {
         keyTileEfectivo = UniqueKey();
       }
     });
-  }
+  }*/
 
   String generarCodigo(ResumenArgs resumen) {
     String resultadoCadena = resumen.peluqueria.indice.toString();
@@ -383,18 +383,44 @@ class _MetodosDePago extends State<MetodosDePago> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(radius),
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () =>
-                              isExpandedBizum ? shrinkTile(1) : expandTile(1),
-                          child: buildImage(
-                              'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg'),
-                        ),
-                        buildText(context, 'Bizum', resumen)
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Código de operación'),
+                                content: Text(generarCodigo(resumen)),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, 'home');
+                                      //seleccionado = true;
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ));
+                      //seleccionado = true;
+                      //isExpandedBizum ? shrinkTile(1) : expandTile(1),
+                    },
+                    child: buildImage(
+                        'https://taigua.cat/wp-content/uploads/2023/01/bizum-2.jpg'),
+                  ),
+                ),
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(radius),
+                  side: BorderSide(color: Colors.black, width: 2),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, 'home'),
+                    //isExpandedTarjeta ? shrinkTile(2) : expandTile(2),
+                    child: buildImage(
+                      'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
                     ),
                   ),
                 ),
@@ -406,44 +432,30 @@ class _MetodosDePago extends State<MetodosDePago> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(radius),
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () =>
-                              isExpandedTarjeta ? shrinkTile(2) : expandTile(2),
-                          child: buildImage(
-                            'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
-                          ),
-                        ),
-                        buildText(context, 'Tarjeta', resumen),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(radius),
-                  side: BorderSide(color: Colors.black, width: 2),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(radius),
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () => isExpandedEfectivo
-                              ? shrinkTile(3)
-                              : expandTile(3),
-                          child: buildImage(
-                            'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
-                          ),
-                        ),
-                        buildText(context, 'Efectivo', resumen)
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Advertencia'),
+                                content: Text(
+                                    'Debe realizar el pago previo servicio'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, 'home');
+                                      //seleccionado = true;
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ));
+
+                      //isExpandedEfectivo ? shrinkTile(3) : expandTile(3),
+                    },
+                    child: buildImage(
+                      'https://blog.selfbank.es/wp-content/uploads/2020/09/GettyImages-1195108001.jpg',
                     ),
                   ),
                 ),
@@ -462,7 +474,7 @@ class _MetodosDePago extends State<MetodosDePago> {
         width: double.infinity,
         height: 100,
       );
-
+/*
   Widget buildText(BuildContext context, String type, ResumenArgs resumen) {
     switch (type) {
       case "Tarjeta":
@@ -479,7 +491,7 @@ class _MetodosDePago extends State<MetodosDePago> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    seleccionado = true;
+                    //seleccionado = true;
                     Navigator.pushNamed(context, 'home');
                   },
                   child: Text('Pagar')),
@@ -517,13 +529,13 @@ color: isExpanded ? Colors.green : Colors.red,
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pushNamed(context, 'home');
-                                    seleccionado = true;
+                                    //seleccionado = true;
                                   },
                                   child: const Text('OK'),
                                 ),
                               ],
                             ));
-                    seleccionado = true;
+                    //seleccionado = true;
                   },
                   child: Text('Mostrar código')),
             ],
@@ -561,7 +573,7 @@ color: isExpanded ? Colors.green : Colors.red,
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pushNamed(context, 'home');
-                                    seleccionado = true;
+                                    //seleccionado = true;
                                   },
                                   child: const Text('OK'),
                                 ),
@@ -602,7 +614,7 @@ color: isExpanded ? Colors.green : Colors.red,
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pushNamed(context, 'home');
-                                    seleccionado = true;
+                                    //seleccionado = true;
                                   },
                                   child: const Text('OK'),
                                 ),
@@ -620,5 +632,5 @@ color: isExpanded ? Colors.green : Colors.red,
         );
         break;
     }
-  }
+  }*/
 }
