@@ -17,12 +17,6 @@ class LogInScreen extends StatelessWidget {
     return Scaffold(
         body: Stack(
       children: [
-        new Container(
-          decoration: new BoxDecoration(
-              image: new DecorationImage(
-                  image: new AssetImage("assets/ffd7ab.png"),
-                  fit: BoxFit.fill)),
-        ),
         SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: _FormLogIn(myFormKey: myFormKey, formValues: formValues),
