@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/screens/screens.dart';
-import 'package:pelucapp/theme/app_theme.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -9,10 +10,7 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myFormKey = GlobalKey<FormState>();
-    final Map<String, String> formValues = {
-      'email': 'email',
-      'password': 'password'
-    };
+    final Map<String, String> formValues = {'email': '', 'password': ''};
 
     return Scaffold(
         body: Stack(
@@ -38,6 +36,10 @@ class _FormLogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UsuariosServices usuariosServices =
+        Provider.of<UsuariosServices>(context);
+    Usuario usuario;
+    bool _visible = false;
     return Form(
       key: myFormKey,
       child: Column(children: [
@@ -91,15 +93,31 @@ class _FormLogIn extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
-              if (!myFormKey.currentState!.validate()) {
-                print('Credenciales incorrectas');
-                return;
+              // Primero tengo que recorrer el array de usuarios que me da el usuariosServices
+              for (int i = 0; i < usuariosServices.usuarios.length; i++) {
+                // Por cada item, le asigno sus valores a usuario y comparo con los datos introducidos en el formulario
+                usuario = usuariosServices.usuarios[i];
+                if (usuario.email == formValues['email'] &&
+                    usuario.password == formValues['password']) {
+                  // Cuando estos coincidan, dejo que acceda con el navigator
+                  Navigator.pushNamed(context, 'home');
+                } else {
+                  // Si el usuario no existe es porque
+                  _visible = true;
+                  print(_visible);
+                  // Si una o ambas credenciales no corresponen entonces muestro los mensajes de validación (por si los campos están vacíos)
+                  if (!myFormKey.currentState!.validate()) {
+                    print('Credenciales incorrectas');
+                    return;
+                  }
+                }
               }
-              Navigator.pushNamed(context, 'home');
             },
             child: const Text('Log in', style: TextStyle(fontSize: 20)),
           ),
         ),
+        const SizedBox(height: 30),
+        Visibility(child: Text('cagaste'), visible: _visible),
         const SizedBox(height: 60)
       ]),
     );
