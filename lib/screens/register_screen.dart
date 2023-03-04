@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -16,6 +18,8 @@ bool _checkedT = false;
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
+    final UsuariosServices usuariosServices =
+        Provider.of<UsuariosServices>(context);
     String formProperty = "";
     String pass = "";
     String passCon = "";
@@ -64,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           FormEmail(
             ocultar: false,
             hintText: 'Email',
+            keyboardType: TextInputType.emailAddress,
             icon: Icons.email_outlined,
             formProperty: 'email',
             formValues: formValues,
@@ -95,7 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             formProperty: 'confirmacion',
             formValues: formValues,
           ),
-          const SizedBox(width: 20, height: 30),
+          /*
           CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,
             title: const Text(
@@ -107,6 +112,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               });
             },
           ),
+          */
           const SizedBox(height: 20),
           CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,
@@ -123,19 +129,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
-              onPressed: () {
-                FocusScope.of(context).requestFocus(FocusNode());
-                if (!myFormKey.currentState!.validate()) {
-                  print('Credenciales incorrectas');
-                  return;
-                } else if (passCon != pass) {
-                  print('Contraseñas deben coincidir');
-                  return;
-                } else if (_checkedT == false) {
-                  print('Tiene que aceptar los terminos y condiciones');
-                  return;
-                }
-              },
+              onPressed: _checkedT
+                  ? () {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      if (!myFormKey.currentState!.validate()) {
+                        print('Credenciales incorrectas');
+                        return;
+                      } else if (passCon != pass) {
+                        print('Contraseñas deben coincidir');
+                        return;
+                      } else if (_checkedT == false) {
+                        print('Tiene que aceptar los terminos y condiciones');
+                        return;
+                      }
+                    }
+                  : null,
               child: const Text('Registrarse', style: TextStyle(fontSize: 20)),
             ),
           ),

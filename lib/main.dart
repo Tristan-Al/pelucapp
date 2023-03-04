@@ -7,18 +7,15 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(AppState());
 
-
 class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => PeluquerosServices()),
-        ChangeNotifierProvider(create: (context) => PeluqueriasServices()),
-        ChangeNotifierProvider(create: (context) => ServiciosServices()),
-      ], 
-      child: MyApp()
-    );
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => PeluquerosServices()),
+      ChangeNotifierProvider(create: (context) => PeluqueriasServices()),
+      ChangeNotifierProvider(create: (context) => ServiciosServices()),
+      ChangeNotifierProvider(create: (context) => UsuariosServices()),
+    ], child: MyApp());
   }
 }
 
