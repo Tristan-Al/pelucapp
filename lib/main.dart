@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(AppState());
 
-/*
+
 class AppState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => XServices()),
-        ChangeNotifierProvider(create: (context) => XServices()),
-        ChangeNotifierProvider(create: (context) => XServices()),
-        ChangeNotifierProvider(create: (context) => XServices()),
+        ChangeNotifierProvider(create: (context) => PeluquerosServices()),
+        ChangeNotifierProvider(create: (context) => PeluqueriasServices()),
+        ChangeNotifierProvider(create: (context) => ServiciosServices()),
       ], 
-      child: MyApp());
+      child: MyApp()
+    );
   }
 }
-*/
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -47,6 +49,7 @@ class MyApp extends StatelessWidget {
         'ajustes': (context) => Settings(),
         'email': (context) => EmailScreen(),
         'horario': (context) => HorarioScreen(),
+        'loading': (context) => LoadingScreen(),
       },
     );
   }

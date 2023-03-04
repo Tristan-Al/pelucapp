@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -59,14 +58,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic>? data =
-        ModalRoute.of(context)!.settings.arguments as List<Object>?;
-    Peluqueria peluqueria = data?[0] as Peluqueria;
-    Peluquero peluquero = data?[1] as Peluquero;
-    List<Servicio> serviciosSeleccionados = data?[2];
+    
 
-    ResumenArgs resumen =
-        ResumenArgs.sinFecha(peluqueria, peluquero, serviciosSeleccionados);
 
     /*List<Color> colorArray = [
       _colorboton1000,
@@ -1062,12 +1055,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 onPressed: !_horaSeleccionada
                     ? null
                     : () => {
-                          Navigator.pushNamed(context, 'resumen', arguments: [
-                            peluqueria,
-                            peluquero,
-                            serviciosSeleccionados,
-                            selected
-                          ])
+                          Navigator.pushNamed(context, 'resumen', arguments: selected)
                         },
                 child: const Text('Siguiente', style: TextStyle(fontSize: 20)),
               ),

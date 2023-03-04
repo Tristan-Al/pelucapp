@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pelucapp/screens/peluqueros_screen.dart';
-import 'package:pelucapp/screens/servicios_screen.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class ResumenPedidoScreen extends StatelessWidget {
   const ResumenPedidoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic>? data =
-        ModalRoute.of(context)!.settings.arguments as List<Object>?;
-    Peluqueria peluqueria = data?[0] as Peluqueria;
-    Peluquero peluquero = data?[1] as Peluquero;
-    DateTime diaSeleccionado = data?[3] as DateTime;
+    
+    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+    final peluquerosServices = Provider.of<PeluquerosServices>(context);
+    final serviciosServices = Provider.of<ServiciosServices>(context);
 
-    List<Servicio> serviciosSeleccionados = data?[2];
+    final peluqueria = peluqueriasServices.peluqueriaSeleccionada!;
+    final peluquero = peluquerosServices.peluqueroSeleccionado!;    
+    final serviciosSeleccionados = serviciosServices.ServiciosSeleccionados!;
+
+    DateTime diaSeleccionado = ModalRoute.of(context)!.settings.arguments as DateTime;
+
 
     ResumenArgs resumen = ResumenArgs.completo(
         peluqueria, peluquero, serviciosSeleccionados, diaSeleccionado);
@@ -280,7 +285,7 @@ class _PeluqueriaContainer extends StatelessWidget {
         color: Colors.black12,
       ))),
       child: SmallText(
-        text: resumen.peluqueria.nombre!,
+        text: resumen.peluqueria.nombre,
         color: AppTheme.mainTextColor,
         size: 25,
       ),
@@ -358,8 +363,8 @@ class _MetodosDePago extends State<MetodosDePago> {
   }*/
 
   String generarCodigo(ResumenArgs resumen) {
-    String resultadoCadena = resumen.peluqueria.indice.toString();
-    resultadoCadena += resumen.peluquero.indice.toString();
+    String resultadoCadena = resumen.peluqueria.toString();
+    resultadoCadena += resumen.peluquero.toString();
     resultadoCadena += DateFormat('ddMMyy').format(resumen.hora);
     //si lo hago como int me quita los primeros digitos si estos son 0
     return resultadoCadena;

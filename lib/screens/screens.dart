@@ -15,3 +15,4 @@ export 'package:pelucapp/screens/editar_perfil_screen.dart';
 export 'package:pelucapp/screens/horario_screen.dart';
 export 'package:pelucapp/screens/settings_screen.dart';
 export 'package:pelucapp/screens/email_screen.dart';
+export 'package:pelucapp/screens/loading_screen.dart';

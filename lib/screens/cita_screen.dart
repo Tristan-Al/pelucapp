@@ -1,8 +1,11 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:pelucapp/screens/peluqueros_screen.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class CitaScreen extends StatefulWidget {
   const CitaScreen({super.key});
@@ -11,7 +14,6 @@ class CitaScreen extends StatefulWidget {
 }
 
 class _CitaScreenState extends State<CitaScreen> {
-  Peluqueria peluquerias = Peluqueria.fromNothing();
   PageController pageController = PageController(viewportFraction: 0.85);
   var _currPageValue = 0.0;
   double _scaleFactor = 0.8;
@@ -33,9 +35,13 @@ class _CitaScreenState extends State<CitaScreen> {
     pageController.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
+
+    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+
+    if (peluqueriasServices.isLoading) return LoadingScreen();
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -80,7 +86,7 @@ class _CitaScreenState extends State<CitaScreen> {
             ),
           ),
 
-          _PeluqueriasListView(peluquerias: peluquerias),
+          _PeluqueriasListView(peluqueriasServices: peluqueriasServices),
         ],
       ),
     );
@@ -163,22 +169,22 @@ class _CitaScreenState extends State<CitaScreen> {
 class _PeluqueriasListView extends StatelessWidget {
   const _PeluqueriasListView({
     super.key,
-    required this.peluquerias,
+    required this.peluqueriasServices,
   });
 
-  final Peluqueria peluquerias;
+  final PeluqueriasServices peluqueriasServices;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
-    itemCount: peluquerias.nombres.length,
+    itemCount: peluqueriasServices.peluquerias.length,
     itemBuilder: (context, index) {
       return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, 'peluqueros',
-              arguments: index);
+          peluqueriasServices.peluqueriaSeleccionada = peluqueriasServices.peluquerias[index];
+          Navigator.pushNamed(context, 'peluqueros');
         },
         child: Container(
           height: 300,
@@ -187,8 +193,13 @@ class _PeluqueriasListView extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(30),
-                child: FadeInImage(
-                  image:NetworkImage('https://picsum.photos/500/300'),
+                child: peluqueriasServices.peluquerias[index].imagen == null
+                ? Image(
+                  image: AssetImage('assets/no-image.png'),
+                  fit: BoxFit.cover,
+                )
+                : FadeInImage(
+                  image:NetworkImage(peluqueriasServices.peluquerias[index].imagen!),
                   placeholder:const AssetImage('assets/no-image.jpg'),
                   width: double.infinity,
                   height: 220,
@@ -217,7 +228,7 @@ class _PeluqueriasListView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       BigText(
-                        text: '${peluquerias.nombres[index]}',
+                        text: '${peluqueriasServices.peluquerias[index].nombre}',
                         color: AppTheme.mainTextColor,
                         size: 22
                       ),
