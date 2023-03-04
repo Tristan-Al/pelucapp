@@ -112,17 +112,14 @@ class _HorarioScreenState extends State<HorarioScreen> {
           children: [
             TableCalendar(
               //ESTO DEBERIA FUNCIONAR PERO NO LO HACE TRISTAN HELP
-              /*calendarStyle: CalendarStyle(
-                todayStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  color: Colors.blue,
+              calendarStyle: CalendarStyle(
+                  todayTextStyle: TextStyle(
+                    color: AppTheme.primary,
+                  ),
+                  selectedTextStyle: TextStyle(
+                    color: Colors.green,
                 ),
-                selectedStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  color: Colors.green,
-              ),*/
+              ),
               locale: 'en_US',
               rowHeight: 50,
               calendarFormat: CalendarFormat.twoWeeks,

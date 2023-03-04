@@ -34,4 +34,10 @@ class UsuariosServices extends ChangeNotifier {
 
     return usuarios;
   }
+
+  updateAvailability ( bool value ){
+    
+    this.usuarioSeleccionado!.terminos = value;
+    notifyListeners();
+  }
 }

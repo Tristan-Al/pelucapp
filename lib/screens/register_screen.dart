@@ -13,7 +13,14 @@ class RegisterScreen extends StatefulWidget {
 }
 
 bool _checkedP = false;
-bool _checkedT = false;
+bool _termChecked = false;
+final Map<String, String> formValues = {
+  'nombreusuario': '',
+  'telefono': '',
+  'email': '',
+  'password': '',
+  'confirmacion': ''
+};
 
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
@@ -24,13 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String pass = "";
     String passCon = "";
     final myFormKey = GlobalKey<FormState>();
-    final Map<String, String> formValues = {
-      'nombreusuario': 'nombreusuario',
-      'telefono': 'telefono',
-      'email': 'email',
-      'password': 'password',
-      'confirmacion': 'confirmacion'
-    };
+
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -58,6 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(width: 20, height: 80),
           FormFieldPers(
+            value: formValues['nombreusuario'],
             ocultar: false,
             hintText: 'Nombre de usuario',
             icon: Icons.group_outlined,
@@ -66,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(width: 20, height: 20),
           FormEmail(
+            value: formValues['email'],
             ocultar: false,
             hintText: 'Email',
             keyboardType: TextInputType.emailAddress,
@@ -75,6 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(width: 20, height: 20),
           FormFieldPers(
+            value: formValues['telefono'],
             ocultar: false,
             keyboardType: TextInputType.number,
             hintText: '111 222 333',
@@ -84,6 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(width: 20, height: 20),
           FormFieldPers(
+            value: formValues['password'],
             ocultar: true,
             keyboardType: TextInputType.text,
             hintText: 'Contraseña',
@@ -93,6 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           const SizedBox(width: 20, height: 20),
           FormFieldPers(
+            value: formValues['confirmacion'],
             ocultar: true,
             keyboardType: TextInputType.text,
             hintText: 'Confirma contraseña',
@@ -118,10 +124,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             controlAffinity: ListTileControlAffinity.leading,
             title: const Text(
                 'He leido y acepto los términos y condiciones de uso'),
-            value: _checkedT,
+            value: _termChecked,
             onChanged: (value) {
               setState(() {
-                _checkedT = value!;
+                _termChecked = value!;
               });
             },
           ),
@@ -129,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
-              onPressed: _checkedT
+              onPressed: _termChecked
                   ? () {
                       FocusScope.of(context).requestFocus(FocusNode());
                       if (!myFormKey.currentState!.validate()) {
@@ -138,9 +144,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } else if (passCon != pass) {
                         print('Contraseñas deben coincidir');
                         return;
-                      } else if (_checkedT == false) {
+                      } else if (_termChecked == false) {
                         print('Tiene que aceptar los terminos y condiciones');
                         return;
+                      }else{
+                        Navigator.pushNamed(context, 'login');
                       }
                     }
                   : null,

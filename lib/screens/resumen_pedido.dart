@@ -18,7 +18,7 @@ class ResumenPedidoScreen extends StatelessWidget {
 
     final peluqueria = peluqueriasServices.peluqueriaSeleccionada!;
     final peluquero = peluquerosServices.peluqueroSeleccionado!;    
-    final serviciosSeleccionados = serviciosServices.ServiciosSeleccionados!;
+    final serviciosSeleccionados = serviciosServices.ServiciosSeleccionados;
 
     DateTime diaSeleccionado = ModalRoute.of(context)!.settings.arguments as DateTime;
 
@@ -46,51 +46,27 @@ class ResumenPedidoScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             BigText(
-              text: 'Pelqueria',
+              text: 'Peluqueria',
               color: AppTheme.mainTextColor,
+              size: 25,
             ),
             _PeluqueriaContainer(resumen: resumen),
             SizedBox(
               height: 20,
             ),
             BigText(
-              text: 'Pelquero',
+              text: 'Peluquero',
               color: AppTheme.mainTextColor,
+              size: 25,
             ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 20),
-              decoration: BoxDecoration(
-                  border: BorderDirectional(
-                      bottom: BorderSide(
-                width: 1,
-                color: Colors.black12,
-              ))),
-              child: Row(
-                children: [
-                  Container(
-                    width: 20,
-                    height: 20,
-                    margin: EdgeInsets.only(right: 25),
-                    child: Icon(
-                      Icons.account_circle,
-                      size: 30,
-                    ),
-                  ),
-                  SmallText(
-                    text: resumen.peluquero.nombre,
-                    color: AppTheme.mainTextColor,
-                    size: 25,
-                  ),
-                ],
-              ),
-            ),
+            _PeluqueroContainer(resumen: resumen),
             SizedBox(
               height: 20,
             ),
             BigText(
               text: 'Tus servicios',
               color: AppTheme.mainTextColor,
+              size: 25,
             ),
             _ServiciosListView(resumen: resumen),
             SizedBox(
@@ -99,11 +75,52 @@ class ResumenPedidoScreen extends StatelessWidget {
             BigText(
               text: 'Subtotal',
               color: AppTheme.mainTextColor,
+              size: 25,
             ),
             _SubtotalContainer(resumen: resumen),
             _BotonMetodosPago(resumen: resumen),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _PeluqueroContainer extends StatelessWidget {
+  const _PeluqueroContainer({
+    super.key,
+    required this.resumen,
+  });
+
+  final ResumenArgs resumen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 20),
+      decoration: BoxDecoration(
+          border: BorderDirectional(
+              bottom: BorderSide(
+        width: 1,
+        color: Colors.black12,
+      ))),
+      child: Row(
+        children: [
+          Container(
+            width: 20,
+            height: 20,
+            margin: EdgeInsets.only(right: 25),
+            child: Icon(
+              Icons.account_circle,
+              size: 30,
+            ),
+          ),
+          SmallText(
+            text: resumen.peluquero.nombre,
+            color: AppTheme.mainTextColor,
+          ),
+        ],
       ),
     );
   }
@@ -167,12 +184,10 @@ class _SubtotalContainer extends StatelessWidget {
               SmallText(
                 text: 'Fecha',
                 color: Color.fromRGBO(97, 97, 97, 1),
-                size: 22,
               ),
               SmallText(
                 text: DateFormat('dd/MM/yyyy').format(resumen.hora),
                 color: Color.fromRGBO(97, 97, 97, 1),
-                size: 22,
               ),
             ],
           ),
@@ -185,12 +200,10 @@ class _SubtotalContainer extends StatelessWidget {
               SmallText(
                 text: 'Hora',
                 color: Color.fromRGBO(97, 97, 97, 1),
-                size: 22,
               ),
               SmallText(
                 text: DateFormat('HH:mm').format(resumen.hora),
                 color: Color.fromRGBO(97, 97, 97, 1),
-                size: 22,
               ),
             ],
           ),
@@ -203,12 +216,10 @@ class _SubtotalContainer extends StatelessWidget {
               SmallText(
                 text: 'Total',
                 color: Color.fromRGBO(97, 97, 97, 1),
-                size: 22,
               ),
               SmallText(
                 text: generarPrecio(resumen) + "€",
                 color: Color.fromRGBO(97, 97, 97, 1),
-                size: 22,
               ),
             ],
           ),
@@ -251,12 +262,10 @@ class _ServiciosListView extends StatelessWidget {
                 SmallText(
                   text: _servicio.nombre,
                   color: AppTheme.mainTextColor,
-                  size: 25,
                 ),
                 SmallText(
                   text: '€${_servicio.precio}',
                   color: AppTheme.mainTextColor,
-                  size: 25,
                 ),
               ],
             ),
@@ -287,7 +296,6 @@ class _PeluqueriaContainer extends StatelessWidget {
       child: SmallText(
         text: resumen.peluqueria.nombre,
         color: AppTheme.mainTextColor,
-        size: 25,
       ),
     );
   }
