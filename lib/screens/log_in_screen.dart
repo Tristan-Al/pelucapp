@@ -64,6 +64,7 @@ class _FormLogIn extends StatelessWidget {
         FormEmail(
           ocultar: false,
           hintText: 'Email',
+          keyboardType: TextInputType.emailAddress,
           icon: Icons.email_outlined,
           formProperty: 'email',
           formValues: formValues,
