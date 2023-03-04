@@ -296,7 +296,7 @@ class ResumenArgs {
 
   ResumenArgs.sinFecha(this.peluqueria, this.peluquero, this.servicios);
   ResumenArgs.completo(this.peluqueria, this.peluquero, this.servicios,
-      this.fechaSeleccionada, this.hora);
+       this.hora);
 }
 
 class MetodosDePago extends StatefulWidget {
