@@ -61,28 +61,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             formValues: formValues,
           ),
           const SizedBox(width: 20, height: 20),
-          TextFormField(
-            autocorrect: false,
-            keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(
-                hintText: 'john.doe@gmail.com',
-                labelText: 'E-mail',
-                suffixIcon: Icon(Icons.key),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ))),
-            onChanged: (value) => formValues[formProperty] = value,
-            validator: (value) {
-              String pattern =
-                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-              RegExp regExp = RegExp(pattern);
-
-              return regExp.hasMatch(value ?? '')
-                  ? null
-                  : 'El valor ingresado no luce como un correo';
-            },
+          FormEmail(
+            ocultar: false,
+            hintText: 'Email',
+            icon: Icons.email_outlined,
+            formProperty: 'email',
+            formValues: formValues,
           ),
           const SizedBox(width: 20, height: 20),
           FormFieldPers(
@@ -94,91 +78,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
             formValues: formValues,
           ),
           const SizedBox(width: 20, height: 20),
-          TextFormField(
-            autofocus: false,
-            obscureText: true,
+          FormFieldPers(
+            ocultar: true,
             keyboardType: TextInputType.text,
-            onChanged: (value) => formValues[formProperty] = value,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'No puede quedar vacío';
-              } else if (value.length < 6) {
-                return 'No puede tener menos de 6 caracteres';
-              } else {
-                pass = value;
-              }
-            },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: const InputDecoration(
-                hintText: 'Contraseña',
-                suffixIcon: Icon(Icons.key),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ))),
+            hintText: 'Contraseña',
+            icon: Icons.key,
+            formProperty: 'password',
+            formValues: formValues,
           ),
           const SizedBox(width: 20, height: 20),
-          TextFormField(
-            autofocus: false,
-            obscureText: true,
+          FormFieldPers(
+            ocultar: true,
             keyboardType: TextInputType.text,
-            onChanged: (value) => formValues[formProperty] = value,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'No puede quedar vacío';
-              } else if (value.length < 6) {
-                return 'No puede tener menos de 6 caracteres';
-              } else {
-                passCon = value;
-                if (pass != passCon) {
-                  return 'Las contraseñas deben coincidir';
-                }
-              }
-            },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: const InputDecoration(
-                hintText: 'Confirmar contraseña',
-                suffixIcon: Icon(Icons.key),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ))),
+            hintText: 'Confirma contraseña',
+            icon: Icons.key,
+            formProperty: 'confirmacion',
+            formValues: formValues,
           ),
           const SizedBox(width: 20, height: 30),
-          Container(
-            color: Colors.green,
-            child: Material(
-              child: CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                title: const Text(
-                    'Acepto recibir notificaciones sobre las novedades de la app'),
-                value: _checkedP,
-                onChanged: (value) {
-                  setState(() {
-                    _checkedP = value!;
-                  });
-                },
-              ),
-            ),
+          CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            title: const Text(
+                'Acepto recibir notificaciones sobre las novedades de la app'),
+            value: _checkedP,
+            onChanged: (value) {
+              setState(() {
+                _checkedP = value!;
+              });
+            },
           ),
           const SizedBox(height: 20),
-          Container(
-            color: Colors.green,
-            child: Material(
-              child: CheckboxListTile(
-                controlAffinity: ListTileControlAffinity.leading,
-                title: const Text(
-                    'He leido y acepto los términos y condiciones de uso'),
-                value: _checkedT,
-                onChanged: (value) {
-                  setState(() {
-                    _checkedT = value!;
-                  });
-                },
-              ),
-            ),
+          CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            title: const Text(
+                'He leido y acepto los términos y condiciones de uso'),
+            value: _checkedT,
+            onChanged: (value) {
+              setState(() {
+                _checkedT = value!;
+              });
+            },
           ),
           const SizedBox(height: 40),
           Container(
@@ -192,9 +131,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 } else if (passCon != pass) {
                   print('Contraseñas deben coincidir');
                   return;
+                } else if (_checkedT == false) {
+                  print('Tiene que aceptar los terminos y condiciones');
+                  return;
                 }
               },
-              child: const Text('Crear cuenta', style: TextStyle(fontSize: 20)),
+              child: const Text('Registrarse', style: TextStyle(fontSize: 20)),
             ),
           ),
           const SizedBox(height: 40),
