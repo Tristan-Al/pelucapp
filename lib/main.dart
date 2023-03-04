@@ -5,6 +5,21 @@ import 'package:pelucapp/theme/app_theme.dart';
 
 void main() => runApp(const MyApp());
 
+/*
+class AppState extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => XServices()),
+        ChangeNotifierProvider(create: (context) => XServices()),
+        ChangeNotifierProvider(create: (context) => XServices()),
+        ChangeNotifierProvider(create: (context) => XServices()),
+      ], 
+      child: MyApp());
+  }
+}
+*/
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

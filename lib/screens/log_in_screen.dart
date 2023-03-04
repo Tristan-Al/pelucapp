@@ -10,7 +10,7 @@ class LogInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final myFormKey = GlobalKey<FormState>();
     final Map<String, String> formValues = {
-      'usuario': 'usuario',
+      'email': 'email',
       'password': 'password'
     };
 
@@ -67,11 +67,11 @@ class _FormLogIn extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 20, height: 80),
-        FormFieldPers(
+        FormEmail(
           ocultar: false,
-          hintText: 'Usuario',
-          icon: Icons.group_outlined,
-          formProperty: 'usuario',
+          hintText: 'Email',
+          icon: Icons.email_outlined,
+          formProperty: 'email',
           formValues: formValues,
         ),
         const SizedBox(width: 20, height: 20),
