@@ -102,9 +102,6 @@ class _FormLogIn extends StatelessWidget {
                   // Cuando estos coincidan, dejo que acceda con el navigator
                   Navigator.pushNamed(context, 'home');
                 } else {
-                  // Si el usuario no existe es porque
-                  _visible = true;
-                  print(_visible);
                   // Si una o ambas credenciales no corresponen entonces muestro los mensajes de validación (por si los campos están vacíos)
                   if (!myFormKey.currentState!.validate()) {
                     print('Credenciales incorrectas');
@@ -116,8 +113,6 @@ class _FormLogIn extends StatelessWidget {
             child: const Text('Log in', style: TextStyle(fontSize: 20)),
           ),
         ),
-        const SizedBox(height: 30),
-        Visibility(child: Text('cagaste'), visible: _visible),
         const SizedBox(height: 60)
       ]),
     );
