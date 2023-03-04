@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get: ^4.6.5
+  get: ^4.6.5 
+  url_launcher: ^6.0.3
   table_calendar: ^3.0.8
   dots_indicator: ^2.1.0
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/screens/home_screen.dart';
 import 'package:pelucapp/theme/app_theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class call_screen extends StatelessWidget {
     const call_screen({super.key});
@@ -25,9 +26,9 @@ class call_screen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ElevatedButton(
-                  onPressed: () {
+                   onPressed: () => launch('tel:+670896756'),
                     
-                  },
+                  
                   child: const Text('670 89 67 56', style: TextStyle( fontSize: 20)),
                   
                 ),
@@ -46,9 +47,7 @@ class call_screen extends StatelessWidget {
                 
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: ElevatedButton(
-                  onPressed: () {
-                    
-                  },
+                  onPressed: () => launch('mailto:Pelucapp@gmail.com?subject=Asunto&body=Cuerpo del correo electrónico'),
                   child: const Text('Pelucapp@gmail.com', style: TextStyle( fontSize: 20)),
             
                 ),
