@@ -5,6 +5,7 @@ class FormEmail extends StatelessWidget {
   final IconData? icon;
   final bool ocultar;
   final TextInputType? keyboardType;
+  final String? value;
 
   final String formProperty;
   final Map<String, String> formValues;
@@ -18,6 +19,7 @@ class FormEmail extends StatelessWidget {
     required this.formProperty,
     required this.formValues,
     this.keyboardType,
+    this.value
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class FormEmail extends StatelessWidget {
       autofocus: false,
       obscureText: ocultar,
       keyboardType: keyboardType,
+      initialValue: value ?? "",
       onChanged: (value) => formValues[formProperty] = value,
       validator: (value) {
         String pattern =
