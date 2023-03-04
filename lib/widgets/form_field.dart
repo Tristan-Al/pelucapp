@@ -32,8 +32,8 @@ class FormFieldPers extends StatelessWidget {
         if (value!.isEmpty) {
           return 'No puede quedar vacío';
         }
-        if (value.length < 6) {
-          return 'No puede tener menos de 6 caracteres';
+        if (value.length < 4) {
+          return 'No puede tener menos de 4 caracteres';
         }
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
