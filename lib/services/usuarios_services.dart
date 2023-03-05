@@ -35,9 +35,27 @@ class UsuariosServices extends ChangeNotifier {
     return usuarios;
   }
 
-  updateAvailability ( bool value ){
-    
+  updateAvailability(bool value) {
     this.usuarioSeleccionado!.terminos = value;
     notifyListeners();
+  }
+
+  Future<String> crearUsuario(Usuario usuario) async {
+    // Conectamos a la base de datos
+    final url = Uri.https(_baseURL, 'usuarios.json');
+    // Queremos meter nuevo usuario, cambiamos el http.get a post
+    final resp = await http.post(url, body: usuario.toJson());
+    // Para que Firebase cree un ID del usuario automaticamente
+    //final decodedData = json.decode(resp.body);
+    //usuario.id = decodedData['nombre'];
+
+    // ID con nuestro formato:
+    int tamano = usuarios.length + 2;
+
+    usuario.id = "USR00" + tamano.toString();
+
+    this.usuarios.add(usuario);
+
+    return usuario.id!;
   }
 }

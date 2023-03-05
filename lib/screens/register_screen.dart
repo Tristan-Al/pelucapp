@@ -32,9 +32,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     String passCon = "";
     final myFormKey = GlobalKey<FormState>();
 
-
     return Scaffold(
         body: SingleChildScrollView(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
         key: myFormKey,
@@ -147,7 +147,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       } else if (_termChecked == false) {
                         print('Tiene que aceptar los terminos y condiciones');
                         return;
-                      }else{
+                      } else {
                         Navigator.pushNamed(context, 'login');
                       }
                     }
