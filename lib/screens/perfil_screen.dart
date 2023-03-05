@@ -40,6 +40,12 @@ class ProfileHomePage extends StatelessWidget {
     final usuariosServices = Provider.of<UsuariosServices>(context);
 
     final Usuario usuario = usuariosServices.usuarioLogin!;
+    String nombre = usuario.nombre;
+    String email = usuario.email;
+    String telefono = usuario.telefono.toString();
+    String? imagen = usuariosServices.usuarioLogin?.imagen;
+    
+
 
     return Scaffold(
       body: Stack(
@@ -59,21 +65,21 @@ class ProfileHomePage extends StatelessWidget {
                           70.0, // Establece la altura deseada entre los dos campos de texto
                     ),
                     textfield(
-                      hintText: 'Nombre',
+                        hintText: nombre,
                     ),
                     SizedBox(
                       height:
                           16.0, // Establece la altura deseada entre los dos campos de texto
                     ),
                     textfield(
-                      hintText: 'Apellidos ',
+                      hintText: email,
                     ),
                     SizedBox(
                       height:
                           16.0, // Establece la altura deseada entre los dos campos de texto
                     ),
                     textfield(
-                      hintText: 'Email',
+                      hintText: telefono,
                     ),
                     SizedBox(
                       height:
@@ -115,34 +121,30 @@ class ProfileHomePage extends StatelessWidget {
                 ),
               ),
               Container(
+                child: ClipRRect(
+              borderRadius: BorderRadius.only( topLeft: Radius.circular(45), topRight: Radius.circular(45)),
+              child: imagen == null
+                ? Image(
+                    image:  AssetImage('assets/User.png'),
+                    fit: BoxFit.cover,
+                  )
+                : CircleAvatar(
+                    maxRadius: 10,
+                    backgroundImage:NetworkImage(imagen!),
+                  ),
+            ),
                 padding: EdgeInsets.all(10.0),
                 width: 180,
                 height: 180,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 5),
+                  border: Border.all(color: Color.fromARGB(255, 13, 12, 12), width: 1),
                   shape: BoxShape.circle,
-                  color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/User.png'),
-                  ),
+                  color: Color.fromARGB(255, 255, 252, 252),
                 ),
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 220, left: 84),
-            child: CircleAvatar(
-              backgroundColor: Colors.black54,
-              child: IconButton(
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-            ),
-          )
+         
         ],
       ),
     );
