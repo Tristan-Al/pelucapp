@@ -26,12 +26,12 @@ class FormCreditCardDate extends StatelessWidget {
       initialValue: value ?? "",
       validator: (value) {
         String pattern =
-            '^((0[1-9])|(1[0-2]))[\\/\\.\\-]*((0[8-9])|(1[0-9]))\$'; //Date, podria haber usado r'REGEX' para indicar raw string
+            r'^(0[1-9]|1[0-2])\/?([0-9]{2})$'; //Date, podria haber usado r'REGEX' para indicar raw string
         RegExp regExp = RegExp(pattern);
 
         return regExp.hasMatch(value ?? '')
             ? null
-            : 'Introduzca una tarjeta válida';
+            : 'Introduzca una fecha en formato válido (MM/YY)';
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(

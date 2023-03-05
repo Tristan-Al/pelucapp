@@ -25,7 +25,7 @@ class FormCreditCardCvv extends StatelessWidget {
       keyboardType: keyboardType,
       initialValue: value ?? "",
       validator: (value) {
-        String pattern = '^[0-9]{3, 4}\$'; //CVV
+        String pattern = '^[0-9]{3}\$'; //CVV
         RegExp regExp = RegExp(pattern);
 
         return regExp.hasMatch(value ?? '')

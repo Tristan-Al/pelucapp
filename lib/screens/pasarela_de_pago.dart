@@ -30,7 +30,7 @@ class PasarelaDePagoScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(width: 20, height: 60),
+          const SizedBox(width: 20, height: 10),
           Container(
             child: Image.network(
                 'https://cdn-icons-png.flaticon.com/512/40/40857.png',
@@ -38,10 +38,10 @@ class PasarelaDePagoScreen extends StatelessWidget {
                 width: 200,
                 height: 200),
           ),
-          const SizedBox(width: 20, height: 80),
+          const SizedBox(width: 20, height: 60),
           TextFormField(
             autofocus: false,
-            obscureText: true,
+            obscureText: false,
             keyboardType: TextInputType.text,
             initialValue: "",
             validator: (value) {
@@ -53,17 +53,20 @@ class PasarelaDePagoScreen extends StatelessWidget {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
               hintText: "Nomrbre del propietario",
-              suffixIcon: Icon(Icons.credit_card_off_rounded),
+              suffixIcon: Icon(Icons.credit_card_rounded),
             ),
           ),
           const SizedBox(width: 20, height: 20),
           FormCreditCardNumber(
+            value: "",
             ocultar: false,
             hintText: 'Número de tarjeta',
+            keyboardType: TextInputType.number,
             icon: Icons.numbers_outlined,
           ),
           const SizedBox(width: 20, height: 20),
           FormCreditCardDate(
+            value: "",
             ocultar: false,
             hintText: 'Fecha de expiración',
             keyboardType: TextInputType.datetime,
@@ -71,6 +74,7 @@ class PasarelaDePagoScreen extends StatelessWidget {
           ),
           const SizedBox(width: 20, height: 20),
           FormCreditCardCvv(
+            value: "",
             ocultar: false,
             keyboardType: TextInputType.number,
             hintText: 'CVV',
@@ -99,13 +103,13 @@ class PasarelaDePagoScreen extends StatelessWidget {
                   print('Credenciales incorrectas');
                   return;
                 } else {
-                  Navigator.pushNamed(context, 'login');
+                  Navigator.pushNamed(context, 'mis_reservas');
                 }
               },
               child: const Text('Pagar', style: TextStyle(fontSize: 20)),
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 10),
         ]),
       ),
     ));
