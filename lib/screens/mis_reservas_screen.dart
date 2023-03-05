@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/usuario.dart';
 import 'package:pelucapp/screens/screens.dart';
 
 import '../theme/app_theme.dart';
@@ -41,33 +42,15 @@ class _MisReservasScreen extends State<MisReservasScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
-            children: [
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(radius),
-                  side: BorderSide(color: Colors.black, width: 2),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(radius),
-                  child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () => isExpanded ? shrinkTile() : expandTile(),
-                          child: buildImage(),
-                        ),
-                        buildText(context),
-                      ],
-                    ),
-                  ),
-                ),
+        body: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              child: ListTile(
+                title: Text('hola'),
               ),
-            ],
-          ),
+            );
+          },
         ),
       );
 
