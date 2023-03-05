@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/models.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class FrontPageScreen extends StatelessWidget {
   const FrontPageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final UsuariosServices usuariosServices =
+        Provider.of<UsuariosServices>(context);
+    Usuario usuario;
     return Scaffold(
         body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const Image(image: AssetImage('assets/logo.png'),height: 200,),
+          const Image(
+            image: AssetImage('assets/logo.png'),
+            height: 200,
+          ),
           const SizedBox(
             height: 30,
           ),
@@ -33,14 +42,23 @@ class FrontPageScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.backgroundColor,
-                  side: const BorderSide(width: 2, color: AppTheme.primary),
-                  elevation: 0,
-                ),
+                backgroundColor: AppTheme.backgroundColor,
+                side: const BorderSide(width: 2, color: AppTheme.primary),
+                elevation: 0,
+              ),
               onPressed: () {
+                usuario = Usuario(
+                  email: '',
+                  nombre: '',
+                  password: '',
+                  telefono: 0,
+                  verificado: true,
+                );
                 Navigator.pushNamed(context, 'register');
               },
-              child: const Text('Registrarse', style: TextStyle(fontSize: 20, color: AppTheme.mainTextColor)),
+              child: const Text('Registrarse',
+                  style:
+                      TextStyle(fontSize: 20, color: AppTheme.mainTextColor)),
             ),
           ),
           const SizedBox(
