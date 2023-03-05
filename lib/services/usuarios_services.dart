@@ -10,6 +10,7 @@ class UsuariosServices extends ChangeNotifier {
   final List<Usuario> usuarios = [];
   Usuario? usuarioSeleccionado;
   bool isLoading = true;
+  bool isSaving = false;
 
   UsuariosServices() {
     loadUsuarios();
@@ -51,11 +52,34 @@ class UsuariosServices extends ChangeNotifier {
 
     // ID con nuestro formato:
     int tamano = usuarios.length + 2;
-
     usuario.id = "USR00" + tamano.toString();
 
     this.usuarios.add(usuario);
 
     return usuario.id!;
+  }
+
+  Future<String> updateUsuario(Usuario usuario) async {
+    final url = Uri.https(_baseURL, 'usuarios/${usuario.id}.json');
+    final resp = await http.put(url, body: usuario.toJson());
+    final decodedData = resp.body;
+
+    return usuario.id!;
+  }
+
+  Future guardarOCrearUsuario(Usuario usuario) async {
+    isSaving = true;
+    notifyListeners();
+
+    if (usuario.id == null) {
+      // Crear
+      await this.crearUsuario(usuario);
+    } else {
+      // Actualizar
+      await this.updateUsuario(usuario);
+    }
+
+    isSaving = false;
+    notifyListeners();
   }
 }

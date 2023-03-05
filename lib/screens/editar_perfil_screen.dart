@@ -122,9 +122,11 @@ class _EditarPerfilScreenBody extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: ElevatedButton(
-                onPressed: () {
-                  usuarioForm.isValidForm();
-                  Navigator.pushNamed(context, 'perfil');
+                onPressed: () async {
+                  if (!usuarioForm.isValidForm()) return;
+
+                  await usuariosServices
+                      .guardarOCrearUsuario(usuarioForm.usuario!);
                 },
                 child: const Text('Guardar cambios usuario',
                     style: TextStyle(fontSize: 20)),
