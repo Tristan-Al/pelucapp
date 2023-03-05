@@ -58,9 +58,6 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
-
-
     /*List<Color> colorArray = [
       _colorboton1000,
       _colorboton1030,
@@ -113,11 +110,11 @@ class _HorarioScreenState extends State<HorarioScreen> {
             TableCalendar(
               //ESTO DEBERIA FUNCIONAR PERO NO LO HACE TRISTAN HELP
               calendarStyle: CalendarStyle(
-                  todayTextStyle: TextStyle(
-                    color: AppTheme.primary,
-                  ),
-                  selectedTextStyle: TextStyle(
-                    color: Colors.green,
+                todayTextStyle: TextStyle(
+                  color: AppTheme.primary,
+                ),
+                selectedTextStyle: TextStyle(
+                  color: Colors.green,
                 ),
               ),
               locale: 'en_US',
@@ -1052,7 +1049,8 @@ class _HorarioScreenState extends State<HorarioScreen> {
                 onPressed: !_horaSeleccionada
                     ? null
                     : () => {
-                          Navigator.pushNamed(context, 'resumen', arguments: selected)
+                          Navigator.pushNamed(context, 'resumen',
+                              arguments: selected)
                         },
                 child: const Text('Siguiente', style: TextStyle(fontSize: 20)),
               ),
