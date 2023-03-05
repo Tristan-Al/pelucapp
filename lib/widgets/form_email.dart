@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FormFieldPers extends StatelessWidget {
+class FormEmail extends StatelessWidget {
   final String? hintText;
   final IconData? icon;
   final bool ocultar;
@@ -10,8 +10,8 @@ class FormFieldPers extends StatelessWidget {
   final String formProperty;
   final Map<String, String> formValues;
 
-  // Constructor del FormFieldRegi
-  const FormFieldPers({
+  // Constructor del FormEmail
+  const FormEmail({
     Key? key,
     this.hintText,
     this.icon,
@@ -31,13 +31,13 @@ class FormFieldPers extends StatelessWidget {
       initialValue: value ?? "",
       onChanged: (value) => formValues[formProperty] = value,
       validator: (value) {
-        // validacion para el form. DEFINIR
-        if (value!.isEmpty) {
-          return 'No puede quedar vacío';
-        }
-        if (value.length < 4) {
-          return 'No puede tener menos de 4 caracteres';
-        }
+        String pattern =
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+        RegExp regExp = RegExp(pattern);
+
+        return regExp.hasMatch(value ?? '')
+            ? null
+            : 'Texto introducido no parece un correo';
       },
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(

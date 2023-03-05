@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class PeluquerosScreen extends StatelessWidget {
   const PeluquerosScreen({
@@ -9,16 +12,12 @@ class PeluquerosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Peluqueria peluqueria =
-        Peluqueria(ModalRoute.of(context)!.settings.arguments as int);
+    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+    final peluquerosServices = Provider.of<PeluquerosServices>(context);
+
     PageController pageController = PageController(viewportFraction: 0.75);
 
-    List<Peluquero> peluqueros = [
-      Peluquero(0, 'Fabio', 'Corte, Tinte, Barba, Champu'),
-      Peluquero(1, 'Jorge', 'Corte, Tinte'),
-      Peluquero(2, 'Vicenzo', 'Champu'),
-      Peluquero(3, 'Simone', 'Corte, Barba'),
-    ];
+    List<Peluquero> peluqueros = getPeluqueros(peluqueriasServices.peluqueriaSeleccionada!);
 
     return Scaffold(
         appBar: AppBar(
@@ -51,7 +50,7 @@ class PeluquerosScreen extends StatelessWidget {
                   itemCount: peluqueros.length,
                   itemBuilder: (context, index) {
                     Peluquero peluquero = peluqueros[index];
-                    return _buildPeluquerosCard(peluquero, context, peluqueria);
+                    return _buildPeluquerosCard(peluquero, peluquerosServices, context);
                   }),
             ),
           ],
@@ -59,8 +58,17 @@ class PeluquerosScreen extends StatelessWidget {
   }
 }
 
-Widget _buildPeluquerosCard(
-    Peluquero peluquero, context, Peluqueria peluqueria) {
+List<Peluquero> getPeluqueros(Peluqueria peluqueria){
+  List<Peluquero> peluqueros = [] ;
+  peluqueria.peluqueros.forEach((key, value) {
+    final tempPeluquero = value;
+    tempPeluquero.id = key;
+    peluqueros.add(tempPeluquero);
+  });
+  return peluqueros;
+}
+
+Widget _buildPeluquerosCard(Peluquero peluquero,PeluquerosServices peluquerosServices, context) {
   return Stack(
     children: [
       Align(
@@ -103,7 +111,7 @@ Widget _buildPeluquerosCard(
                 const SizedBox(
                   height: 10,
                 ),
-                SmallText(text: peluquero.servicios, color: Colors.black45),
+                SmallText(text: 'peluquero.servicios', color: Colors.black45),
                 const SizedBox(
                   height: 10,
                 ),
@@ -116,8 +124,8 @@ Widget _buildPeluquerosCard(
                     icon: const Icon(Icons.check_circle),
                     alignment: Alignment.bottomRight,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'servicios',
-                          arguments: [peluqueria, peluquero]);
+                      peluquerosServices.peluqueroSeleccionado = peluquero;
+                      Navigator.pushNamed(context, 'servicios');
                     },
                     color: AppTheme.primary,
                   ),
@@ -127,44 +135,20 @@ Widget _buildPeluquerosCard(
           ),
         ),
       ),
-      const Align(
+      Align(
         alignment: Alignment.topCenter,
-        child: CircleAvatar(
-          maxRadius: 80,
-          backgroundImage: AssetImage('assets/salon.jpg'),
-        ),
-      ),
+        child: peluquero.imagen == null
+          ? CircleAvatar(
+              maxRadius: 80,
+              backgroundImage: AssetImage('assets/salon.jpg'),
+            )  
+          : CircleAvatar(
+            maxRadius: 80,
+            backgroundImage:NetworkImage(peluquero.imagen!),
+          ),
+      )
+      
     ],
   );
 }
 
-class Peluquero {
-  int indice;
-  final String nombre;
-  final String servicios;
-  Peluquero(this.indice, this.nombre, this.servicios);
-}
-
-class Peluqueria {
-  int indice = 9999;
-  String? nombre;
-  final List<String> nombres = [
-    "Manoli",
-    "PELUCAPP-GRANADA",
-    "PELUCAPP-CONGRESOS",
-    "PELUCAPP-AYUNTAMIENTO",
-    "PELUCAPP-PASEO DE LOS TRISTES",
-    "PELUCAPP-ALBAYZIN",
-    "PELUCAPP-CAMINO DE RONDA",
-    "PELUCAPP-CARTUJA",
-    "PELUCAPP-EL POBLAO",
-    "PELUCAPP-LA CHANA",
-  ];
-  Peluqueria.fromNothing() {
-    indice = 0;
-    nombre = "null";
-  }
-  Peluqueria(this.indice) {
-    nombre = nombres[indice];
-  }
-}

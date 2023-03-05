@@ -1,33 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:pelucapp/screens/peluqueros_screen.dart';
-import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
-class ServiciosScreen extends StatefulWidget {
+class ServiciosScreen extends StatelessWidget {
   const ServiciosScreen({super.key});
 
   @override
-  State<ServiciosScreen> createState() => _ServiciosScreenState();
-}
-
-class _ServiciosScreenState extends State<ServiciosScreen> {
-  List<Servicio> serviciosDisponibles = [
-    Servicio('Barba', 15, 'Solo definicion de barba', 10),
-    Servicio('Tinte', 30, 'Tinte de pelo', 30),
-    Servicio('Corte de pelo', 30, 'Corte y peinado', 15),
-    Servicio('Champu', 15, 'Champu de balsamo', 7),
-  ];
-
-  List<Servicio> serviciosSeleccionados = [];
-
-  @override
   Widget build(BuildContext context) {
-    List<Object>? data =
-        ModalRoute.of(context)!.settings.arguments as List<Object>?;
-    Peluqueria peluqueria = data?[0] as Peluqueria;
-    Peluquero peluquero = data?[1] as Peluquero;
+    //final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+    //final peluquerosServices = Provider.of<PeluquerosServices>(context);
+    final serviciosServices = Provider.of<ServiciosServices>(context);
+
+    //final peluqueria = peluqueriasServices.peluqueriaSeleccionada!;
+    //final peluquero = peluquerosServices.peluqueroSeleccionado!;
+    
+    List<Servicio> serviciosDisponibles = serviciosServices.Servicios;
 
     PageController pageController = PageController(viewportFraction: 0.75);
 
@@ -62,10 +52,6 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                 itemCount: serviciosDisponibles.length,
                 itemBuilder: (context, index) {
                   Servicio servicio = serviciosDisponibles[index];
-                  bool selected = false;
-                  if (serviciosSeleccionados.contains(servicio)) {
-                    selected = true;
-                  }
                   return Stack(
                     children: [
                       Align(
@@ -120,47 +106,41 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                                   height: 10,
                                 ),
                                 SmallText(
-                                    text: servicio.descripcion ?? "",
+                                    text: servicio.descripcion,
                                     color: Colors.black45),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Expanded(
-                                    child: Container(
+                                  child: Container(
                                   width: double.infinity,
                                   margin: EdgeInsets.only(bottom: 5),
                                   child: Container(
                                       alignment: Alignment.bottomRight,
                                       child: Checkbox(
-                                        value: selected,
-                                        onChanged: (value) {
-                                          selected = value ?? true;
-                                          if (selected) {
-                                            serviciosSeleccionados
-                                                .add(servicio);
-                                          } else {
-                                            if (serviciosSeleccionados
-                                                .contains(servicio)) {
-                                              serviciosSeleccionados
-                                                  .remove(servicio);
-                                            }
-                                          }
-                                          print(serviciosSeleccionados);
-                                          setState(() {});
-                                        },
-                                      )),
-                                )),
+                                        value: servicio.selected,
+                                        onChanged:  ((value) => (serviciosServices.updateAvailability(value!, servicio)))
+                                      ),
+                                    )
+                                  ),
+                                )
                               ],
                             ),
                           ),
                         ),
                       ),
-                      const Align(
+                      Align(
                         alignment: Alignment.topCenter,
-                        child: CircleAvatar(
+                        child: servicio.imagen == null
+                          ? CircleAvatar(
                             maxRadius: 80,
-                            backgroundImage:
-                                AssetImage('assets/servicio.png')),
+                            backgroundImage: AssetImage('assets/servicio.png')
+                            ) 
+                          : CircleAvatar(
+                            maxRadius: 80,
+                            backgroundImage: NetworkImage( servicio.imagen! ),
+                          ),
+                          
                       ),
                     ],
                   );
@@ -171,22 +151,30 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                 children: [
                   Container(
                     height: 50,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: serviciosSeleccionados.length,
-                        itemBuilder: (context, index) {
-                          Servicio _servicio = serviciosSeleccionados[index];
-                          return Container(
-                            margin: EdgeInsets.all(10),
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                              color: Colors.black26,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: Text(_servicio.nombre),
-                          );
-                        }),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: serviciosServices.ServiciosSeleccionados.length,
+                          itemBuilder: (context, index) {
+                            Servicio _servicio = serviciosServices.ServiciosSeleccionados[index];
+                            return Container(
+                              alignment: Alignment.center,
+                              margin: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: Colors.black26,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: Text(_servicio.nombre),
+                            );
+                          }
+                        ),
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Container(
@@ -196,16 +184,9 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
                         style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
                           ),
-                        onPressed: serviciosSeleccionados.isEmpty
+                        onPressed: serviciosServices.ServiciosSeleccionados.isEmpty
                             ? null
-                            : () => {
-                                  Navigator.pushNamed(context, 'horario',
-                                      arguments: [
-                                        peluqueria,
-                                        peluquero,
-                                        serviciosSeleccionados
-                                      ])
-                                },
+                            : () => {Navigator.pushNamed(context, 'horario')},
                         child: const Text('Siguiente',
                             style: TextStyle(fontSize: 20)),
                       ),
@@ -217,12 +198,4 @@ class _ServiciosScreenState extends State<ServiciosScreen> {
         ],
       ));
   }
-}
-
-class Servicio {
-  final String nombre;
-  final int tiempo;
-  String? descripcion;
-  double precio;
-  Servicio(this.nombre, this.tiempo, this.descripcion, this.precio);
 }

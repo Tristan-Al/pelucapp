@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/screens/screens.dart';
-import 'package:pelucapp/theme/app_theme.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -9,20 +10,11 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myFormKey = GlobalKey<FormState>();
-    final Map<String, String> formValues = {
-      'usuario': 'usuario',
-      'password': 'password'
-    };
+    final Map<String, String> formValues = {'email': '', 'password': ''};
 
     return Scaffold(
         body: Stack(
       children: [
-        new Container(
-          decoration: new BoxDecoration(
-              image: new DecorationImage(
-                  image: new AssetImage("assets/ffd7ab.png"),
-                  fit: BoxFit.fill)),
-        ),
         SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: _FormLogIn(myFormKey: myFormKey, formValues: formValues),
@@ -44,6 +36,10 @@ class _FormLogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UsuariosServices usuariosServices =
+        Provider.of<UsuariosServices>(context);
+    Usuario usuario;
+    bool _visible = false;
     return Form(
       key: myFormKey,
       child: Column(children: [
@@ -67,11 +63,12 @@ class _FormLogIn extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 20, height: 80),
-        FormFieldPers(
+        FormEmail(
           ocultar: false,
-          hintText: 'Usuario',
-          icon: Icons.group_outlined,
-          formProperty: 'usuario',
+          hintText: 'Email',
+          keyboardType: TextInputType.emailAddress,
+          icon: Icons.email_outlined,
+          formProperty: 'email',
           formValues: formValues,
         ),
         const SizedBox(width: 20, height: 20),
@@ -96,11 +93,22 @@ class _FormLogIn extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
-              if (!myFormKey.currentState!.validate()) {
-                print('Credenciales incorrectas');
-                return;
+              // Primero tengo que recorrer el array de usuarios que me da el usuariosServices
+              for (int i = 0; i < usuariosServices.usuarios.length; i++) {
+                // Por cada item, le asigno sus valores a usuario y comparo con los datos introducidos en el formulario
+                usuario = usuariosServices.usuarios[i];
+                if (usuario.email == formValues['email'] &&
+                    usuario.password == formValues['password']) {
+                  // Cuando estos coincidan, dejo que acceda con el navigator
+                  Navigator.pushNamed(context, 'home');
+                } else {
+                  // Si una o ambas credenciales no corresponen entonces muestro los mensajes de validación (por si los campos están vacíos)
+                  if (!myFormKey.currentState!.validate()) {
+                    print('Credenciales incorrectas');
+                    return;
+                  }
+                }
               }
-              Navigator.pushNamed(context, 'home');
             },
             child: const Text('Log in', style: TextStyle(fontSize: 20)),
           ),
