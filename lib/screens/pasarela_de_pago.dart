@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/theme/app_theme.dart';
+import 'package:pelucapp/widgets/form_credit_card_cvv.dart';
+import 'package:pelucapp/widgets/form_credit_card_date.dart';
+import 'package:pelucapp/widgets/form_credit_card_number.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
 class PasarelaDePagoScreen extends StatelessWidget {
@@ -36,44 +39,43 @@ class PasarelaDePagoScreen extends StatelessWidget {
                 height: 200),
           ),
           const SizedBox(width: 20, height: 80),
-          /*FormFieldPers(
-            value: formValues['nombreusuario'],
-            ocultar: false,
-            hintText: 'Nombre de usuario',
-            icon: Icons.group_outlined,
-            formProperty: 'nombreusuario',
-            formValues: formValues,
+          TextFormField(
+            autofocus: false,
+            obscureText: true,
+            keyboardType: TextInputType.text,
+            initialValue: "",
+            validator: (value) {
+              // validacion para el form. DEFINIR
+              if (value!.isEmpty) {
+                return 'No puede quedar vacío';
+              }
+            },
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            decoration: InputDecoration(
+              hintText: "Nomrbre del propietario",
+              suffixIcon: Icon(Icons.credit_card_off_rounded),
+            ),
           ),
           const SizedBox(width: 20, height: 20),
-          FormEmail(
-            value: formValues['email'],
+          FormCreditCardNumber(
             ocultar: false,
-            hintText: 'Email',
-            keyboardType: TextInputType.emailAddress,
-            icon: Icons.email_outlined,
-            formProperty: 'email',
-            formValues: formValues,
+            hintText: 'Número de tarjeta',
+            icon: Icons.numbers_outlined,
           ),
           const SizedBox(width: 20, height: 20),
-          FormFieldPers(
-            value: formValues['telefono'],
+          FormCreditCardDate(
+            ocultar: false,
+            hintText: 'Fecha de expiración',
+            keyboardType: TextInputType.datetime,
+            icon: Icons.calendar_month_outlined,
+          ),
+          const SizedBox(width: 20, height: 20),
+          FormCreditCardCvv(
             ocultar: false,
             keyboardType: TextInputType.number,
-            hintText: '111 222 333',
-            icon: Icons.phone_android_outlined,
-            formProperty: 'telefono',
-            formValues: formValues,
+            hintText: 'CVV',
+            icon: Icons.key_outlined,
           ),
-          const SizedBox(width: 20, height: 20),
-          FormFieldPers(
-            value: formValues['password'],
-            ocultar: true,
-            keyboardType: TextInputType.text,
-            hintText: 'Contraseña',
-            icon: Icons.key,
-            formProperty: 'password',
-            formValues: formValues,
-          ),*/
           /*
           CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,

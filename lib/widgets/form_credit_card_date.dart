@@ -7,17 +7,12 @@ class FormCreditCardDate extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? value;
 
-  final String formProperty;
-  final Map<String, String> formValues;
-
   // Constructor del FormEmail
   const FormCreditCardDate(
       {Key? key,
       this.hintText,
       this.icon,
       this.ocultar = false,
-      required this.formProperty,
-      required this.formValues,
       this.keyboardType,
       this.value})
       : super(key: key);
@@ -29,7 +24,6 @@ class FormCreditCardDate extends StatelessWidget {
       obscureText: ocultar,
       keyboardType: keyboardType,
       initialValue: value ?? "",
-      onChanged: (value) => formValues[formProperty] = value,
       validator: (value) {
         String pattern =
             '^((0[1-9])|(1[0-2]))[\\/\\.\\-]*((0[8-9])|(1[0-9]))\$'; //Date, podria haber usado r'REGEX' para indicar raw string
