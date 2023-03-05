@@ -15,3 +15,5 @@ export 'package:pelucapp/screens/editar_perfil_screen.dart';
 export 'package:pelucapp/screens/horario_screen.dart';
 export 'package:pelucapp/screens/settings_screen.dart';
 export 'package:pelucapp/screens/email_screen.dart';
+export 'package:pelucapp/screens/metodos_de_pago_screen.dart';
+export 'package:pelucapp/screens/pasarela_de_pago.dart';

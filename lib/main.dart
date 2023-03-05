@@ -32,6 +32,8 @@ class MyApp extends StatelessWidget {
         'ajustes': (context) => Settings(),
         'email': (context) => EmailScreen(),
         'horario': (context) => HorarioScreen(),
+        'metodos_de_pago': (context) => MetodosDePagoScreen(),
+        'pasarela_de_pago': (context) => PasarelaDePagoScreen(),
       },
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pelucapp/screens/peluqueros_screen.dart';
-import 'package:pelucapp/screens/servicios_screen.dart';
+import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 
@@ -120,12 +119,15 @@ class _BotonMetodosPago extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: const Size.fromHeight(50),
         ),
-        onPressed: () => showDialog<String>(
+        onPressed: () {
+          Navigator.pushNamed(context, 'metodos_de_pago', arguments: resumen);
+          /*showDialog<String>(
           context: context,
           builder: (BuildContext context) => MetodosDePago(
             resumen: resumen,
           ),
-        ),
+        );*/
+        },
         child: const Text('Metodos de pago', style: TextStyle(fontSize: 20)),
       ),
     );
@@ -295,8 +297,8 @@ class ResumenArgs {
   DateTime hora = DateTime.now();
 
   ResumenArgs.sinFecha(this.peluqueria, this.peluquero, this.servicios);
-  ResumenArgs.completo(this.peluqueria, this.peluquero, this.servicios,
-       this.hora);
+  ResumenArgs.completo(
+      this.peluqueria, this.peluquero, this.servicios, this.hora);
 }
 
 class MetodosDePago extends StatefulWidget {
