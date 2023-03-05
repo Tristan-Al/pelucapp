@@ -17,7 +17,7 @@ class RegisterScreen extends StatelessWidget {
     UsuariosServices usuariosServices = Provider.of<UsuariosServices>(context);
 
     return ChangeNotifierProvider(
-      create: ((context) => UsuarioFormProvider(usuariosServices.usuarioSeleccionado)),
+      create: ((context) => UsuarioFormProvider(usuariosServices.usuarioLogin)),
       child: RegisterScreenBody(usuariosServices: usuariosServices),
     );
 

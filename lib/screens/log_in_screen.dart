@@ -100,6 +100,7 @@ class _FormLogIn extends StatelessWidget {
                 usuario = usuariosServices.usuarios[i];
                 if (usuario.email == formValues['email'] &&
                     usuario.password == formValues['password']) {
+                  usuariosServices.usuarioLogin = usuario;
                   // Cuando estos coincidan, dejo que acceda con el navigator
                   Navigator.pushNamed(context, 'home');
                 } else {

@@ -8,7 +8,7 @@ class UsuariosServices extends ChangeNotifier {
   final String _baseURL =
       "peluqueria-f52fb-default-rtdb.europe-west1.firebasedatabase.app";
   final List<Usuario> usuarios = [];
-  Usuario? usuarioSeleccionado;
+  Usuario? usuarioLogin;
   bool isLoading = true;
   bool isSaving = false;
 
@@ -37,7 +37,7 @@ class UsuariosServices extends ChangeNotifier {
   }
 
   updateAvailability(bool value) {
-    this.usuarioSeleccionado!.terminos = value;
+    this.usuarioLogin!.terminos = value;
     notifyListeners();
   }
 

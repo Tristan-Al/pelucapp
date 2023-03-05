@@ -26,7 +26,7 @@ class EditarPerfilScreen extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: ((context) =>
-          UsuarioFormProvider(usuariosServices.usuarioSeleccionado)),
+          UsuarioFormProvider(usuariosServices.usuarioLogin)),
       child: _EditarPerfilScreenBody(
           usuariosServices: usuariosServices, formValues: formValues),
     );

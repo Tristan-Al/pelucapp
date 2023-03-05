@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/widgets/big_text.dart';
 import 'package:pelucapp/widgets/small_text.dart';
 
-import '../theme/app_theme.dart';
+import 'package:pelucapp/theme/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class ProfileHomePage extends StatelessWidget {
   const ProfileHomePage({super.key});
@@ -33,6 +36,11 @@ class ProfileHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    final usuariosServices = Provider.of<UsuariosServices>(context);
+
+    final Usuario usuario = usuariosServices.usuarioLogin!;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
