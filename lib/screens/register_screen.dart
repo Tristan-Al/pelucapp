@@ -7,11 +7,29 @@ import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
+
   const RegisterScreen({Key? key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    
+    UsuariosServices usuariosServices = Provider.of<UsuariosServices>(context);
+
+    return ChangeNotifierProvider(
+      create: ((context) => UsuarioFormProvider(usuariosServices.usuarioSeleccionado)),
+      child: RegisterScreenBody(usuariosServices: usuariosServices),
+    );
+
+  }
+}
+
+class RegisterScreenBody extends StatefulWidget {
+  final UsuariosServices usuariosServices;
+  const RegisterScreenBody({Key? key, required this.usuariosServices}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterScreenBody> createState() => _RegisterScreenState(usuariosServices);
 }
 
 bool _checkedP = false;
@@ -24,11 +42,14 @@ final Map<String, String> formValues = {
   'confirmacion': ''
 };
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreenBody> {
+  final UsuariosServices usuariosServices;
+
+  _RegisterScreenState(this.usuariosServices);
+
   @override
   Widget build(BuildContext context) {
-    final UsuariosServices usuariosServices =
-        Provider.of<UsuariosServices>(context);
+    
     final usuarioForm = Provider.of<UsuarioFormProvider>(context);
     Usuario usuario;
 
@@ -42,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
-        key: myFormKey,
+        key: usuarioForm.formKey,
         child: Column(children: [
           const SizedBox(height: 20),
           Row(
@@ -140,12 +161,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
-              onPressed: () async {
+              onPressed: _termChecked
+              ? () async {
                 if (!usuarioForm.isValidForm()) return;
-
+                usuarioForm.usuario = Usuario(nombre: formValues['nombreusuario']!, email: formValues['email']!, telefono: int.parse(formValues['telefono'] ?? '000000000'), password: formValues['password']!, verificado: true, );
+                print(usuarioForm.usuario);
                 await usuariosServices
                     .guardarOCrearUsuario(usuarioForm.usuario!);
-              },
+                    Navigator.pushNamed(context, 'login');
+              }
+              : null,
               child: const Text('Registrarse', style: TextStyle(fontSize: 20)),
             ),
           ),
