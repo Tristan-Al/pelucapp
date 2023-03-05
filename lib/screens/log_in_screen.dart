@@ -16,6 +16,7 @@ class LogInScreen extends StatelessWidget {
         body: Stack(
       children: [
         SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: _FormLogIn(myFormKey: myFormKey, formValues: formValues),
         )
