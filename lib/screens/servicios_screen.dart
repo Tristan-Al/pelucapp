@@ -11,13 +11,13 @@ class ServiciosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
-    //final peluquerosServices = Provider.of<PeluquerosServices>(context);
+    final peluquerosServices = Provider.of<PeluquerosServices>(context);
     final serviciosServices = Provider.of<ServiciosServices>(context);
 
     //final peluqueria = peluqueriasServices.peluqueriaSeleccionada!;
-    //final peluquero = peluquerosServices.peluqueroSeleccionado!;
+    final peluquero = peluquerosServices.peluqueroSeleccionado!;
     
-    List<Servicio> serviciosDisponibles = serviciosServices.Servicios;
+    List<Servicio> serviciosDisponibles = _getListServicios(peluquero);
 
     PageController pageController = PageController(viewportFraction: 0.75);
 
@@ -198,4 +198,14 @@ class ServiciosScreen extends StatelessWidget {
         ],
       ));
   }
+}
+
+List<Servicio> _getListServicios(Peluquero peluquero) {
+  List<Servicio> salida = [];
+  peluquero.servicios.forEach((key, value) {
+    Servicio tempServicio = value;
+    tempServicio.id = key;
+    salida.add(tempServicio);
+  });
+  return salida;
 }

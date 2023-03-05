@@ -232,7 +232,7 @@ class _PeluqueriasListView extends StatelessWidget {
                         color: AppTheme.mainTextColor,
                         size: 22
                       ),
-                      SmallText(text: "Calle: Peluqueria.calle", color: Colors.black45),
+                      SmallText(text: '${peluqueriasServices.peluquerias[index].direccion}', color: Colors.black45, align: TextAlign.center,),
                     ],
                   ),
                 ),

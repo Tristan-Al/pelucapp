@@ -108,8 +108,8 @@ class MetodosDePagoScreen extends StatelessWidget {
 }
 
 String generarCodigo(ResumenArgs resumen) {
-  String resultadoCadena = resumen.peluqueria.indice.toString();
-  resultadoCadena += resumen.peluquero.indice.toString();
+  String? resultadoCadena = resumen.peluqueria.nif!.substring(0, 3);
+  resultadoCadena += resumen.peluquero.id!;
   resultadoCadena += DateFormat('ddMMyy').format(resumen.hora);
   //si lo hago como int me quita los primeros digitos si estos son 0
   return resultadoCadena;

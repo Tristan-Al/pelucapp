@@ -111,7 +111,7 @@ Widget _buildPeluquerosCard(Peluquero peluquero,PeluquerosServices peluquerosSer
                 const SizedBox(
                   height: 10,
                 ),
-                SmallText(text: 'peluquero.servicios', color: Colors.black45),
+                SmallText(text: _peluqueroServiciosToString(peluquero), color: Colors.black45),
                 const SizedBox(
                   height: 10,
                 ),
@@ -150,5 +150,14 @@ Widget _buildPeluquerosCard(Peluquero peluquero,PeluquerosServices peluquerosSer
       
     ],
   );
+}
+
+_peluqueroServiciosToString(Peluquero peluquero) {
+  String salida = "";
+  peluquero.servicios.forEach((key, value) {
+    salida += value.nombre;
+    salida  += ", ";
+  });
+  return salida.substring(0,salida.length-2);
 }
 
