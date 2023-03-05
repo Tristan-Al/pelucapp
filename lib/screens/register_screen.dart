@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/models.dart';
+import 'package:pelucapp/providers/usuario_form_provider.dart';
 import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
@@ -27,6 +29,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final UsuariosServices usuariosServices =
         Provider.of<UsuariosServices>(context);
+    final usuarioForm = Provider.of<UsuarioFormProvider>(context);
+    Usuario usuario;
+
     String formProperty = "";
     String pass = "";
     String passCon = "";
@@ -135,23 +140,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Container(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
-              onPressed: _termChecked
-                  ? () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      if (!myFormKey.currentState!.validate()) {
-                        print('Credenciales incorrectas');
-                        return;
-                      } else if (passCon != pass) {
-                        print('Contraseñas deben coincidir');
-                        return;
-                      } else if (_termChecked == false) {
-                        print('Tiene que aceptar los terminos y condiciones');
-                        return;
-                      } else {
-                        Navigator.pushNamed(context, 'login');
-                      }
-                    }
-                  : null,
+              onPressed: () async {
+                if (!usuarioForm.isValidForm()) return;
+
+                await usuariosServices
+                    .guardarOCrearUsuario(usuarioForm.usuario!);
+              },
               child: const Text('Registrarse', style: TextStyle(fontSize: 20)),
             ),
           ),
