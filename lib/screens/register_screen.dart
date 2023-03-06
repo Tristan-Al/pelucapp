@@ -8,28 +8,27 @@ import 'package:pelucapp/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatelessWidget {
-
   const RegisterScreen({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-    
     UsuariosServices usuariosServices = Provider.of<UsuariosServices>(context);
 
     return ChangeNotifierProvider(
       create: ((context) => UsuarioFormProvider(usuariosServices.usuarioLogin)),
       child: RegisterScreenBody(usuariosServices: usuariosServices),
     );
-
   }
 }
 
 class RegisterScreenBody extends StatefulWidget {
   final UsuariosServices usuariosServices;
-  const RegisterScreenBody({Key? key, required this.usuariosServices}) : super(key: key);
+  const RegisterScreenBody({Key? key, required this.usuariosServices})
+      : super(key: key);
 
   @override
-  State<RegisterScreenBody> createState() => _RegisterScreenState(usuariosServices);
+  State<RegisterScreenBody> createState() =>
+      _RegisterScreenState(usuariosServices);
 }
 
 bool _checkedP = false;
@@ -49,9 +48,7 @@ class _RegisterScreenState extends State<RegisterScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    
     final usuarioForm = Provider.of<UsuarioFormProvider>(context);
-    Usuario usuario;
 
     String formProperty = "";
     String pass = "";
@@ -162,15 +159,22 @@ class _RegisterScreenState extends State<RegisterScreenBody> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: ElevatedButton(
               onPressed: _termChecked
-              ? () async {
-                if (!usuarioForm.isValidForm()) return;
-                usuarioForm.usuario = Usuario(nombre: formValues['nombreusuario']!, email: formValues['email']!, telefono: int.parse(formValues['telefono'] ?? '000000000'), password: formValues['password']!, verificado: true, );
-                print(usuarioForm.usuario);
-                await usuariosServices
-                    .guardarOCrearUsuario(usuarioForm.usuario!);
-                    Navigator.pushNamed(context, 'login');
-              }
-              : null,
+                  ? () async {
+                      if (!usuarioForm.isValidForm()) return;
+                      usuarioForm.usuario = Usuario(
+                        nombre: formValues['nombreusuario']!,
+                        email: formValues['email']!,
+                        telefono:
+                            int.parse(formValues['telefono'] ?? '000000000'),
+                        password: formValues['password']!,
+                        verificado: true,
+                      );
+                      print(usuarioForm.usuario);
+                      await usuariosServices
+                          .guardarOCrearUsuario(usuarioForm.usuario!);
+                      Navigator.pushNamed(context, 'login');
+                    }
+                  : null,
               child: const Text('Registrarse', style: TextStyle(fontSize: 20)),
             ),
           ),
