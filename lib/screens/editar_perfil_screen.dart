@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/models.dart';
 import 'package:pelucapp/providers/usuario_form_provider.dart';
 import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
@@ -17,16 +18,15 @@ class EditarPerfilScreen extends StatelessWidget {
     String passCon = "";
     final myFormKey = GlobalKey<FormState>();
     final Map<String, String> formValues = {
-      'nombre': 'nombre',
-      'telefono': 'telefono',
-      'email': 'email',
-      'password': 'password',
-      'confirmacion': 'confirmacion'
+      'nombre': '',
+      'telefono': '',
+      'email': '',
+      'password': '',
+      'confirmacion': ''
     };
 
     return ChangeNotifierProvider(
-      create: ((context) =>
-          UsuarioFormProvider(usuariosServices.usuarioLogin)),
+      create: ((context) => UsuarioFormProvider(usuariosServices.usuarioLogin)),
       child: _EditarPerfilScreenBody(
           usuariosServices: usuariosServices, formValues: formValues),
     );
@@ -67,12 +67,13 @@ class _EditarPerfilScreenBody extends StatelessWidget {
           key: usuarioForm.formKey,
           child: Column(children: [
             const SizedBox(height: 25),
-            CircleAvatar(
+            const CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://d500.epimg.net/cincodias/imagenes/2016/07/04/lifestyle/1467646262_522853_1467646344_noticia_normal.jpg'),
                 maxRadius: 100),
             const SizedBox(height: 40),
             FormFieldPers(
+              value: usuariosServices.usuarioLogin?.nombre,
               ocultar: false,
               hintText: 'Cambiar nombre usuario',
               icon: Icons.group_outlined,
@@ -81,7 +82,7 @@ class _EditarPerfilScreenBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             FormEmail(
-              value: formValues['email'],
+              value: usuariosServices.usuarioLogin?.email,
               ocultar: false,
               hintText: 'Email',
               keyboardType: TextInputType.emailAddress,
@@ -91,6 +92,7 @@ class _EditarPerfilScreenBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             FormFieldPers(
+              value: usuariosServices.usuarioLogin?.telefono.toString(),
               ocultar: false,
               keyboardType: TextInputType.number,
               hintText: 'Editar número',
@@ -100,7 +102,7 @@ class _EditarPerfilScreenBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             FormFieldPers(
-              value: formValues['password'],
+              value: '',
               ocultar: true,
               keyboardType: TextInputType.text,
               hintText: 'Nueva contraseña',
@@ -110,7 +112,7 @@ class _EditarPerfilScreenBody extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             FormFieldPers(
-              value: formValues['confirmacion'],
+              value: '',
               ocultar: true,
               keyboardType: TextInputType.text,
               hintText: 'Confirma contraseña',
@@ -124,6 +126,14 @@ class _EditarPerfilScreenBody extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   if (!usuarioForm.isValidForm()) return;
+                  usuarioForm.usuario?.id = usuariosServices.usuarioLogin?.id;
+
+                  usuarioForm.usuario?.nombre = formValues['nombre']!;
+                  usuarioForm.usuario?.email = formValues['email']!;
+                  usuarioForm.usuario?.telefono =
+                      int.parse(formValues['telefono'] ?? '000000000');
+                  usuarioForm.usuario?.password = formValues['password']!;
+                  usuarioForm.usuario?.verificado = true;
 
                   await usuariosServices
                       .guardarOCrearUsuario(usuarioForm.usuario!);
