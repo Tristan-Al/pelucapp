@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/models/models.dart';
+
 import 'package:pelucapp/providers/usuario_form_provider.dart';
 import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
@@ -13,16 +13,13 @@ class EditarPerfilScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final UsuariosServices usuariosServices =
         Provider.of<UsuariosServices>(context);
-    String formProperty = "";
-    String pass = "";
-    String passCon = "";
-    final myFormKey = GlobalKey<FormState>();
+
     final Map<String, String> formValues = {
-      'nombre': '',
-      'telefono': '',
-      'email': '',
-      'password': '',
-      'confirmacion': ''
+      'nombre': '${usuariosServices.usuarioLogin?.nombre}',
+      'telefono': '${usuariosServices.usuarioLogin?.telefono}',
+      'email': '${usuariosServices.usuarioLogin?.email}',
+      'password': '${usuariosServices.usuarioLogin?.password}',
+      'confirmacion': '${usuariosServices.usuarioLogin?.password}'
     };
 
     return ChangeNotifierProvider(
@@ -127,7 +124,6 @@ class _EditarPerfilScreenBody extends StatelessWidget {
                 onPressed: () async {
                   if (!usuarioForm.isValidForm()) return;
                   usuarioForm.usuario?.id = usuariosServices.usuarioLogin?.id;
-
                   usuarioForm.usuario?.nombre = formValues['nombre']!;
                   usuarioForm.usuario?.email = formValues['email']!;
                   usuarioForm.usuario?.telefono =

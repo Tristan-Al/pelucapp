@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/models/models.dart';
 import 'package:pelucapp/providers/usuario_form_provider.dart';
-import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/services/services.dart';
-import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
