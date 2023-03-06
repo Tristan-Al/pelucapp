@@ -77,6 +77,7 @@ class ProfileHomePage extends StatelessWidget {
                     enabled: false,
                     decoration: InputDecoration(
                       hintText: nombre,
+                       hintStyle: TextStyle(color: Colors.black),
                     
                     ), 
                     ),
@@ -98,6 +99,7 @@ class ProfileHomePage extends StatelessWidget {
                     enabled: false,
                     decoration: InputDecoration(
                       hintText: email,
+                      hintStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                     ),
@@ -118,6 +120,7 @@ class ProfileHomePage extends StatelessWidget {
                     enabled: false,
                     decoration: InputDecoration(
                       hintText: telefono,
+                       hintStyle: TextStyle(color: Colors.black),
                     ),
                   ),
                     ),
