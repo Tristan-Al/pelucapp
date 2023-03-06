@@ -64,22 +64,62 @@ class ProfileHomePage extends StatelessWidget {
                       height:
                           70.0, // Establece la altura deseada entre los dos campos de texto
                     ),
-                    textfield(
-                        hintText: nombre,
+                    Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                   border: Border.all(
+                  color: Colors.black,
+                  width: 2.0,
+                ),
+                
+                ),
+                    child :TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
+                      hintText: nombre,
+                    
+                    ), 
+                    ),
                     ),
                     SizedBox(
                       height:
                           16.0, // Establece la altura deseada entre los dos campos de texto
                     ),
-                    textfield(
+                    Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                   border: Border.all(
+                  color: Colors.black,
+                  width: 2.0,
+                ),
+                
+                ),
+                    child :TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
                       hintText: email,
                     ),
+                  ),
+                    ),
                     SizedBox(
                       height:
                           16.0, // Establece la altura deseada entre los dos campos de texto
                     ),
-                    textfield(
+                    Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                   border: Border.all(
+                  color: Colors.black,
+                  width: 2.0,
+                ),
+                
+                ),
+                    child :TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
                       hintText: telefono,
+                    ),
+                  ),
                     ),
                     SizedBox(
                       height:

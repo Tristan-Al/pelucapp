@@ -5,7 +5,7 @@
 import 'dart:convert';
 
 class Reserva {
-  final String id;
+   String id;
   final DateTime fecha;
   final String peluquero;
   final List<String> servicios;
