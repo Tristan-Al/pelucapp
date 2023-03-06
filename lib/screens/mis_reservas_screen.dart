@@ -44,39 +44,62 @@ class _MisReservasScreen extends State<MisReservasScreen> {
   Widget build(BuildContext context) => Scaffold(
         body: ListView.builder(
           itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              child: ListTile(
-                title: Text('hola'),
+          itemBuilder: (BuildContext context, int index) => GestureDetector(
+            onTap: () {
+              //Navigator.pushNamed(context, 'product');
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+                side: BorderSide(color: Colors.black, width: 2),
               ),
-            );
-          },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(radius),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      buildImage(),
+                      buildText(context, index),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       );
 
   Widget buildImage() => Image.network(
-        'https://amabilia.es/wp-content/uploads/CG8_8071_MariaValls_Calanda-Teruel-17.jpg',
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
         fit: BoxFit.cover,
         width: double.infinity,
         height: 100,
       );
 
-  Widget buildText(BuildContext context) => Theme(
+  Widget buildText(BuildContext context, index) => Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
           key: keyTile,
           initiallyExpanded: isExpanded,
           childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
           title: Text(
-            '17/3/2023',
+            'Nombre peluqueria',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
           ),
           children: [
-            Text(
-              'Hora: 16:00-16:45 \n20 euros',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-            ),
-            ElevatedButton(onPressed: () {}, child: Text('cancelar')),
+            Text('data: ${index}'),
+            Text('data: ${index}'),
+            Text('data: ${index}'),
+            Text('data: ${index}'),
+            Text('data: ${index}'),
+            Text('data: ${index}'),
+            ElevatedButton(
+                onPressed: () {
+                  print('hola');
+                  //seleccionado = true;
+                },
+                child: Text('Cancelar')),
           ],
           /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
             context,
