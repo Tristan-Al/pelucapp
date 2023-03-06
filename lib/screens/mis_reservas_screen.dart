@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pelucapp/models/models.dart';
 import 'package:pelucapp/models/usuario.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/services/reservas_services.dart';
+import 'package:pelucapp/services/services.dart';
+import 'package:provider/provider.dart';
 
 import '../theme/app_theme.dart';
 import '../widgets/widgets.dart';
@@ -41,34 +45,57 @@ class _MisReservasScreen extends State<MisReservasScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) => GestureDetector(
-            onTap: () {
-              //Navigator.pushNamed(context, 'product');
-            },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(radius),
-                side: BorderSide(color: Colors.black, width: 2),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(radius),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      buildImage(),
-                      buildText(context, index),
-                    ],
-                  ),
+  Widget build(BuildContext context) {
+    final ReservaServices reservaServices =
+        Provider.of<ReservaServices>(context);
+
+    List<Reserva> obtenerReservasUsuario(String usuario) {
+      List<Reserva> reservas = ReservaServices().reservas;
+      List<Reserva> reservasUsuario = [];
+      for (var reserva in reservas) {
+        if (reserva.usuario == usuario) {
+          reservasUsuario.add(reserva);
+        }
+      }
+      return reservasUsuario;
+    }
+
+    final usuariosServices = Provider.of<UsuariosServices>(context);
+    final Usuario usuario = usuariosServices.usuarioLogin!;
+
+    List<Reserva> reservas = obtenerReservasUsuario(usuario.nombre);
+
+    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: reservas.length /*peluqueriasServices.peluquerias.length*/,
+        itemBuilder: (BuildContext context, int index) => GestureDetector(
+          onTap: () {
+            //Navigator.pushNamed(context, 'product');
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius),
+              side: BorderSide(color: Colors.black, width: 2),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(radius),
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    buildImage(),
+                    buildText(context, index),
+                  ],
                 ),
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 
   Widget buildImage() => Image.network(
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',

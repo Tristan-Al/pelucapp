@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pelucapp/screens/screens.dart';
+import 'package:pelucapp/services/reservas_services.dart';
 import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class AppState extends StatelessWidget {
       ChangeNotifierProvider(create: (context) => PeluqueriasServices()),
       ChangeNotifierProvider(create: (context) => ServiciosServices()),
       ChangeNotifierProvider(create: (context) => UsuariosServices()),
+      ChangeNotifierProvider(create: (context) => ReservaServices()),
     ], child: MyApp());
   }
 }

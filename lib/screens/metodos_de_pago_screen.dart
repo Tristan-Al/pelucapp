@@ -13,6 +13,19 @@ class MetodosDePagoScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as ResumenArgs;
     final double radius = 20;
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_new, color: AppTheme.mainTextColor),
+        ),
+        title: BigText(
+          text: 'PELUCAPP',
+          color: AppTheme.primary,
+          size: 25,
+        ),
+      ),
       body: Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(children: [

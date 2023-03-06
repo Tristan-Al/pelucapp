@@ -5,49 +5,45 @@
 import 'dart:convert';
 
 class Reserva {
-   String id;
-  final DateTime fecha;
-  final String peluquero;
-  final List<String> servicios;
-  final String usuario;
-
   Reserva({
-    required this.id,
     required this.fecha,
+    required this.pago,
     required this.peluquero,
+    required this.peluqueria,
     required this.servicios,
     required this.usuario,
+    this.cancelada = false,
   });
+
+  String fecha;
+  String pago;
+  String peluquero;
+  String peluqueria;
+  Map<String, bool> servicios;
+  String usuario;
+  bool cancelada;
 
   factory Reserva.fromJson(String str) => Reserva.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Reserva.fromMap(Map<String, dynamic> json) {
-    final id = json.keys.first;
-    final fecha = DateTime.parse(json[id]['fecha']);
-    final peluquero = json[id]['peluquero'];
-    final servicios = List<String>.from(json[id]['servicios'].keys.toList());
-    final usuario = json[id]['usuario'];
-    return Reserva(
-      id: id,
-      fecha: fecha,
-      peluquero: peluquero,
-      servicios: servicios,
-      usuario: usuario,
-    );
-  }
+  factory Reserva.fromMap(Map<String, dynamic> json) => Reserva(
+        fecha: json["fecha"],
+        pago: json['pago'],
+        peluquero: json["peluquero"],
+        peluqueria: json['peluqueria'],
+        servicios: Map.from(json["servicios"])
+            .map((k, v) => MapEntry<String, bool>(k, v)),
+        usuario: json["usuario"],
+        cancelada: json["anulada"] ?? false,
+      );
 
   Map<String, dynamic> toMap() => {
-        id: {
-          'fecha': fecha.toIso8601String(),
-          'peluquero': peluquero,
-          'servicios': Map.fromIterable(
-            servicios,
-            key: (servicio) => servicio,
-            value: (_) => true,
-          ),
-          'usuario': usuario,
-        },
+        "fecha": fecha,
+        "peluquero": peluquero,
+        "servicios":
+            Map.from(servicios).map((k, v) => MapEntry<String, dynamic>(k, v)),
+        "usuario": usuario,
+        "cancelada": cancelada,
       };
 }
