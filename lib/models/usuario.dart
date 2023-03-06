@@ -6,6 +6,7 @@ import 'dart:convert';
 
 class Usuario {
   Usuario({
+    this.id,
     required this.email,
     this.imagen,
     required this.nombre,
@@ -14,7 +15,7 @@ class Usuario {
     required this.verificado,
   });
 
-   String? id;
+  String? id;
   String email;
   String? imagen;
   String nombre;
@@ -25,7 +26,7 @@ class Usuario {
 
   factory Usuario.fromJson(String str) => Usuario.fromMap(json.decode(str));
 
-   String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toMap());
 
   factory Usuario.fromMap(Map<String, dynamic> json) => Usuario(
         email: json["email"],
@@ -34,7 +35,7 @@ class Usuario {
         password: json["password"],
         telefono: json["telefono"],
         verificado: json["verificado"],
-);
+      );
 
   Map<String, dynamic> toMap() => {
         "email": email,
@@ -43,5 +44,5 @@ class Usuario {
         "password": password,
         "telefono": telefono,
         "verificado": verificado,
-          };
+      };
 }
