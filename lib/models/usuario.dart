@@ -1,43 +1,47 @@
 // To parse this JSON data, do
 //
-//     final usuario = usuarioFromMap(jsonString);
+//     final producto = productoFromMap(jsonString);
 
 import 'dart:convert';
 
-class Reserva {
-  Reserva({
-    required this.fecha,
-    required this.peluquero,
-    required this.servicios,
-    required this.usuario,
-    this.anulada = false,
+class Usuario {
+  Usuario({
+    required this.email,
+    this.imagen,
+    required this.nombre,
+    required this.password,
+    required this.telefono,
+    required this.verificado,
   });
 
-  String fecha;
-  String peluquero;
-  Map<String, bool> servicios;
-  String usuario;
-  bool anulada;
+   String? id;
+  String email;
+  String? imagen;
+  String nombre;
+  String password;
+  int telefono;
+  bool verificado;
+  bool? terminos = false;
 
-  factory Reserva.fromJson(String str) => Reserva.fromMap(json.decode(str));
+  factory Usuario.fromJson(String str) => Usuario.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+   String toJson() => json.encode(toMap());
 
-  factory Reserva.fromMap(Map<String, dynamic> json) => Reserva(
-        fecha: json["fecha"],
-        peluquero: json["peluquero"],
-        servicios: Map.from(json["servicios"])
-            .map((k, v) => MapEntry<String, bool>(k, v)),
-        usuario: json["usuario"],
-        anulada: json["anulada"] ?? false,
-      );
+  factory Usuario.fromMap(Map<String, dynamic> json) => Usuario(
+        email: json["email"],
+        imagen: json["imagen"],
+        nombre: json["nombre"],
+        password: json["password"],
+        telefono: json["telefono"],
+        verificado: json["verificado"],
+);
 
   Map<String, dynamic> toMap() => {
-        "fecha": fecha,
-        "peluquero": peluquero,
-        "servicios":
-            Map.from(servicios).map((k, v) => MapEntry<String, dynamic>(k, v)),
-        "usuario": usuario,
-        "anulada": anulada,
-      };
+        "email": email,
+        "imagen": imagen,
+        "nombre": nombre,
+        "password": password,
+        "telefono": telefono,
+        "verificado": verificado,
+          };
 }
