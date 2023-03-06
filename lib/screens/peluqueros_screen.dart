@@ -14,6 +14,7 @@ class PeluquerosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
     final peluquerosServices = Provider.of<PeluquerosServices>(context);
+    final serviciosServices = Provider.of<ServiciosServices>(context);
 
     PageController pageController = PageController(viewportFraction: 0.75);
 
@@ -50,7 +51,7 @@ class PeluquerosScreen extends StatelessWidget {
                   itemCount: peluqueros.length,
                   itemBuilder: (context, index) {
                     Peluquero peluquero = peluqueros[index];
-                    return _buildPeluquerosCard(peluquero, peluquerosServices, context);
+                    return _buildPeluquerosCard(peluquero, peluquerosServices, serviciosServices, context);
                   }),
             ),
           ],
@@ -68,7 +69,7 @@ List<Peluquero> getPeluqueros(Peluqueria peluqueria){
   return peluqueros;
 }
 
-Widget _buildPeluquerosCard(Peluquero peluquero,PeluquerosServices peluquerosServices, context) {
+Widget _buildPeluquerosCard(Peluquero peluquero, PeluquerosServices peluquerosServices, ServiciosServices serviciosServices, context) {
   return Stack(
     children: [
       Align(
@@ -125,6 +126,7 @@ Widget _buildPeluquerosCard(Peluquero peluquero,PeluquerosServices peluquerosSer
                     alignment: Alignment.bottomRight,
                     onPressed: () {
                       peluquerosServices.peluqueroSeleccionado = peluquero;
+                      serviciosServices.deleteServiciosSeleccionados( peluquero );
                       Navigator.pushNamed(context, 'servicios');
                     },
                     color: AppTheme.primary,

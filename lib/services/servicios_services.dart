@@ -34,7 +34,7 @@ class ServiciosServices extends ChangeNotifier{
     return Servicios;
   }
 
-  updateAvailability ( bool value, Servicio servicio ){
+  updateServiciosSeleccionados ( bool value, Servicio servicio ){
     servicio.selected = value;
     if (servicio.selected!) {
       ServiciosSeleccionados.add(servicio);
@@ -42,11 +42,12 @@ class ServiciosServices extends ChangeNotifier{
       if (ServiciosSeleccionados.contains(servicio)) {
         ServiciosSeleccionados.remove(servicio);
       }
-    }
-    ServiciosSeleccionados.forEach((element) {print(element.nombre);});
-    
+    }    
     notifyListeners();
   }
 
-
+  deleteServiciosSeleccionados(Peluquero peluquero){
+    ServiciosSeleccionados.clear();
+    peluquero.servicios.forEach((key, value) {value.selected = false;});
+  }
 }

@@ -119,7 +119,7 @@ class ServiciosScreen extends StatelessWidget {
                                       alignment: Alignment.bottomRight,
                                       child: Checkbox(
                                         value: servicio.selected,
-                                        onChanged:  ((value) => (serviciosServices.updateAvailability(value!, servicio)))
+                                        onChanged:  ((value) => (serviciosServices.updateServiciosSeleccionados(value!, servicio)))
                                       ),
                                     )
                                   ),
@@ -206,6 +206,7 @@ List<Servicio> _getListServicios(Peluquero peluquero) {
     Servicio tempServicio = value;
     tempServicio.id = key;
     salida.add(tempServicio);
+    
   });
   return salida;
 }

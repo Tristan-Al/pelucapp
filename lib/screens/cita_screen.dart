@@ -42,6 +42,11 @@ class _CitaScreenState extends State<CitaScreen> {
 
     if (peluqueriasServices.isLoading) return LoadingScreen();
 
+    List<Novedad> novedades =[
+      Novedad(titulo: 'Regalos', descripcion: 'Reciba descuentos exclusivos en las marcas mas populares del momento', imagen: 'https://picsum.photos/500/300'),
+      Novedad(titulo: 'Youtube', descripcion: 'youtube.com/PelucApp', imagen: 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png'),
+      Novedad(titulo: 'Instagram', descripcion: 'instagram.com/PelucApp', imagen: 'https://as01.epimg.net/meristation/imagenes/2022/04/13/betech/1649871138_326571_1649871350_noticia_normal_recorte1.jpg')
+    ];
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -56,9 +61,9 @@ class _CitaScreenState extends State<CitaScreen> {
             height: 300,
             child: PageView.builder(
             controller: pageController,
-            itemCount: 5,
+            itemCount: novedades.length,
             itemBuilder: (context, index) {
-              return _buildNovedadesItem(index);
+              return _buildNovedadesItem(index, novedades[index]);
             }
             ),
           ),
@@ -66,7 +71,7 @@ class _CitaScreenState extends State<CitaScreen> {
           SizedBox(height: 10,),
 
           new DotsIndicator(
-            dotsCount: 5,
+            dotsCount: novedades.length,
             position: _currPageValue,
             decorator: DotsDecorator(
               activeColor: AppTheme.secondary,
@@ -93,7 +98,7 @@ class _CitaScreenState extends State<CitaScreen> {
   }
 
 
-  Widget _buildNovedadesItem(int index) {
+  Widget _buildNovedadesItem(int index, Novedad novedad) {
     Matrix4 matrix = Matrix4.identity();
     if (index == _currPageValue.floor()) {
       
@@ -130,8 +135,8 @@ class _CitaScreenState extends State<CitaScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: Colors.black,
-              image: const DecorationImage(
-                  image: NetworkImage('https://picsum.photos/500/300'),
+              image: DecorationImage(
+                  image: NetworkImage(novedad.imagen),
                   opacity: 0.4,
                   fit: BoxFit.cover),
             ),
@@ -146,14 +151,14 @@ class _CitaScreenState extends State<CitaScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BigText(
-                    text: "Regalos",
+                    text: novedad.titulo,
                     color: AppTheme.secondaryTextColor
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   SmallText(
-                    text: 'Reciba descuentos exclusivos en las marcas mas populares del momento',
+                    text: novedad.descripcion?? "",
                     color: AppTheme.secondaryTextColor,
                   ),
                 ],
@@ -243,4 +248,13 @@ class _PeluqueriasListView extends StatelessWidget {
       );
     });
   }
+}
+
+class Novedad {
+  final String titulo;
+  final String? descripcion;
+  final String imagen;
+
+  Novedad({required this.titulo, this.descripcion, required this.imagen});
+
 }
