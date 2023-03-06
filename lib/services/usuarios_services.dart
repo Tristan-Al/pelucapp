@@ -70,13 +70,15 @@ class UsuariosServices extends ChangeNotifier {
   Future guardarOCrearUsuario(Usuario usuario) async {
     isSaving = true;
     notifyListeners();
-
+    print(usuario.id);
     if (usuario.id == null) {
       // Crear
       await this.crearUsuario(usuario);
+      print('creando');
     } else {
       // Actualizar
       await this.updateUsuario(usuario);
+      print('updateando');
     }
 
     isSaving = false;
