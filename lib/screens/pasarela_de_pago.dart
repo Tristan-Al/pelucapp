@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pelucapp/models/models.dart';
 import 'package:pelucapp/screens/screens.dart';
-import 'package:pelucapp/services/reservas_services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/form_credit_card_cvv.dart';
 import 'package:pelucapp/widgets/form_credit_card_date.dart';
 import 'package:pelucapp/widgets/form_credit_card_number.dart';
 import 'package:pelucapp/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
 class PasarelaDePagoScreen extends StatelessWidget {
   const PasarelaDePagoScreen({Key? key}) : super(key: key);
@@ -15,9 +12,6 @@ class PasarelaDePagoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myFormKey = GlobalKey<FormState>();
-    Reserva reserva = ModalRoute.of(context)!.settings.arguments as Reserva;
-
-    final reservaServices = Provider.of<ReservaServices>(context);
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -109,9 +103,7 @@ class PasarelaDePagoScreen extends StatelessWidget {
                   print('Credenciales incorrectas');
                   return;
                 } else {
-                  reserva.pago = "Tarjeta";
-                  reservaServices.create(reserva);
-                  Navigator.pushNamed(context, 'home');
+                  Navigator.pushNamed(context, 'mis_reservas');
                 }
               },
               child: const Text('Pagar', style: TextStyle(fontSize: 20)),

@@ -66,6 +66,8 @@ class _MisReservasScreen extends State<MisReservasScreen> {
 
     List<Reserva> reservas = obtenerReservasUsuario(usuario.id.toString());
 
+    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+
     return Scaffold(
       body: ListView.builder(
         itemCount: reservas.length /*peluqueriasServices.peluquerias.length*/,
@@ -172,7 +174,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
             text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
             color: isExpanded ? Colors.green : Colors.red,
           ),*/
-      ),
-    );
-  }
+        ),
+      );
+}
 }

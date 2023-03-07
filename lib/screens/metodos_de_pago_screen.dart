@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pelucapp/models/models.dart';
-import 'package:pelucapp/models/reserva.dart';
 import 'package:pelucapp/screens/screens.dart';
-import 'package:pelucapp/services/reservas_services.dart';
-import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
 class MetodosDePagoScreen extends StatelessWidget {
   const MetodosDePagoScreen({Key? key}) : super(key: key);
@@ -17,28 +12,6 @@ class MetodosDePagoScreen extends StatelessWidget {
     ResumenArgs resumen =
         ModalRoute.of(context)!.settings.arguments as ResumenArgs;
     final double radius = 20;
-
-    final reservaServices = Provider.of<ReservaServices>(context);
-
-    final usuariosServices = Provider.of<UsuariosServices>(context);
-    final Usuario usuario = usuariosServices.usuarioLogin!;
-
-    Map<String, bool> hacerMapaDeServicios(List<Servicio> servicios) {
-      return Map.fromIterable(
-        servicios,
-        key: (servicio) => servicio.id,
-        value: (_) => true,
-      );
-    }
-
-    Reserva reserva = new Reserva(
-        fecha: resumen.hora.toString(),
-        pago: "",
-        peluquero: resumen.peluquero.id!,
-        peluqueria: resumen.peluqueria.nif!,
-        servicios: hacerMapaDeServicios(resumen.servicios),
-        usuario: usuario.id!);
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -75,8 +48,6 @@ class MetodosDePagoScreen extends StatelessWidget {
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    reserva.pago = "Bizum";
-                                    reservaServices.create(reserva);
                                     Navigator.pushNamed(context, 'home');
                                   },
                                   child: const Text('OK'),
@@ -100,7 +71,7 @@ class MetodosDePagoScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(radius),
                 child: GestureDetector(
                   onTap: () => Navigator.pushNamed(context, 'pasarela_de_pago',
-                      arguments: reserva),
+                      arguments: resumen),
                   child: buildImage(
                     'https://imagenes.lainformacion.com/files/twitter_thumbnail/uploads/imagenes/2022/04/29/tarjetas-de-credito.jpeg',
                   ),
@@ -128,8 +99,6 @@ class MetodosDePagoScreen extends StatelessWidget {
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    reserva.pago = "Efectivo";
-                                    reservaServices.create(reserva);
                                     Navigator.pushNamed(context, 'home');
                                     //seleccionado = true;
                                   },
