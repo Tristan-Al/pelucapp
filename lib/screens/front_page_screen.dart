@@ -50,6 +50,7 @@ class FrontPageScreen extends StatelessWidget {
                 usuario = Usuario(
                   email: '',
                   nombre: '',
+                  genero: '',
                   password: '',
                   telefono: 0,
                   verificado: true,
