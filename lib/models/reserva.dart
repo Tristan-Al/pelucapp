@@ -41,6 +41,7 @@ class Reserva {
   Map<String, dynamic> toMap() => {
         'fecha': fecha,
         'pago': pago,
+        'peluqueria': peluqueria,
         'peluquero': peluquero,
         'servicios':
             Map.from(servicios).map((k, v) => MapEntry<String, dynamic>(k, v)),

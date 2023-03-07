@@ -69,50 +69,63 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     return Scaffold(
       body: ListView.builder(
         itemCount: reservas.length /*peluqueriasServices.peluquerias.length*/,
-        itemBuilder: (BuildContext context, int index) => GestureDetector(
-          onTap: () {
-            //Navigator.pushNamed(context, 'product');
-          },
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius),
-              side: BorderSide(color: Colors.black, width: 2),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(radius),
-              child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    buildImage(),
-                    buildText(context, reservas[index]),
-                  ],
+        itemBuilder: (BuildContext context, int index) {
+          final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+          Peluqueria peluqueria = peluqueriasServices.peluquerias.firstWhere(
+              (peluqueria) => peluqueria.nif == reservas[index].peluqueria);
+
+          return GestureDetector(
+            onTap: () {
+              //Navigator.pushNamed(context, 'product');
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius),
+                side: BorderSide(color: Colors.black, width: 2),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(radius),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      buildImage(peluqueria.imagen!),
+                      buildText(context, reservas[index]),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
-  Widget buildImage() => Image.network(
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80',
+  Widget buildImage(String url) => Image.network(
+        url,
         fit: BoxFit.cover,
         width: double.infinity,
-        height: 100,
       );
 
   Widget buildText(BuildContext context, Reserva reserva) {
-    /*final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+    final ReservaServices reservaServices =
+        Provider.of<ReservaServices>(context);
+    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
     final serviciosServices = Provider.of<ServiciosServices>(context);
     print(
         'nif de peluqueria: ${peluqueriasServices.peluquerias[1].nif}, nif de reserva: ${reserva.peluqueria}}');
     Peluqueria peluqueriaCita = peluqueriasServices.peluquerias
         .firstWhere((peluqueria) => peluqueria.nif == reserva.peluqueria);
     print('DATOSPELUQUERO: ${peluqueriaCita.peluqueros.toString()}');
-    Peluquero peluqueroCita = peluqueriaCita.peluqueros.values
-        .firstWhere((peluquero) => peluquero.id == reserva.peluquero);
+    Peluquero peluqueroCita = peluqueriaCita.peluqueros.values.firstWhere(
+        (peluquero) => peluquero.id == reserva.peluquero,
+        orElse: () => new Peluquero(
+            atiende: 'Default',
+            horario: new Map(),
+            nombre: 'peluquero no encontrado',
+            servicios: new Map(),
+            telefono: 0));
     List<Servicio> serviciosCita = serviciosServices.Servicios.where(
             (servicio) => reserva.servicios.keys.toList().contains(servicio.id))
         .toList();
@@ -127,7 +140,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
 
     int sumaTiempo = serviciosCita.fold<int>(
         0, (previousValue, servicio) => previousValue + servicio.tiempo);
-*/
+
     return Theme(
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
@@ -135,20 +148,21 @@ class _MisReservasScreen extends State<MisReservasScreen> {
         initiallyExpanded: isExpanded,
         childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
         title: Text(
-          'Nombre peluqueria',
+          '${peluqueriaCita.nombre}',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
         children: [
-          /*Text('Peluquería:  ${peluqueriaCita.nombre}'),
+          Text('Peluquería:  ${peluqueriaCita.nombre}'),
           Text('Peluquero: ${peluqueroCita.nombre}'),
           Text('Dirección: ${peluqueriaCita.direccion}'),
           Text('Fecha: ${reserva.fecha.toString()}'),
           Text('Servicios: ${nombresServicios.toString()}'),
           Text('Coste total: ${sumaPrecios}'),
-          Text('Tiempo total: ${sumaTiempo}'),*/
+          Text('Tiempo total: ${sumaTiempo}'),
           ElevatedButton(
               onPressed: () {
-                print('hola');
+                reservaServices.cancelarReserva(reserva);
+                setState(() {});
                 //seleccionado = true;
               },
               child: Text('Cancelar')),
