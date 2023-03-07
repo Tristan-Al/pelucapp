@@ -162,7 +162,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
           ElevatedButton(
               onPressed: () {
                 reservaServices.cancelarReserva(reserva);
-                setState(() {});
+                Navigator.pushNamed(context, 'home');
                 //seleccionado = true;
               },
               child: Text('Cancelar')),
