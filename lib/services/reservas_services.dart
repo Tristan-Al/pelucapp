@@ -37,4 +37,34 @@ class ReservaServices extends ChangeNotifier {
       reservas.add(tempReserva);
     });
   }
+
+  Future create(Reserva reserva) async {
+    final url = Uri.https(_baseURL, 'reserva.json');
+    await http.post(url, body: reserva.toJson());
+
+    reservas.add(reserva);
+  }
+
+  Future update(Reserva reserva) async {
+    final url = Uri.https(_baseURL, 'usuarios/${reserva.id}.json');
+    final resp = await http.put(url, body: reserva.toJson());
+    final decodedData = resp.body;
+  }
+
+  Future guardarOCrearUsuario(Reserva reserva) async {
+    if (reserva.id == null) {
+      // Crear
+      await this.create(reserva);
+    } else {
+      // Actualizar
+      await this.update(reserva);
+    }
+  }
+
+  Future cancelarReserva(Reserva reserva) async {
+    reserva.cancelada = true;
+    update(reserva);
+
+    //cambio la hora a true en el peluquero TODO
+  }
 }

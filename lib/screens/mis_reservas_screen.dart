@@ -66,8 +66,6 @@ class _MisReservasScreen extends State<MisReservasScreen> {
 
     List<Reserva> reservas = obtenerReservasUsuario(usuario.id.toString());
 
-    final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
-
     return Scaffold(
       body: ListView.builder(
         itemCount: reservas.length /*peluqueriasServices.peluquerias.length*/,
@@ -87,7 +85,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
                 child: Column(
                   children: [
                     buildImage(),
-                    buildText(context, index),
+                    buildText(context, reservas[index]),
                   ],
                 ),
               ),
@@ -105,35 +103,62 @@ class _MisReservasScreen extends State<MisReservasScreen> {
         height: 100,
       );
 
-  Widget buildText(BuildContext context, index) => Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          key: keyTile,
-          initiallyExpanded: isExpanded,
-          childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
-          title: Text(
-            'Nombre peluqueria',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-          ),
-          children: [
-            Text('data: ${index}'),
-            Text('data: ${index}'),
-            Text('data: ${index}'),
-            Text('data: ${index}'),
-            Text('data: ${index}'),
-            Text('data: ${index}'),
-            ElevatedButton(
-                onPressed: () {
-                  print('hola');
-                  //seleccionado = true;
-                },
-                child: Text('Cancelar')),
-          ],
-          /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
+  Widget buildText(BuildContext context, Reserva reserva) {
+    /*final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
+    final serviciosServices = Provider.of<ServiciosServices>(context);
+    print(
+        'nif de peluqueria: ${peluqueriasServices.peluquerias[1].nif}, nif de reserva: ${reserva.peluqueria}}');
+    Peluqueria peluqueriaCita = peluqueriasServices.peluquerias
+        .firstWhere((peluqueria) => peluqueria.nif == reserva.peluqueria);
+    print('DATOSPELUQUERO: ${peluqueriaCita.peluqueros.toString()}');
+    Peluquero peluqueroCita = peluqueriaCita.peluqueros.values
+        .firstWhere((peluquero) => peluquero.id == reserva.peluquero);
+    List<Servicio> serviciosCita = serviciosServices.Servicios.where(
+            (servicio) => reserva.servicios.keys.toList().contains(servicio.id))
+        .toList();
+    List<String> nombresServicios = serviciosCita.map((s) => s.nombre).toList();
+
+    List<Servicio> filterServicios(List<Servicio> servicios, List<String> ids) {
+      return servicios.where((servicio) => ids.contains(servicio.id)).toList();
+    }
+
+    double sumaPrecios =
+        serviciosCita.fold(0, (total, servicio) => total + servicio.precio);
+
+    int sumaTiempo = serviciosCita.fold<int>(
+        0, (previousValue, servicio) => previousValue + servicio.tiempo);
+*/
+    return Theme(
+      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      child: ExpansionTile(
+        key: keyTile,
+        initiallyExpanded: isExpanded,
+        childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
+        title: Text(
+          'Nombre peluqueria',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+        ),
+        children: [
+          /*Text('Peluquería:  ${peluqueriaCita.nombre}'),
+          Text('Peluquero: ${peluqueroCita.nombre}'),
+          Text('Dirección: ${peluqueriaCita.direccion}'),
+          Text('Fecha: ${reserva.fecha.toString()}'),
+          Text('Servicios: ${nombresServicios.toString()}'),
+          Text('Coste total: ${sumaPrecios}'),
+          Text('Tiempo total: ${sumaTiempo}'),*/
+          ElevatedButton(
+              onPressed: () {
+                print('hola');
+                //seleccionado = true;
+              },
+              child: Text('Cancelar')),
+        ],
+        /*onExpansionChanged: (isExpanded) => Utils.showSnackBar(
             context,
             text: isExpanded ? 'Expand Tile' : 'Shrink Tile',
             color: isExpanded ? Colors.green : Colors.red,
           ),*/
-        ),
-      );
+      ),
+    );
+  }
 }
