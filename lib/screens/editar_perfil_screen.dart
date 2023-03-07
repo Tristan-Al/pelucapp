@@ -133,6 +133,7 @@ class _EditarPerfilScreenBody extends StatelessWidget {
 
                   await usuariosServices
                       .guardarOCrearUsuario(usuarioForm.usuario!);
+                  Navigator.pushNamed(context, 'home');
                 },
                 child: const Text('Guardar cambios usuario',
                     style: TextStyle(fontSize: 20)),
