@@ -19,12 +19,22 @@ class ReservaServices extends ChangeNotifier {
     final url = Uri.https(_baseURL, 'reserva.json');
     final resp = await http.get(url);
 
+    print("hola, he pasado del await");
+    print(resp.body);
+
     final Map<String, dynamic> reservaMap = json.decode(resp.body);
 
     reservaMap.forEach((key, value) {
       final tempReserva = Reserva.fromMap(value);
-      //tempReserva.id = key;
-      this.reservas.add(tempReserva);
+      tempReserva.id = key;
+      print('listo reserva:');
+      print('id: ${tempReserva.id}, fecha:${tempReserva.fecha}');
+      print('pago: ${tempReserva.pago}, peluqueria:${tempReserva.peluqueria}');
+      print(
+          'peluquero: ${tempReserva.peluquero}, usuario:${tempReserva.usuario}');
+      print(
+          'servicios: ${tempReserva.servicios.toString()}, cancelada: ${tempReserva.cancelada}');
+      reservas.add(tempReserva);
     });
   }
 }

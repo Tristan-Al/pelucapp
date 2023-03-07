@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:pelucapp/models/models.dart';
 import 'package:pelucapp/models/usuario.dart';
 import 'package:pelucapp/screens/screens.dart';
@@ -49,11 +50,11 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     final ReservaServices reservaServices =
         Provider.of<ReservaServices>(context);
 
-    List<Reserva> obtenerReservasUsuario(String usuario) {
-      List<Reserva> reservas = ReservaServices().reservas;
+    List<Reserva> obtenerReservasUsuario(String usuario_id) {
+      List<Reserva> reservas = reservaServices.reservas;
       List<Reserva> reservasUsuario = [];
       for (var reserva in reservas) {
-        if (reserva.usuario == usuario) {
+        if (reserva.usuario == usuario_id && !reserva.cancelada) {
           reservasUsuario.add(reserva);
         }
       }
@@ -63,7 +64,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     final usuariosServices = Provider.of<UsuariosServices>(context);
     final Usuario usuario = usuariosServices.usuarioLogin!;
 
-    List<Reserva> reservas = obtenerReservasUsuario(usuario.nombre);
+    List<Reserva> reservas = obtenerReservasUsuario(usuario.id.toString());
 
     final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
 

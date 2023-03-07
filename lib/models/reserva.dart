@@ -14,7 +14,7 @@ class Reserva {
     required this.usuario,
     this.cancelada = false,
   });
-
+  String? id;
   String fecha;
   String pago;
   String peluquero;
@@ -28,22 +28,22 @@ class Reserva {
   String toJson() => json.encode(toMap());
 
   factory Reserva.fromMap(Map<String, dynamic> json) => Reserva(
-        fecha: json["fecha"],
+        fecha: json['fecha'],
         pago: json['pago'],
-        peluquero: json["peluquero"],
+        peluquero: json['peluquero'],
         peluqueria: json['peluqueria'],
-        servicios: Map.from(json["servicios"])
+        servicios: Map.from(json['servicios'])
             .map((k, v) => MapEntry<String, bool>(k, v)),
-        usuario: json["usuario"],
-        cancelada: json["anulada"] ?? false,
+        usuario: json['usuario'],
+        cancelada: json['cancelada'],
       );
 
   Map<String, dynamic> toMap() => {
-        "fecha": fecha,
-        "peluquero": peluquero,
-        "servicios":
+        'fecha': fecha,
+        'peluquero': peluquero,
+        'servicios':
             Map.from(servicios).map((k, v) => MapEntry<String, dynamic>(k, v)),
-        "usuario": usuario,
-        "cancelada": cancelada,
+        'usuario': usuario,
+        'cancelada': cancelada,
       };
 }
