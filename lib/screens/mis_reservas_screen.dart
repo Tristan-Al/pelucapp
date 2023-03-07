@@ -121,9 +121,9 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     Peluquero peluqueroCita = peluqueriaCita.peluqueros.values.firstWhere(
         (peluquero) => peluquero.id == reserva.peluquero,
         orElse: () => new Peluquero(
-            atiende: 'a',
+            atiende: 'Default',
             horario: new Map(),
-            nombre: 'a',
+            nombre: 'peluquero no encontrado',
             servicios: new Map(),
             telefono: 0));
     List<Servicio> serviciosCita = serviciosServices.Servicios.where(
@@ -148,7 +148,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
         initiallyExpanded: isExpanded,
         childrenPadding: EdgeInsets.all(16).copyWith(top: 0),
         title: Text(
-          'Nombre peluqueria',
+          '${peluqueriaCita.nombre}',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
         children: [
