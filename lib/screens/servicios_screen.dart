@@ -13,11 +13,12 @@ class ServiciosScreen extends StatelessWidget {
     //final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
     final peluquerosServices = Provider.of<PeluquerosServices>(context);
     final serviciosServices = Provider.of<ServiciosServices>(context);
+    final usuariosServices = Provider.of<UsuariosServices>(context);
 
     //final peluqueria = peluqueriasServices.peluqueriaSeleccionada!;
     final peluquero = peluquerosServices.peluqueroSeleccionado!;
-    
-    List<Servicio> serviciosDisponibles = _getListServicios(peluquero);
+    final usuario = usuariosServices.usuarioLogin;
+    List<Servicio> serviciosDisponibles = _getListServicios(peluquero, usuario!);
 
     PageController pageController = PageController(viewportFraction: 0.75);
 
@@ -200,13 +201,27 @@ class ServiciosScreen extends StatelessWidget {
   }
 }
 
-List<Servicio> _getListServicios(Peluquero peluquero) {
+List<Servicio> _getListServicios(Peluquero peluquero, Usuario usuario) {
   List<Servicio> salida = [];
   peluquero.servicios.forEach((key, value) {
     Servicio tempServicio = value;
     tempServicio.id = key;
-    salida.add(tempServicio);
-    
+    String servicioDestinado = tempServicio.destinado;
+    String generoUsuario = usuario.genero;
+    print('Servicio destinado = ${servicioDestinado}, Genero usuario = ${generoUsuario}, iguales = ${generoUsuario == servicioDestinado}');  
+    if (servicioDestinado == generoUsuario) {
+      salida.add(tempServicio);
+    }
+  });
+  peluquero.servicios.forEach((key, value) {
+    Servicio tempServicio = value;
+    tempServicio.id = key;
+    String servicioDestinado = tempServicio.destinado;
+    String generoUsuario = usuario.genero;
+    print('Servicio destinado = ${servicioDestinado}, Genero usuario = ${generoUsuario}, iguales = ${generoUsuario == servicioDestinado}');  
+    if (servicioDestinado != generoUsuario) {
+      salida.add(tempServicio);
+    }
   });
   return salida;
 }
