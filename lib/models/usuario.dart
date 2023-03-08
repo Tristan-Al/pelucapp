@@ -17,7 +17,6 @@ class Usuario {
     this.saldo,
   });
 
-  double? saldo;
   String? id;
   String email;
   String genero;

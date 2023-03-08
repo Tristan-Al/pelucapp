@@ -72,7 +72,13 @@ class _MisReservasScreen extends State<MisReservasScreen> {
         itemBuilder: (BuildContext context, int index) {
           final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
           Peluqueria peluqueria = peluqueriasServices.peluquerias.firstWhere(
-              (peluqueria) => peluqueria.nif == reservas[index].peluqueria);
+              (peluqueria) => peluqueria.nif == reservas[index].peluqueria,
+              orElse: () => new Peluqueria(
+                  direccion: "calle no encontrada",
+                  nombre: "Peluqueria por defecto",
+                  telefono: 658453326,
+                  imagen: "imagenNoEncontrada",
+                  peluqueros: <String, Peluquero>{}));
 
           return GestureDetector(
             onTap: () {
@@ -114,15 +120,17 @@ class _MisReservasScreen extends State<MisReservasScreen> {
     final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
     final serviciosServices = Provider.of<ServiciosServices>(context);
     final usuariosServices = Provider.of<UsuariosServices>(context);
-    print(
-        'nif de peluqueria: ${peluqueriasServices.peluquerias[1].nif}, nif de reserva: ${reserva.peluqueria}}');
+    final peluqueroServices = Provider.of<PeluquerosServices>(context);
+
+    /*print(
+        'nif de peluqueria: ${peluqueriasServices.peluquerias[1].nif}, nif de reserva: ${reserva.peluqueria}}');*/
     Peluqueria peluqueriaCita = peluqueriasServices.peluquerias
         .firstWhere((peluqueria) => peluqueria.nif == reserva.peluqueria);
     print('DATOSPELUQUERO: ${peluqueriaCita.peluqueros.toString()}');
-    Peluquero peluqueroCita = peluqueriaCita.peluqueros.values.firstWhere(
+    Peluquero peluqueroCita = peluqueroServices.peluqueros.firstWhere(
         (peluquero) => peluquero.id == reserva.peluquero,
         orElse: () => new Peluquero(
-            atiende: 'Default',
+            atiende: 'Ambos',
             horario: new Map(),
             nombre: 'peluquero no encontrado',
             servicios: new Map(),

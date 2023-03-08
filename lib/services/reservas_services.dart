@@ -16,6 +16,9 @@ class ReservaServices extends ChangeNotifier {
   }
 
   Future loadReserva() async {
+    isLoading = true;
+    notifyListeners();
+
     final url = Uri.https(_baseURL, 'reserva.json');
     final resp = await http.get(url);
 
@@ -36,6 +39,8 @@ class ReservaServices extends ChangeNotifier {
           'servicios: ${tempReserva.servicios.toString()}, cancelada: ${tempReserva.cancelada}');
       reservas.add(tempReserva);
     });
+    isLoading = false;
+    notifyListeners();
   }
 
   Future create(Reserva reserva) async {

@@ -23,7 +23,7 @@ class Reserva {
   Map<String, bool> servicios;
   String usuario;
   bool cancelada;
-  String? codigoBizum = "Sin código";
+  String? codigoBizum = 'Sin código';
 
   factory Reserva.fromJson(String str) => Reserva.fromMap(json.decode(str));
 
@@ -32,7 +32,7 @@ class Reserva {
   factory Reserva.fromMap(Map<String, dynamic> json) => Reserva(
         fecha: json['fecha'],
         pago: json['pago'],
-        codigoBizum: json['codigoBizum'],
+        codigoBizum: json['CodigoBizum'],
         peluquero: json['peluquero'],
         peluqueria: json['peluqueria'],
         servicios: Map.from(json['servicios'])
