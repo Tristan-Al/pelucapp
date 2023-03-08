@@ -5,6 +5,7 @@ import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class EditarPerfilScreen extends StatelessWidget {
   const EditarPerfilScreen({Key? key}) : super(key: key);
@@ -19,7 +20,8 @@ class EditarPerfilScreen extends StatelessWidget {
       'telefono': '${usuariosServices.usuarioLogin?.telefono}',
       'email': '${usuariosServices.usuarioLogin?.email}',
       'password': '${usuariosServices.usuarioLogin?.password}',
-      'confirmacion': '${usuariosServices.usuarioLogin?.password}'
+      'confirmacion': '${usuariosServices.usuarioLogin?.password}',
+      'genero': '${usuariosServices.usuarioLogin?.genero}'
     };
 
     return ChangeNotifierProvider(
@@ -43,7 +45,10 @@ class _EditarPerfilScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final usuarioForm = Provider.of<UsuarioFormProvider>(context);
+    int genre = 0;
+
     return Scaffold(
+      /*
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -57,6 +62,7 @@ class _EditarPerfilScreenBody extends StatelessWidget {
           size: 25,
         ),
       ),
+      */
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -87,6 +93,29 @@ class _EditarPerfilScreenBody extends StatelessWidget {
               formProperty: 'email',
               formValues: formValues,
             ),
+            const SizedBox(width: 20, height: 20),
+            ToggleSwitch(
+              minWidth: 90.0,
+              initialLabelIndex: checkGenero(),
+              cornerRadius: 20.0,
+              activeFgColor: Colors.white,
+              inactiveBgColor: Colors.grey,
+              inactiveFgColor: Colors.white,
+              totalSwitches: 2,
+              labels: ['Male', 'Female'],
+              icons: [Icons.male, Icons.female],
+              activeBgColors: [
+                [Colors.blue],
+                [Colors.purple]
+              ],
+              onToggle: (index) {
+                if (index == 0) {
+                  formValues['genero'] = 'hombre';
+                } else {
+                  formValues['genero'] = 'mujer';
+                }
+              },
+            ),
             const SizedBox(height: 20),
             FormFieldPers(
               value: usuariosServices.usuarioLogin?.telefono.toString(),
@@ -107,16 +136,6 @@ class _EditarPerfilScreenBody extends StatelessWidget {
               formProperty: 'password',
               formValues: formValues,
             ),
-            const SizedBox(height: 20),
-            FormFieldPers(
-              value: '',
-              ocultar: true,
-              keyboardType: TextInputType.text,
-              hintText: 'Confirma contraseña',
-              icon: Icons.key,
-              formProperty: 'confirmacion',
-              formValues: formValues,
-            ),
             const SizedBox(height: 50),
             Container(
               padding: const EdgeInsets.only(left: 20, right: 20),
@@ -130,18 +149,28 @@ class _EditarPerfilScreenBody extends StatelessWidget {
                       int.parse(formValues['telefono'] ?? '000000000');
                   usuarioForm.usuario?.password = formValues['password']!;
                   usuarioForm.usuario?.verificado = true;
+                  usuarioForm.usuario?.genero = formValues['genero']!;
 
                   await usuariosServices
                       .guardarOCrearUsuario(usuarioForm.usuario!);
+                  Navigator.pushNamed(context, 'home');
                 },
                 child: const Text('Guardar cambios usuario',
                     style: TextStyle(fontSize: 20)),
               ),
             ),
-            const SizedBox(height: 50)
+            const SizedBox(height: 100)
           ]),
         ),
       ),
     );
+  }
+
+  int checkGenero() {
+    int generoUsuario = 1;
+    if (usuariosServices.usuarioLogin?.genero == "hombre") {
+      generoUsuario = 0;
+    }
+    return generoUsuario;
   }
 }

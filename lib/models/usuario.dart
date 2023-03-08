@@ -8,6 +8,7 @@ class Usuario {
   Usuario({
     this.id,
     required this.email,
+    required this.genero,
     this.imagen,
     required this.nombre,
     required this.password,
@@ -16,8 +17,10 @@ class Usuario {
     this.saldo,
   });
 
+  double? saldo;
   String? id;
   String email;
+  String genero;
   String? imagen;
   String nombre;
   String password;
@@ -33,6 +36,7 @@ class Usuario {
   factory Usuario.fromMap(Map<String, dynamic> json) => Usuario(
         email: json["email"],
         imagen: json["imagen"],
+        genero: json["genero"],
         nombre: json["nombre"],
         password: json["password"],
         telefono: json["telefono"],
@@ -43,6 +47,7 @@ class Usuario {
   Map<String, dynamic> toMap() => {
         "email": email,
         "imagen": imagen,
+        "genero": genero,
         "nombre": nombre,
         "password": password,
         "telefono": telefono,

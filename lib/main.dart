@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
         'metodos_de_pago': (context) => MetodosDePagoScreen(),
         'pasarela_de_pago': (context) => PasarelaDePagoScreen(),
         'loading': (context) => LoadingScreen(),
+        'privacidad': (context) => PrivacidadScreen(),
       },
     );
   }

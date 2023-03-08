@@ -4,6 +4,7 @@ import 'package:pelucapp/providers/usuario_form_provider.dart';
 import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -29,14 +30,15 @@ class RegisterScreenBody extends StatefulWidget {
       _RegisterScreenState(usuariosServices);
 }
 
-bool _checkedP = false;
+//bool _checkedP = false;
 bool _termChecked = false;
 final Map<String, String> formValues = {
   'nombreusuario': '',
   'telefono': '',
   'email': '',
   'password': '',
-  'confirmacion': ''
+  'confirmacion': '',
+  'genero': '',
 };
 
 class _RegisterScreenState extends State<RegisterScreenBody> {
@@ -47,12 +49,6 @@ class _RegisterScreenState extends State<RegisterScreenBody> {
   @override
   Widget build(BuildContext context) {
     final usuarioForm = Provider.of<UsuarioFormProvider>(context);
-
-    String formProperty = "";
-    String pass = "";
-    String passCon = "";
-    final myFormKey = GlobalKey<FormState>();
-
     return Scaffold(
         body: SingleChildScrollView(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -108,6 +104,41 @@ class _RegisterScreenState extends State<RegisterScreenBody> {
             formValues: formValues,
           ),
           const SizedBox(width: 20, height: 20),
+          /*
+          FormFieldPers(
+            value: formValues['genero'],
+            ocultar: false,
+            keyboardType: TextInputType.text,
+            hintText: 'Género',
+            icon: Icons.person_outlined,
+            formProperty: 'genero',
+            formValues: formValues,
+          ),        
+          const SizedBox(width: 20, height: 20),
+          */
+          ToggleSwitch(
+            minWidth: 90.0,
+            initialLabelIndex: 1,
+            cornerRadius: 20.0,
+            activeFgColor: Colors.white,
+            inactiveBgColor: Colors.grey,
+            inactiveFgColor: Colors.white,
+            totalSwitches: 2,
+            labels: ['Male', 'Female'],
+            icons: [Icons.male, Icons.female],
+            activeBgColors: [
+              [Colors.blue],
+              [Colors.pink]
+            ],
+            onToggle: (index) {
+              if (index == 0) {
+                formValues['genero'] = 'hombre';
+              } else {
+                formValues['genero'] = 'mujer';
+              }
+            },
+          ),
+          const SizedBox(width: 20, height: 20),
           FormFieldPers(
             value: formValues['password'],
             ocultar: true,
@@ -149,6 +180,7 @@ class _RegisterScreenState extends State<RegisterScreenBody> {
             onChanged: (value) {
               setState(() {
                 _termChecked = value!;
+                Navigator.pushNamed(context, 'privacidad');
               });
             },
           ),
@@ -162,12 +194,13 @@ class _RegisterScreenState extends State<RegisterScreenBody> {
                       usuarioForm.usuario = Usuario(
                         nombre: formValues['nombreusuario']!,
                         email: formValues['email']!,
+                        genero: formValues['genero']!,
                         telefono:
                             int.parse(formValues['telefono'] ?? '000000000'),
                         password: formValues['password']!,
                         verificado: true,
                       );
-                      print(usuarioForm.usuario);
+                      //print(usuarioForm.usuario);
                       await usuariosServices
                           .guardarOCrearUsuario(usuarioForm.usuario!);
                       Navigator.pushNamed(context, 'login');

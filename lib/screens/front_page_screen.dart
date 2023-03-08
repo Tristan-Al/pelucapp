@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pelucapp/models/models.dart';
-import 'package:pelucapp/screens/screens.dart';
 import 'package:pelucapp/services/services.dart';
 import 'package:pelucapp/theme/app_theme.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +49,7 @@ class FrontPageScreen extends StatelessWidget {
                 usuario = Usuario(
                   email: '',
                   nombre: '',
+                  genero: '',
                   password: '',
                   telefono: 0,
                   verificado: true,
