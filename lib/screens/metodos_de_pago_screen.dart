@@ -76,7 +76,11 @@ class MetodosDePagoScreen extends StatelessWidget {
                                 TextButton(
                                   onPressed: () {
                                     reserva.pago = "Bizum";
+                                    reserva.codigoBizum =
+                                        generarCodigo(resumen);
+
                                     reservaServices.create(reserva);
+                                    reservaServices.reservas.add(reserva);
                                     Navigator.pushNamed(context, 'home');
                                   },
                                   child: const Text('OK'),
@@ -130,6 +134,7 @@ class MetodosDePagoScreen extends StatelessWidget {
                                   onPressed: () {
                                     reserva.pago = "Efectivo";
                                     reservaServices.create(reserva);
+                                    reservaServices.reservas.add(reserva);
                                     Navigator.pushNamed(context, 'home');
                                     //seleccionado = true;
                                   },

@@ -113,6 +113,7 @@ class _MisReservasScreen extends State<MisReservasScreen> {
         Provider.of<ReservaServices>(context);
     final peluqueriasServices = Provider.of<PeluqueriasServices>(context);
     final serviciosServices = Provider.of<ServiciosServices>(context);
+    final usuariosServices = Provider.of<UsuariosServices>(context);
     print(
         'nif de peluqueria: ${peluqueriasServices.peluquerias[1].nif}, nif de reserva: ${reserva.peluqueria}}');
     Peluqueria peluqueriaCita = peluqueriasServices.peluquerias
@@ -157,10 +158,16 @@ class _MisReservasScreen extends State<MisReservasScreen> {
           Text('Dirección: ${peluqueriaCita.direccion}'),
           Text('Fecha: ${reserva.fecha.toString()}'),
           Text('Servicios: ${nombresServicios.toString()}'),
+          Text('Pago: ${reserva.pago}'),
+          Text('Código: ${reserva.codigoBizum}'),
           Text('Coste total: ${sumaPrecios}'),
           Text('Tiempo total: ${sumaTiempo}'),
           ElevatedButton(
               onPressed: () {
+                //meter el sueldo
+                usuariosServices.usuarioLogin!.saldo =
+                    usuariosServices.usuarioLogin!.saldo! + sumaPrecios;
+                usuariosServices.updateUsuario(usuariosServices.usuarioLogin!);
                 reservaServices.cancelarReserva(reserva);
                 Navigator.pushNamed(context, 'home');
                 //seleccionado = true;

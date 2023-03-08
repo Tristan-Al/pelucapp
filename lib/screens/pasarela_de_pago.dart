@@ -64,7 +64,6 @@ class PasarelaDePagoScreen extends StatelessWidget {
           ),
           const SizedBox(width: 20, height: 20),
           FormCreditCardNumber(
-            value: "",
             ocultar: false,
             hintText: 'Número de tarjeta',
             keyboardType: TextInputType.number,
@@ -111,6 +110,7 @@ class PasarelaDePagoScreen extends StatelessWidget {
                 } else {
                   reserva.pago = "Tarjeta";
                   reservaServices.create(reserva);
+                  reservaServices.reservas.add(reserva);
                   Navigator.pushNamed(context, 'home');
                 }
               },

@@ -13,6 +13,7 @@ class Usuario {
     required this.password,
     required this.telefono,
     required this.verificado,
+    this.saldo,
   });
 
   String? id;
@@ -23,6 +24,7 @@ class Usuario {
   int telefono;
   bool verificado;
   bool? terminos = false;
+  double? saldo = 0;
 
   factory Usuario.fromJson(String str) => Usuario.fromMap(json.decode(str));
 
@@ -35,6 +37,7 @@ class Usuario {
         password: json["password"],
         telefono: json["telefono"],
         verificado: json["verificado"],
+        saldo: json['saldo'],
       );
 
   Map<String, dynamic> toMap() => {
@@ -44,5 +47,6 @@ class Usuario {
         "password": password,
         "telefono": telefono,
         "verificado": verificado,
+        "saldo": saldo
       };
 }

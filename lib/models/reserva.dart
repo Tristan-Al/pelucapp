@@ -8,6 +8,7 @@ class Reserva {
   Reserva({
     required this.fecha,
     required this.pago,
+    this.codigoBizum,
     required this.peluquero,
     required this.peluqueria,
     required this.servicios,
@@ -22,6 +23,7 @@ class Reserva {
   Map<String, bool> servicios;
   String usuario;
   bool cancelada;
+  String? codigoBizum = "Sin código";
 
   factory Reserva.fromJson(String str) => Reserva.fromMap(json.decode(str));
 
@@ -30,6 +32,7 @@ class Reserva {
   factory Reserva.fromMap(Map<String, dynamic> json) => Reserva(
         fecha: json['fecha'],
         pago: json['pago'],
+        codigoBizum: json['codigoBizum'],
         peluquero: json['peluquero'],
         peluqueria: json['peluqueria'],
         servicios: Map.from(json['servicios'])
@@ -41,11 +44,12 @@ class Reserva {
   Map<String, dynamic> toMap() => {
         'fecha': fecha,
         'pago': pago,
+        'CodigoBizum': codigoBizum,
         'peluqueria': peluqueria,
         'peluquero': peluquero,
         'servicios':
             Map.from(servicios).map((k, v) => MapEntry<String, dynamic>(k, v)),
         'usuario': usuario,
-        'cancelada': cancelada,
+        'cancelada': cancelada
       };
 }
