@@ -173,7 +173,7 @@ class ProfileHomePage extends StatelessWidget {
                   )
                 : CircleAvatar(
                     maxRadius: 10,
-                    backgroundImage:NetworkImage(imagen!),
+                    backgroundImage:NetworkImage(imagen),
                   ),
             ),
                 padding: EdgeInsets.all(10.0),

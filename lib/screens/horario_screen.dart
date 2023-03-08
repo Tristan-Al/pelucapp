@@ -18,37 +18,37 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
   bool _horaSeleccionada = false;
 
-  Color _colorboton1000 = AppTheme.primary;
+  Color _colorboton1000 = AppTheme.backgroundColor;
 
-  Color _colorboton1030 = AppTheme.primary;
+  Color _colorboton1030 = AppTheme.backgroundColor;
 
-  Color _colorboton1100 = AppTheme.primary;
+  Color _colorboton1100 = AppTheme.backgroundColor;
 
-  Color _colorboton1130 = AppTheme.primary;
+  Color _colorboton1130 = AppTheme.backgroundColor;
 
-  Color _colorboton1200 = AppTheme.primary;
+  Color _colorboton1200 = AppTheme.backgroundColor;
 
-  Color _colorboton1230 = AppTheme.primary;
+  Color _colorboton1230 = AppTheme.backgroundColor;
 
-  Color _colorboton1300 = AppTheme.primary;
+  Color _colorboton1300 = AppTheme.backgroundColor;
 
-  Color _colorboton1330 = AppTheme.primary;
+  Color _colorboton1330 = AppTheme.backgroundColor;
 
-  Color _colorboton1700 = AppTheme.primary;
+  Color _colorboton1700 = AppTheme.backgroundColor;
 
-  Color _colorboton1730 = AppTheme.primary;
+  Color _colorboton1730 = AppTheme.backgroundColor;
 
-  Color _colorboton1800 = AppTheme.primary;
+  Color _colorboton1800 = AppTheme.backgroundColor;
 
-  Color _colorboton1830 = AppTheme.primary;
+  Color _colorboton1830 = AppTheme.backgroundColor;
 
-  Color _colorboton1900 = AppTheme.primary;
+  Color _colorboton1900 = AppTheme.backgroundColor;
 
-  Color _colorboton1930 = AppTheme.primary;
+  Color _colorboton1930 = AppTheme.backgroundColor;
 
-  Color _colorboton2000 = AppTheme.primary;
+  Color _colorboton2000 = AppTheme.backgroundColor;
 
-  Color _colorboton2030 = AppTheme.primary;
+  Color _colorboton2030 = AppTheme.backgroundColor;
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
@@ -108,18 +108,9 @@ class _HorarioScreenState extends State<HorarioScreen> {
         body: Column(
           children: [
             TableCalendar(
-              //ESTO DEBERIA FUNCIONAR PERO NO LO HACE TRISTAN HELP
-              calendarStyle: CalendarStyle(
-                todayTextStyle: TextStyle(
-                  color: AppTheme.primary,
-                ),
-                selectedTextStyle: TextStyle(
-                  color: Colors.green,
-                ),
-              ),
               locale: 'en_US',
               rowHeight: 50,
-              calendarFormat: CalendarFormat.twoWeeks,
+              calendarFormat: CalendarFormat.week,
               headerStyle: const HeaderStyle(
                   formatButtonVisible: false, titleCentered: true),
               firstDay: now,
@@ -143,6 +134,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1000,
                               ),
                               onPressed: () {
@@ -150,44 +142,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 10, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1000 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("10:00"),
+                              child: Text("10:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -197,6 +189,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1030,
                               ),
                               onPressed: () {
@@ -204,44 +197,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 10, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1030 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("10:30"),
+                              child: Text("10:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -251,6 +244,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1100,
                               ),
                               onPressed: () {
@@ -258,44 +252,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 11, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1100 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("11:00"),
+                              child: Text("11:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -305,6 +299,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1130,
                               ),
                               onPressed: () {
@@ -312,44 +307,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 11, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1130 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("11:30"),
+                              child: Text("11:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -366,6 +361,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1200,
                               ),
                               onPressed: () {
@@ -374,37 +370,37 @@ class _HorarioScreenState extends State<HorarioScreen> {
 
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1200 = AppTheme.secondary;
                                 });
 
@@ -412,7 +408,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("12:00"),
+                              child: Text("12:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -422,6 +418,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1230,
                               ),
                               onPressed: () {
@@ -429,44 +426,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 12, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1230 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("12:30"),
+                              child: Text("12:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -476,6 +473,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1300,
                               ),
                               onPressed: () {
@@ -483,44 +481,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 13, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1300 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("13:00"),
+                              child: Text("13:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -530,6 +528,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1330,
                               ),
                               onPressed: () {
@@ -537,44 +536,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 13, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1330 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("13:30"),
+                              child: Text("13:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -591,6 +590,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1700,
                               ),
                               onPressed: () {
@@ -598,44 +598,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 17, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1700 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("17:00"),
+                              child: Text("17:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -645,6 +645,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1730,
                               ),
                               onPressed: () {
@@ -652,44 +653,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 17, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1730 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("17:30"),
+                              child: Text("17:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -699,6 +700,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1800,
                               ),
                               onPressed: () {
@@ -706,44 +708,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 18, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1800 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("18:00"),
+                              child: Text("18:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -753,6 +755,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1830,
                               ),
                               onPressed: () {
@@ -760,44 +763,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 18, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1830 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("18:30"),
+                              child: Text("18:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -814,6 +817,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1900,
                               ),
                               onPressed: () {
@@ -821,44 +825,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 19, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1900 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1000 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("19:00"),
+                              child: Text("19:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -868,6 +872,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton1930,
                               ),
                               onPressed: () {
@@ -875,44 +880,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 19, 30, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton1930 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("19:30"),
+                              child: Text("19:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -922,6 +927,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton2000,
                               ),
                               onPressed: () {
@@ -929,44 +935,44 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                     selected.month, selected.day, 20, 00, 0, 0);
                                 setState(() {
                                   _horaSeleccionada = true;
-                                  _colorboton1000 = AppTheme.primary;
+                                  _colorboton1000 = AppTheme.backgroundColor;
 
-                                  _colorboton1030 = AppTheme.primary;
+                                  _colorboton1030 = AppTheme.backgroundColor;
 
-                                  _colorboton1100 = AppTheme.primary;
+                                  _colorboton1100 = AppTheme.backgroundColor;
 
-                                  _colorboton1130 = AppTheme.primary;
+                                  _colorboton1130 = AppTheme.backgroundColor;
 
-                                  _colorboton1200 = AppTheme.primary;
+                                  _colorboton1200 = AppTheme.backgroundColor;
 
-                                  _colorboton1230 = AppTheme.primary;
+                                  _colorboton1230 = AppTheme.backgroundColor;
 
-                                  _colorboton1300 = AppTheme.primary;
+                                  _colorboton1300 = AppTheme.backgroundColor;
 
-                                  _colorboton1330 = AppTheme.primary;
+                                  _colorboton1330 = AppTheme.backgroundColor;
 
-                                  _colorboton1700 = AppTheme.primary;
+                                  _colorboton1700 = AppTheme.backgroundColor;
 
-                                  _colorboton1730 = AppTheme.primary;
+                                  _colorboton1730 = AppTheme.backgroundColor;
 
-                                  _colorboton1800 = AppTheme.primary;
+                                  _colorboton1800 = AppTheme.backgroundColor;
 
-                                  _colorboton1830 = AppTheme.primary;
+                                  _colorboton1830 = AppTheme.backgroundColor;
 
-                                  _colorboton1900 = AppTheme.primary;
+                                  _colorboton1900 = AppTheme.backgroundColor;
 
-                                  _colorboton1930 = AppTheme.primary;
+                                  _colorboton1930 = AppTheme.backgroundColor;
 
-                                  _colorboton2000 = AppTheme.primary;
+                                  _colorboton2000 = AppTheme.backgroundColor;
 
-                                  _colorboton2030 = AppTheme.primary;
+                                  _colorboton2030 = AppTheme.backgroundColor;
                                   _colorboton2000 = AppTheme.secondary;
                                 });
                                 /*setState(() {
                                     _colorboton1015 = AppTheme.secondary;
                                   });*/
                               },
-                              child: Text("20:00"),
+                              child: Text("20:00", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
@@ -976,6 +982,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                             width: 70,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
+                                side: const BorderSide(width: 2, color: AppTheme.primary),
                                 primary: _colorboton2030,
                               ),
                               onPressed: () {
@@ -1028,7 +1035,7 @@ class _HorarioScreenState extends State<HorarioScreen> {
                                   });*/
                                 }
                               },
-                              child: Text("20:30"),
+                              child: Text("20:30", style: TextStyle(color: AppTheme.mainTextColor),),
                             ),
                           ),
                         ),
